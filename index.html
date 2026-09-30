@@ -4,19 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Take Up Space</title>
+
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html,body{
   margin:0;
   width:100%;
   min-height:100%;
   background:#fff;
-  color:#fff;
+  color:#171717;
   font-family:Arial,Helvetica,sans-serif;
 }
 
-body{overflow:hidden}
+body{
+  overflow:hidden;
+}
+
+/* ENTRY SCREEN */
 
 #entry{
   position:relative;
@@ -103,6 +110,9 @@ button:disabled{
   min-height:20px;
 }
 
+
+/* SHARED SPACE */
+
 #space{
   position:absolute;
   inset:0;
@@ -117,6 +127,9 @@ button:disabled{
   opacity:1;
   pointer-events:auto;
 }
+
+
+/* FLOATING WORDS */
 
 .word{
   position:absolute;
@@ -142,6 +155,7 @@ button:disabled{
     opacity:0;
     transform:scale(.55);
   }
+
   to{
     opacity:.9;
   }
@@ -152,20 +166,50 @@ button:disabled{
   opacity:0!important;
 }
 
+.word.moderatable{
+  pointer-events:auto;
+  cursor:pointer;
+}
+
+.word.selected{
+  outline:1px solid rgba(23,23,23,.75);
+  outline-offset:6px;
+}
+
+
+/* BUTTONS OVER SPACE */
+
 #back{
   position:absolute;
   z-index:30;
   top:20px;
   left:20px;
-  border:1px solid rgba(255,255,255,.3);
-  background:rgba(0,0,0,.35);
-  color:#fff;
+  border:1px solid rgba(23,23,23,.3);
+  background:rgba(255,255,255,.85);
+  color:#171717;
   padding:9px 13px;
   font-size:13px;
-  opacity:.55;
+  opacity:.7;
 }
 
-#back:hover{opacity:1}
+#back:hover{
+  opacity:1;
+}
+
+#moderate{
+  position:absolute;
+  z-index:50;
+  right:20px;
+  top:20px;
+  border:1px solid rgba(23,23,23,.3);
+  background:rgba(255,255,255,.9);
+  color:#171717;
+  padding:10px 14px;
+  font-size:13px;
+}
+
+
+/* EMPTY MESSAGE */
 
 #empty{
   position:absolute;
@@ -178,17 +222,8 @@ button:disabled{
 }
 
 
-#moderate{
-  position:absolute;
-  z-index:50;
-  right:20px;
-  top:20px;
-  border:1px solid rgba(255,255,255,.3);
-  background:rgba(0,0,0,.5);
-  color:#fff;
-  padding:10px 14px;
-  font-size:13px;
-}
+/* MODERATION PANEL */
+
 #moderationPanel{
   position:absolute;
   z-index:60;
@@ -197,404 +232,1230 @@ button:disabled{
   width:min(360px,calc(100% - 40px));
   max-height:70vh;
   overflow:auto;
-  background:#111;
-  border:1px solid #444;
+  background:#fff;
+  color:#171717;
+  border:1px solid #171717;
   padding:16px;
   display:none;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
 }
-#moderationPanel.open{display:block}
-#moderationPanel h2{font-size:16px;font-weight:400;margin:0 0 12px}
-#adminLogin{display:flex;gap:8px}
+
+#moderationPanel.open{
+  display:block;
+}
+
+#moderationPanel h2{
+  font-size:16px;
+  font-weight:400;
+  margin:0 0 12px;
+}
+
+#adminLogin{
+  display:flex;
+  gap:8px;
+}
+
 #adminPin{
   flex:1;
   min-width:0;
-  background:#222;
-  color:#fff;
-  border:1px solid #555;
+  background:#fff;
+  color:#171717;
+  border:1px solid #171717;
   padding:10px;
   font:inherit;
 }
-#loginButton,#deleteButton{padding:10px 14px;min-height:42px}
+
+#loginButton,
+#deleteButton{
+  padding:10px 14px;
+  min-height:42px;
+}
+
 #deleteButton{
   display:none;
   width:100%;
   margin-top:12px;
-  background:#fff;
-  color:#111;
+  background:#171717;
+  color:#fff;
 }
+
 #moderationStatus{
-  color:#aaa;
+  color:#666;
   font-size:12px;
   line-height:1.35;
   margin-top:10px;
 }
-#adminList{display:none;margin-top:12px}
+
+#adminList{
+  display:none;
+  margin-top:12px;
+}
+
 .modItem{
-  border-top:1px solid #333;
+  border-top:1px solid #ddd;
   padding:10px 6px;
   font-size:13px;
   line-height:1.3;
   cursor:pointer;
 }
-.modItem.selected{background:#222}
-.word.moderatable{cursor:pointer}
-.word.selected{
-  outline:1px solid rgba(23,23,23,.75);
-  outline-offset:6px;
+
+.modItem:hover{
+  background:#f4f4f4;
 }
 
+.modItem.selected{
+  background:#e9e9e9;
+}
+
+
+/* MOBILE */
+
 @media(max-width:600px){
-  #entry{padding:22px}
-  .entry-bottom{align-items:flex-end}
-  button{width:100%}
-  .word{max-width:58vw}
+
+  #entry{
+    padding:22px;
+  }
+
+  .entry-bottom{
+    align-items:flex-end;
+  }
+
+  button{
+    width:100%;
+  }
+
+  .word{
+    max-width:58vw;
+  }
+
 }
 </style>
 </head>
 
+
 <body>
 
+<!-- ENTRY SCREEN -->
+
 <section id="entry">
+
   <div class="entry-inner">
-    <h1>What have you been taught to make yourself smaller about?</h1>
+
+    <h1>
+      What have you been taught to make yourself smaller about?
+    </h1>
 
     <p class="intro">
       Write a confession. Once you release it, your words will enter the shared space with everyone else's.
     </p>
 
     <form id="form">
-      <textarea id="input" maxlength="240" required
-        placeholder="Write something..."></textarea>
+
+      <textarea
+        id="input"
+        maxlength="240"
+        required
+        placeholder="Write something..."
+      ></textarea>
 
       <div class="entry-bottom">
+
         <span id="status" aria-live="polite"></span>
-        <button id="release" type="submit">Release</button>
+
+        <button id="release" type="submit">
+          Release
+        </button>
+
       </div>
+
     </form>
+
   </div>
+
 </section>
+
+
+<!-- SHARED SPACE -->
 
 <section id="space" aria-label="Shared confession space">
-  <div id="empty">The space is waiting.</div>
-  <button id="back" type="button">Add another confession</button>
 
-  <button id="moderate" type="button">Moderate</button>
+  <div id="empty">
+    The space is waiting.
+  </div>
 
-  <aside id="moderationPanel" aria-label="Moderation panel">
-    <h2>Moderation</h2>
+  <button id="back" type="button">
+    Add another confession
+  </button>
+
+  <button id="moderate" type="button">
+    Moderate
+  </button>
+
+
+  <!-- MODERATION PANEL -->
+
+  <aside
+    id="moderationPanel"
+    aria-label="Moderation panel"
+  >
+
+    <h2>
+      Moderation
+    </h2>
+
     <div id="adminLogin">
-      <input id="adminPin" type="password" placeholder="Admin PIN" autocomplete="off">
-      <button id="loginButton" type="button">Enter</button>
+
+      <input
+        id="adminPin"
+        type="password"
+        placeholder="Admin PIN"
+        autocomplete="off"
+      >
+
+      <button
+        id="loginButton"
+        type="button"
+      >
+        Enter
+      </button>
+
     </div>
-    <div id="moderationStatus">Enter the admin PIN to manage submissions.</div>
+
+    <div id="moderationStatus">
+      Enter the admin PIN to manage submissions.
+    </div>
+
     <div id="adminList"></div>
-    <button id="deleteButton" type="button">Delete selected confession</button>
+
+    <button
+      id="deleteButton"
+      type="button"
+    >
+      Delete selected confession
+    </button>
+
   </aside>
+
 </section>
+
 
 <script type="module">
 
-/*
-  ==========================================================
-  FIREBASE SETUP
-  ==========================================================
-
-  Replace the values below with your Firebase Web App config.
-
-  Firebase Console:
-  Project settings → Your apps → Web app
-
-  ==========================================================
-*/
+/* ==========================================================
+   FIREBASE SETUP
+   ========================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBnzqy7qtsuGJEcKkXlW2CIy76ZwZu3uQ4",
-  authDomain: "confession-installation.firebaseapp.com",
-  databaseURL: "https://confession-installation-default-rtdb.firebaseio.com",
-  projectId: "confession-installation",
-  storageBucket: "confession-installation.firebasestorage.app",
-  messagingSenderId: "715428481943",
-  appId: "1:715428481943:web:49e9e0d3d3aaad7ef2d2d2",
-  measurementId: "G-325RR1JKNW"
+
+  apiKey:
+    "AIzaSyBnzqy7qtsuGJEKkXlW2CIy76ZwZu3uQ4",
+
+  authDomain:
+    "confession-installation.firebaseapp.com",
+
+  databaseURL:
+    "https://confession-installation-default-rtdb.firebaseio.com",
+
+  projectId:
+    "confession-installation",
+
+  storageBucket:
+    "confession-installation.firebasestorage.app",
+
+  messagingSenderId:
+    "715428481943",
+
+  appId:
+    "1:715428481943:web:49e9e0d3d3aaad7ef2d2d2",
+
+  measurementId:
+    "G-325RR1JKNW"
 };
 
-import { initializeApp }
-  from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
+import {
+  initializeApp
+}
+from
+  "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
 
 import {
   getDatabase,
   ref,
   push,
   onChildAdded,
+  onChildRemoved,
   remove
-} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+}
+from
+  "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+
 
 const app = initializeApp(firebaseConfig);
+
 const database = getDatabase(app);
-const confessionRef = ref(database, "confessions");
 
-const entry = document.getElementById("entry");
-const space = document.getElementById("space");
-const form = document.getElementById("form");
-const input = document.getElementById("input");
-const release = document.getElementById("release");
-const status = document.getElementById("status");
-const moderate = document.getElementById("moderate");
-const moderationPanel = document.getElementById("moderationPanel");
-const adminPin = document.getElementById("adminPin");
-const loginButton = document.getElementById("loginButton");
-const moderationStatus = document.getElementById("moderationStatus");
-const adminList = document.getElementById("adminList");
-const deleteButton = document.getElementById("deleteButton");
+const confessionRef =
+  ref(database,"confessions");
 
-/*
-  This PIN is a convenience layer for the prototype, not true security.
-  Change it before testing moderation.
-  For a public exhibition, use Firebase Authentication + admin-only
-  database rules so visitors cannot bypass the PIN.
-*/
+
+/* ==========================================================
+   ELEMENTS
+   ========================================================== */
+
+const entry =
+  document.getElementById("entry");
+
+const space =
+  document.getElementById("space");
+
+const form =
+  document.getElementById("form");
+
+const input =
+  document.getElementById("input");
+
+const release =
+  document.getElementById("release");
+
+const status =
+  document.getElementById("status");
+
+const moderate =
+  document.getElementById("moderate");
+
+const moderationPanel =
+  document.getElementById("moderationPanel");
+
+const adminPin =
+  document.getElementById("adminPin");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const moderationStatus =
+  document.getElementById("moderationStatus");
+
+const adminList =
+  document.getElementById("adminList");
+
+const deleteButton =
+  document.getElementById("deleteButton");
+
+const back =
+  document.getElementById("back");
+
+const empty =
+  document.getElementById("empty");
+
+
+/* ==========================================================
+   MODERATION
+   ========================================================== */
+
 const ADMIN_PIN = "0092";
+
 let adminUnlocked = false;
+
 let selectedId = null;
+
 const wordItems = new Map();
 
-const back = document.getElementById("back");
-const empty = document.getElementById("empty");
+
+/* ==========================================================
+   WORD ANIMATION
+   ========================================================== */
 
 const words = [];
+
 const MAX_WORDS = 80;
 
+
 function random(min,max){
+
   return Math.random() * (max-min) + min;
+
 }
 
-function addWord(id, text, isNewSubmission=false){
+
+/* ==========================================================
+   ADD WORD
+   ========================================================== */
+
+function addWord(
+  id,
+  text,
+  isNewSubmission = false
+){
 
   empty.style.display = "none";
 
-  const el = document.createElement("div");
-  el.className = "word appear";
-  el.textContent = text;
-  el.dataset.id = id;
+
+  const el =
+    document.createElement("div");
+
+
+  el.className =
+    "word appear";
+
+
+  el.textContent =
+    text;
+
+
+  el.dataset.id =
+    id;
+
 
   if(isNewSubmission){
-    el.style.fontSize = "clamp(25px,3.2vw,64px)";
+
+    el.style.fontSize =
+      "clamp(25px,3.2vw,64px)";
+
   }
+
 
   space.appendChild(el);
 
-  const width = space.clientWidth;
-  const height = space.clientHeight;
+
+  const width =
+    space.clientWidth;
+
+
+  const height =
+    space.clientHeight;
+
 
   const item = {
+
     id,
+
     el,
-    x: random(30, Math.max(30,width-420)),
-    y: random(30, Math.max(30,height-100)),
-    vx: random(-.20,.20),
-    vy: random(-.14,.14),
-    rotation: random(-5,5),
-    rotationSpeed: random(-.012,.012),
-    scale: isNewSubmission ? 1.15 : random(.75,1.3)
+
+    x:
+      random(
+        30,
+        Math.max(30,width-420)
+      ),
+
+    y:
+      random(
+        30,
+        Math.max(30,height-100)
+      ),
+
+    vx:
+      random(-.20,.20),
+
+    vy:
+      random(-.14,.14),
+
+    rotation:
+      random(-5,5),
+
+    rotationSpeed:
+      random(-.012,.012),
+
+    scale:
+      isNewSubmission
+        ? 1.15
+        : random(.75,1.3)
+
   };
 
+
   words.push(item);
-  wordItems.set(id, item);
 
-  el.addEventListener("click", () => {
-    if (!adminUnlocked) return;
-    selectConfession(id);
-  });
+  wordItems.set(id,item);
 
-  if(words.length > MAX_WORDS){
-    const old = words.shift();
-    wordItems.delete(old.id);
-    old.el.classList.add("fade");
-    setTimeout(()=>old.el.remove(),3000);
-  }
-
-  return item;
-}
-
-function showSpace(){
-  entry.classList.add("hidden");
-  space.classList.add("visible");
-}
-
-function showEntry(){
-  space.classList.remove("visible");
-  entry.classList.remove("hidden");
-  input.focus();
-}
-
-form.addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const text = input.value.trim().replace(/\s+/g," ");
-
-  if(!text) return;
-
-  release.disabled = true;
-  status.textContent = "Releasing…";
-
-  try{
-
-    await push(confessionRef,{
-      text,
-      createdAt:Date.now()
-    });
-
-    input.value = "";
-    status.textContent = "";
-
-    showSpace();
-
-  }catch(error){
-
-    console.error(error);
-    status.textContent = "Something went wrong. Try again.";
-    release.disabled = false;
-  }
-});
-
-back.addEventListener("click",()=>{
-  showEntry();
-  release.disabled = false;
-  status.textContent = "";
-});
-
-onChildAdded(confessionRef, snapshot => {
-
-  const data = snapshot.val();
-
-  if(!data || typeof data.text !== "string") return;
 
   /*
-    If this browser just submitted something, the newest
-    confession still appears as part of the shared space.
+     Clicking a word only works after
+     moderation has been unlocked.
   */
-  addWord(snapshot.key, data.text);
 
-});
+  el.addEventListener(
+    "click",
+    () => {
 
+      if(!adminUnlocked){
+
+        return;
+
+      }
+
+      selectConfession(id);
+
+    }
+  );
+
+
+  if(words.length > MAX_WORDS){
+
+    const old =
+      words.shift();
+
+    wordItems.delete(old.id);
+
+    old.el.classList.add("fade");
+
+    setTimeout(
+      () => old.el.remove(),
+      3000
+    );
+
+  }
+
+
+  /*
+     If moderation is already unlocked,
+     make newly added words clickable.
+  */
+
+  if(adminUnlocked){
+
+    el.classList.add("moderatable");
+
+  }
+
+
+  return item;
+
+}
+
+
+/* ==========================================================
+   SCREEN CHANGES
+   ========================================================== */
+
+function showSpace(){
+
+  entry.classList.add("hidden");
+
+  space.classList.add("visible");
+
+}
+
+
+function showEntry(){
+
+  space.classList.remove("visible");
+
+  entry.classList.remove("hidden");
+
+  input.focus();
+
+}
+
+
+/* ==========================================================
+   SUBMIT CONFESSION
+   ========================================================== */
+
+form.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+
+    const text =
+      input.value
+        .trim()
+        .replace(/\s+/g," ");
+
+
+    if(!text){
+
+      return;
+
+    }
+
+
+    release.disabled =
+      true;
+
+    status.textContent =
+      "Releasing…";
+
+
+    try{
+
+      await push(
+        confessionRef,
+        {
+
+          text,
+
+          createdAt:
+            Date.now()
+
+        }
+      );
+
+
+      input.value = "";
+
+      status.textContent = "";
+
+      showSpace();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      status.textContent =
+        "Something went wrong. Try again.";
+
+      release.disabled =
+        false;
+
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   BACK BUTTON
+   ========================================================== */
+
+back.addEventListener(
+  "click",
+  () => {
+
+    showEntry();
+
+    release.disabled =
+      false;
+
+    status.textContent =
+      "";
+
+  }
+);
+
+
+/* ==========================================================
+   FIREBASE: NEW CONFESSION
+   ========================================================== */
+
+onChildAdded(
+  confessionRef,
+  snapshot => {
+
+    const data =
+      snapshot.val();
+
+
+    if(
+      !data ||
+      typeof data.text !== "string"
+    ){
+
+      return;
+
+    }
+
+
+    addWord(
+      snapshot.key,
+      data.text
+    );
+
+  }
+);
+
+
+/* ==========================================================
+   FIREBASE: REMOVED CONFESSION
+   ========================================================== */
+
+onChildRemoved(
+  confessionRef,
+  snapshot => {
+
+    const id =
+      snapshot.key;
+
+
+    const item =
+      wordItems.get(id);
+
+
+    if(item){
+
+      item.el.remove();
+
+      wordItems.delete(id);
+
+
+      const index =
+        words.indexOf(item);
+
+
+      if(index !== -1){
+
+        words.splice(index,1);
+
+      }
+
+    }
+
+
+    if(
+      selectedId === id
+    ){
+
+      selectedId = null;
+
+      deleteButton.style.display =
+        "none";
+
+    }
+
+
+    buildAdminList();
+
+
+    if(wordItems.size === 0){
+
+      empty.style.display =
+        "flex";
+
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   SELECT CONFESSION
+   ========================================================== */
 
 function selectConfession(id){
-  selectedId = id;
 
-  wordItems.forEach(item => item.el.classList.remove("selected"));
-  const item = wordItems.get(id);
-  if(item) item.el.classList.add("selected");
+  selectedId =
+    id;
 
-  document.querySelectorAll(".modItem").forEach(row => {
-    row.classList.toggle("selected", row.dataset.id === id);
-  });
 
-  deleteButton.style.display = "block";
+  /*
+     Remove selection from
+     every floating confession.
+  */
+
+  wordItems.forEach(
+    item => {
+
+      item.el.classList.remove(
+        "selected"
+      );
+
+    }
+  );
+
+
+  /*
+     Highlight selected confession.
+  */
+
+  const item =
+    wordItems.get(id);
+
+
+  if(item){
+
+    item.el.classList.add(
+      "selected"
+    );
+
+  }
+
+
+  /*
+     Highlight matching
+     moderation list item.
+  */
+
+  document
+    .querySelectorAll(".modItem")
+    .forEach(row => {
+
+      row.classList.toggle(
+        "selected",
+        row.dataset.id === id
+      );
+
+    });
+
+
+  /*
+     Show delete button.
+  */
+
+  deleteButton.style.display =
+    "block";
+
 }
+
+
+/* ==========================================================
+   MODERATION LIST
+   ========================================================== */
 
 function buildAdminList(){
+
   adminList.innerHTML = "";
 
-  wordItems.forEach((item, id) => {
-    const row = document.createElement("div");
-    row.className = "modItem";
-    row.dataset.id = id;
-    row.textContent = item.el.textContent;
-    row.addEventListener("click", () => selectConfession(id));
-    adminList.appendChild(row);
-  });
+
+  wordItems.forEach(
+    (item,id) => {
+
+      const row =
+        document.createElement("div");
+
+
+      row.className =
+        "modItem";
+
+
+      row.dataset.id =
+        id;
+
+
+      row.textContent =
+        item.el.textContent;
+
+
+      row.addEventListener(
+        "click",
+        () => {
+
+          selectConfession(id);
+
+        }
+      );
+
+
+      if(
+        selectedId === id
+      ){
+
+        row.classList.add(
+          "selected"
+        );
+
+      }
+
+
+      adminList.appendChild(
+        row
+      );
+
+    }
+  );
+
 }
 
-moderate.addEventListener("click", () => {
-  moderationPanel.classList.toggle("open");
-  if(moderationPanel.classList.contains("open") && adminUnlocked){
-    buildAdminList();
+
+/* ==========================================================
+   MODERATION BUTTON
+   ========================================================== */
+
+moderate.addEventListener(
+  "click",
+  () => {
+
+    moderationPanel.classList.toggle(
+      "open"
+    );
+
+
+    if(
+      moderationPanel.classList.contains("open")
+    ){
+
+      if(adminUnlocked){
+
+        buildAdminList();
+
+      }
+
+      adminPin.focus();
+
+    }
+
   }
-  if(moderationPanel.classList.contains("open")){
-    adminPin.focus();
+);
+
+
+/* ==========================================================
+   ADMIN LOGIN
+   ========================================================== */
+
+loginButton.addEventListener(
+  "click",
+  () => {
+
+    if(
+      adminPin.value === ADMIN_PIN
+    ){
+
+      adminUnlocked =
+        true;
+
+
+      adminPin.value =
+        "";
+
+
+      adminList.style.display =
+        "block";
+
+
+      moderationStatus.textContent =
+        "Moderation unlocked. Select a confession to delete it.";
+
+
+      buildAdminList();
+
+
+      /*
+         Make all current
+         floating words clickable.
+      */
+
+      wordItems.forEach(
+        item => {
+
+          item.el.classList.add(
+            "moderatable"
+          );
+
+        }
+      );
+
+
+    }else{
+
+      moderationStatus.textContent =
+        "Incorrect PIN.";
+
+
+      adminUnlocked =
+        false;
+
+    }
+
   }
-});
+);
 
-loginButton.addEventListener("click", () => {
-  if(adminPin.value === ADMIN_PIN){
-    adminUnlocked = true;
-    adminPin.value = "";
-    adminList.style.display = "block";
-    moderationStatus.textContent = "Moderation unlocked. Select a confession to delete it.";
-    buildAdminList();
 
-    wordItems.forEach(item => item.el.classList.add("moderatable"));
-  }else{
-    moderationStatus.textContent = "Incorrect PIN.";
-    adminUnlocked = false;
+/*
+   Allow pressing Enter
+   inside the PIN field.
+*/
+
+adminPin.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Enter"){
+
+      loginButton.click();
+
+    }
+
   }
-});
+);
 
-deleteButton.addEventListener("click", async () => {
-  if(!adminUnlocked || !selectedId) return;
 
-  const item = wordItems.get(selectedId);
-  if(!item) return;
+/* ==========================================================
+   DELETE SELECTED CONFESSION
+   ========================================================== */
 
-  if(!window.confirm("Delete this confession from the shared space?")) return;
+deleteButton.addEventListener(
+  "click",
+  async () => {
 
-  try{
-    await remove(ref(database, "confessions/" + selectedId));
+    /*
+       Make sure moderation
+       is unlocked.
+    */
 
-    item.el.remove();
-    wordItems.delete(selectedId);
+    if(!adminUnlocked){
 
-    const index = words.indexOf(item);
-    if(index >= 0) words.splice(index, 1);
+      moderationStatus.textContent =
+        "Moderation is locked.";
 
-    selectedId = null;
-    deleteButton.style.display = "none";
-    buildAdminList();
+      return;
 
-    moderationStatus.textContent = "Confession deleted.";
-  }catch(error){
-    console.error(error);
-    moderationStatus.textContent = "Delete failed. Check Firebase rules.";
+    }
+
+
+    /*
+       Make sure something
+       has actually been selected.
+    */
+
+    if(!selectedId){
+
+      moderationStatus.textContent =
+        "Select a confession first.";
+
+      return;
+
+    }
+
+
+    /*
+       Save the ID before doing
+       anything else.
+    */
+
+    const idToDelete =
+      selectedId;
+
+
+    const item =
+      wordItems.get(idToDelete);
+
+
+    if(!item){
+
+      moderationStatus.textContent =
+        "That confession could not be found.";
+
+      return;
+
+    }
+
+
+    /*
+       Ask for confirmation.
+    */
+
+    if(
+      !window.confirm(
+        "Delete this confession from the shared space?"
+      )
+    ){
+
+      return;
+
+    }
+
+
+    try{
+
+      /*
+         THIS is the important part.
+
+         The Firebase record is deleted
+         using the exact ID that belongs
+         to the selected confession.
+      */
+
+      await remove(
+        ref(
+          database,
+          "confessions/" + idToDelete
+        )
+      );
+
+
+      /*
+         Remove from the screen immediately.
+      */
+
+      if(item.el){
+
+        item.el.remove();
+
+      }
+
+
+      /*
+         Remove from local tracking.
+      */
+
+      wordItems.delete(
+        idToDelete
+      );
+
+
+      const index =
+        words.findIndex(
+          word =>
+            word.id === idToDelete
+        );
+
+
+      if(index !== -1){
+
+        words.splice(
+          index,
+          1
+        );
+
+      }
+
+
+      /*
+         Clear selection.
+      */
+
+      selectedId =
+        null;
+
+
+      deleteButton.style.display =
+        "none";
+
+
+      /*
+         Rebuild moderation list.
+      */
+
+      buildAdminList();
+
+
+      /*
+         Show confirmation.
+      */
+
+      moderationStatus.textContent =
+        "Confession deleted.";
+
+
+      /*
+         Show empty state if
+         there are no confessions.
+      */
+
+      if(wordItems.size === 0){
+
+        empty.style.display =
+          "flex";
+
+      }
+
+
+    }catch(error){
+
+      console.error(
+        "Delete error:",
+        error
+      );
+
+
+      moderationStatus.textContent =
+        "Delete failed. Check your Firebase Database Rules.";
+
+    }
+
   }
-});
+);
+
+
+/* ==========================================================
+   FLOATING ANIMATION
+   ========================================================== */
 
 function animate(){
 
-  const width = space.clientWidth;
-  const height = space.clientHeight;
+  const width =
+    space.clientWidth;
 
-  words.forEach(item=>{
 
-    const w = item.el.offsetWidth;
-    const h = item.el.offsetHeight;
+  const height =
+    space.clientHeight;
 
-    item.x += item.vx;
-    item.y += item.vy;
-    item.rotation += item.rotationSpeed;
 
-    if(item.x < -20 || item.x+w > width+20){
-      item.vx *= -1;
+  words.forEach(
+    item => {
+
+      const w =
+        item.el.offsetWidth;
+
+
+      const h =
+        item.el.offsetHeight;
+
+
+      item.x +=
+        item.vx;
+
+
+      item.y +=
+        item.vy;
+
+
+      item.rotation +=
+        item.rotationSpeed;
+
+
+      if(
+        item.x < -20 ||
+        item.x + w > width + 20
+      ){
+
+        item.vx *= -1;
+
+      }
+
+
+      if(
+        item.y < -20 ||
+        item.y + h > height + 20
+      ){
+
+        item.vy *= -1;
+
+      }
+
+
+      item.x =
+        Math.max(
+          -20,
+          Math.min(
+            item.x,
+            width - w + 20
+          )
+        );
+
+
+      item.y =
+        Math.max(
+          -20,
+          Math.min(
+            item.y,
+            height - h + 20
+          )
+        );
+
+
+      item.el.style.transform =
+        `translate(${item.x}px,${item.y}px)
+         rotate(${item.rotation}deg)
+         scale(${item.scale})`;
+
     }
+  );
 
-    if(item.y < -20 || item.y+h > height+20){
-      item.vy *= -1;
-    }
 
-    item.x = Math.max(-20,Math.min(item.x,width-w+20));
-    item.y = Math.max(-20,Math.min(item.y,height-h+20));
+  requestAnimationFrame(
+    animate
+  );
 
-    item.el.style.transform =
-      `translate(${item.x}px,${item.y}px)
-       rotate(${item.rotation}deg)
-       scale(${item.scale})`;
-
-  });
-
-  requestAnimationFrame(animate);
 }
+
 
 animate();
 
 </script>
+
 </body>
 </html>
