@@ -23,6 +23,7 @@ body{
   overflow:hidden;
 }
 
+
 /* ENTRY SCREEN */
 
 #entry{
@@ -108,6 +109,24 @@ button:disabled{
 #status{
   font-size:14px;
   min-height:20px;
+}
+
+
+/* ENTER SHARED SPACE BUTTON */
+
+#enterSpace{
+  display:block;
+  margin-top:18px;
+  padding:0;
+  min-height:auto;
+  background:none;
+  color:#171717;
+  text-decoration:underline;
+  font-size:14px;
+}
+
+#enterSpace:hover{
+  opacity:.6;
 }
 
 
@@ -324,6 +343,10 @@ button:disabled{
     width:100%;
   }
 
+  #enterSpace{
+    width:auto;
+  }
+
   .word{
     max-width:58vw;
   }
@@ -369,6 +392,10 @@ button:disabled{
       </div>
 
     </form>
+
+    <button id="enterSpace" type="button">
+      Enter the shared space
+    </button>
 
   </div>
 
@@ -492,9 +519,11 @@ from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const database = getDatabase(app);
+const database =
+  getDatabase(app);
 
 const confessionRef =
   ref(database,"confessions");
@@ -521,6 +550,9 @@ const release =
 
 const status =
   document.getElementById("status");
+
+const enterSpace =
+  document.getElementById("enterSpace");
 
 const moderate =
   document.getElementById("moderate");
@@ -554,13 +586,17 @@ const empty =
    MODERATION
    ========================================================== */
 
-const ADMIN_PIN = "0092";
+const ADMIN_PIN =
+  "0092";
 
-let adminUnlocked = false;
+let adminUnlocked =
+  false;
 
-let selectedId = null;
+let selectedId =
+  null;
 
-const wordItems = new Map();
+const wordItems =
+  new Map();
 
 
 /* ==========================================================
@@ -569,12 +605,14 @@ const wordItems = new Map();
 
 const words = [];
 
-const MAX_WORDS = 80;
+const MAX_WORDS =
+  80;
 
 
 function random(min,max){
 
-  return Math.random() * (max-min) + min;
+  return Math.random() *
+    (max-min) + min;
 
 }
 
@@ -589,7 +627,8 @@ function addWord(
   isNewSubmission = false
 ){
 
-  empty.style.display = "none";
+  empty.style.display =
+    "none";
 
 
   const el =
@@ -622,7 +661,6 @@ function addWord(
   const width =
     space.clientWidth;
 
-
   const height =
     space.clientHeight;
 
@@ -636,13 +674,19 @@ function addWord(
     x:
       random(
         30,
-        Math.max(30,width-420)
+        Math.max(
+          30,
+          width-420
+        )
       ),
 
     y:
       random(
         30,
-        Math.max(30,height-100)
+        Math.max(
+          30,
+          height-100
+        )
       ),
 
     vx:
@@ -667,13 +711,11 @@ function addWord(
 
   words.push(item);
 
-  wordItems.set(id,item);
+  wordItems.set(
+    id,
+    item
+  );
 
-
-  /*
-     Clicking a word only works after
-     moderation has been unlocked.
-  */
 
   el.addEventListener(
     "click",
@@ -691,14 +733,20 @@ function addWord(
   );
 
 
-  if(words.length > MAX_WORDS){
+  if(
+    words.length > MAX_WORDS
+  ){
 
     const old =
       words.shift();
 
-    wordItems.delete(old.id);
+    wordItems.delete(
+      old.id
+    );
 
-    old.el.classList.add("fade");
+    old.el.classList.add(
+      "fade"
+    );
 
     setTimeout(
       () => old.el.remove(),
@@ -708,14 +756,11 @@ function addWord(
   }
 
 
-  /*
-     If moderation is already unlocked,
-     make newly added words clickable.
-  */
-
   if(adminUnlocked){
 
-    el.classList.add("moderatable");
+    el.classList.add(
+      "moderatable"
+    );
 
   }
 
@@ -726,23 +771,35 @@ function addWord(
 
 
 /* ==========================================================
-   SCREEN CHANGES
+   SHOW SHARED SPACE
    ========================================================== */
 
 function showSpace(){
 
-  entry.classList.add("hidden");
+  entry.classList.add(
+    "hidden"
+  );
 
-  space.classList.add("visible");
+  space.classList.add(
+    "visible"
+  );
 
 }
 
 
+/* ==========================================================
+   SHOW ENTRY SCREEN
+   ========================================================== */
+
 function showEntry(){
 
-  space.classList.remove("visible");
+  space.classList.remove(
+    "visible"
+  );
 
-  entry.classList.remove("hidden");
+  entry.classList.remove(
+    "hidden"
+  );
 
   input.focus();
 
@@ -813,6 +870,20 @@ form.addEventListener(
         false;
 
     }
+
+  }
+);
+
+
+/* ==========================================================
+   ENTER SHARED SPACE WITHOUT SUBMITTING
+   ========================================================== */
+
+enterSpace.addEventListener(
+  "click",
+  () => {
+
+    showSpace();
 
   }
 );
@@ -898,7 +969,10 @@ onChildRemoved(
 
       if(index !== -1){
 
-        words.splice(index,1);
+        words.splice(
+          index,
+          1
+        );
 
       }
 
@@ -909,7 +983,8 @@ onChildRemoved(
       selectedId === id
     ){
 
-      selectedId = null;
+      selectedId =
+        null;
 
       deleteButton.style.display =
         "none";
@@ -920,7 +995,9 @@ onChildRemoved(
     buildAdminList();
 
 
-    if(wordItems.size === 0){
+    if(
+      wordItems.size === 0
+    ){
 
       empty.style.display =
         "flex";
@@ -941,11 +1018,6 @@ function selectConfession(id){
     id;
 
 
-  /*
-     Remove selection from
-     every floating confession.
-  */
-
   wordItems.forEach(
     item => {
 
@@ -956,10 +1028,6 @@ function selectConfession(id){
     }
   );
 
-
-  /*
-     Highlight selected confession.
-  */
 
   const item =
     wordItems.get(id);
@@ -974,11 +1042,6 @@ function selectConfession(id){
   }
 
 
-  /*
-     Highlight matching
-     moderation list item.
-  */
-
   document
     .querySelectorAll(".modItem")
     .forEach(row => {
@@ -990,10 +1053,6 @@ function selectConfession(id){
 
     });
 
-
-  /*
-     Show delete button.
-  */
 
   deleteButton.style.display =
     "block";
@@ -1074,7 +1133,9 @@ moderate.addEventListener(
 
 
     if(
-      moderationPanel.classList.contains("open")
+      moderationPanel.classList.contains(
+        "open"
+      )
     ){
 
       if(adminUnlocked){
@@ -1122,11 +1183,6 @@ loginButton.addEventListener(
       buildAdminList();
 
 
-      /*
-         Make all current
-         floating words clickable.
-      */
-
       wordItems.forEach(
         item => {
 
@@ -1153,16 +1209,17 @@ loginButton.addEventListener(
 );
 
 
-/*
-   Allow pressing Enter
-   inside the PIN field.
-*/
+/* ==========================================================
+   ENTER KEY FOR PIN
+   ========================================================== */
 
 adminPin.addEventListener(
   "keydown",
   event => {
 
-    if(event.key === "Enter"){
+    if(
+      event.key === "Enter"
+    ){
 
       loginButton.click();
 
@@ -1180,11 +1237,6 @@ deleteButton.addEventListener(
   "click",
   async () => {
 
-    /*
-       Make sure moderation
-       is unlocked.
-    */
-
     if(!adminUnlocked){
 
       moderationStatus.textContent =
@@ -1194,11 +1246,6 @@ deleteButton.addEventListener(
 
     }
 
-
-    /*
-       Make sure something
-       has actually been selected.
-    */
 
     if(!selectedId){
 
@@ -1210,17 +1257,14 @@ deleteButton.addEventListener(
     }
 
 
-    /*
-       Save the ID before doing
-       anything else.
-    */
-
     const idToDelete =
       selectedId;
 
 
     const item =
-      wordItems.get(idToDelete);
+      wordItems.get(
+        idToDelete
+      );
 
 
     if(!item){
@@ -1232,10 +1276,6 @@ deleteButton.addEventListener(
 
     }
 
-
-    /*
-       Ask for confirmation.
-    */
 
     if(
       !window.confirm(
@@ -1250,25 +1290,14 @@ deleteButton.addEventListener(
 
     try{
 
-      /*
-         THIS is the important part.
-
-         The Firebase record is deleted
-         using the exact ID that belongs
-         to the selected confession.
-      */
-
       await remove(
         ref(
           database,
-          "confessions/" + idToDelete
+          "confessions/" +
+          idToDelete
         )
       );
 
-
-      /*
-         Remove from the screen immediately.
-      */
 
       if(item.el){
 
@@ -1276,10 +1305,6 @@ deleteButton.addEventListener(
 
       }
 
-
-      /*
-         Remove from local tracking.
-      */
 
       wordItems.delete(
         idToDelete
@@ -1303,10 +1328,6 @@ deleteButton.addEventListener(
       }
 
 
-      /*
-         Clear selection.
-      */
-
       selectedId =
         null;
 
@@ -1315,27 +1336,16 @@ deleteButton.addEventListener(
         "none";
 
 
-      /*
-         Rebuild moderation list.
-      */
-
       buildAdminList();
 
-
-      /*
-         Show confirmation.
-      */
 
       moderationStatus.textContent =
         "Confession deleted.";
 
 
-      /*
-         Show empty state if
-         there are no confessions.
-      */
-
-      if(wordItems.size === 0){
+      if(
+        wordItems.size === 0
+      ){
 
         empty.style.display =
           "flex";
@@ -1369,7 +1379,6 @@ function animate(){
   const width =
     space.clientWidth;
 
-
   const height =
     space.clientHeight;
 
@@ -1380,7 +1389,6 @@ function animate(){
       const w =
         item.el.offsetWidth;
 
-
       const h =
         item.el.offsetHeight;
 
@@ -1388,10 +1396,8 @@ function animate(){
       item.x +=
         item.vx;
 
-
       item.y +=
         item.vy;
-
 
       item.rotation +=
         item.rotationSpeed;
@@ -1422,7 +1428,7 @@ function animate(){
           -20,
           Math.min(
             item.x,
-            width - w + 20
+            width-w+20
           )
         );
 
@@ -1432,7 +1438,7 @@ function animate(){
           -20,
           Math.min(
             item.y,
-            height - h + 20
+            height-h+20
           )
         );
 
