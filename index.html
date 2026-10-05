@@ -1,29 +1,53 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
 
 <title>Take Up Space</title>
 
+
 <style>
+
+/* =========================================================
+   BASIC
+   ========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+
 html,
 body{
+
   margin:0;
+
   width:100%;
-  min-height:100%;
-  font-family:Arial, Helvetica, sans-serif;
+  height:100%;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
 }
 
+
 body{
+
   overflow:hidden;
+
   background:#192142;
+
 }
+
 
 
 /* =========================================================
@@ -31,131 +55,207 @@ body{
    ========================================================= */
 
 #entry{
+
   position:relative;
+
   z-index:20;
 
-  min-height:100vh;
+  width:100%;
+  height:100vh;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   padding:30px;
 
   background:#f4f1ec;
+
   color:#171717;
 
   transition:
     opacity 1.2s ease,
     visibility 1.2s ease;
+
 }
+
 
 #entry.hidden{
+
   opacity:0;
+
   visibility:hidden;
+
   pointer-events:none;
+
 }
+
 
 .entry-inner{
-  width:min(720px,100%);
+
+  width:min(
+    720px,
+    100%
+  );
+
 }
+
 
 h1{
-  font-size:clamp(38px,7vw,76px);
+
+  font-size:
+    clamp(
+      38px,
+      7vw,
+      76px
+    );
+
   font-weight:400;
+
   line-height:.92;
+
   letter-spacing:-.055em;
 
-  margin:0 0 22px;
+  margin:
+    0 0 22px;
 
   max-width:700px;
+
 }
 
+
 .intro{
+
   font-size:18px;
+
   line-height:1.45;
 
   max-width:580px;
 
-  margin:0 0 28px;
+  margin:
+    0 0 28px;
+
 }
 
+
 textarea{
+
   width:100%;
+
   min-height:190px;
 
   resize:vertical;
 
-  border:1px solid #171717;
+  border:
+    1px solid #171717;
 
   background:#fff;
+
   color:#171717;
 
   padding:18px;
 
   font:inherit;
+
   font-size:19px;
+
   line-height:1.35;
 
   outline:none;
+
 }
+
 
 textarea:focus{
-  box-shadow:0 0 0 2px #171717;
+
+  box-shadow:
+    0 0 0 2px #171717;
+
 }
 
+
 .entry-bottom{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   gap:16px;
 
   margin-top:12px;
+
 }
 
+
 button{
+
   border:0;
 
   background:#171717;
+
   color:#fff;
 
-  padding:15px 25px;
+  padding:
+    15px 25px;
+
   min-height:50px;
 
   font:inherit;
 
   cursor:pointer;
+
 }
+
 
 button:disabled{
+
   opacity:.45;
+
   cursor:default;
+
 }
+
 
 #status{
+
   font-size:14px;
+
   min-height:20px;
+
 }
 
+
 #enterSpace{
+
   margin-top:14px;
 
   background:transparent;
 
-  border:1px solid #171717;
+  border:
+    1px solid #171717;
 
   color:#171717;
 
-  padding:12px 18px;
+  padding:
+    12px 18px;
 
   font-size:14px;
+
 }
 
+
 #enterSpace:hover{
+
   background:#171717;
+
   color:#fff;
+
 }
+
 
 
 /* =========================================================
@@ -163,38 +263,55 @@ button:disabled{
    ========================================================= */
 
 #space{
+
   position:absolute;
+
   inset:0;
 
   overflow:hidden;
 
-  opacity:0;
-  pointer-events:none;
-
   background:#192142;
 
-  transition:opacity 1.5s ease;
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity 1.5s ease;
+
 }
 
+
 #space.visible{
+
   opacity:1;
+
   pointer-events:auto;
+
 }
+
 
 
 /* =========================================================
-   FALLING WORDS
+   FALLING CONFESSIONS
    ========================================================= */
 
 .word{
+
   position:absolute;
 
   left:0;
+
   top:0;
 
   color:#677AC5;
 
-  font-size:clamp(18px,2vw,42px);
+  font-size:
+    clamp(
+      18px,
+      2vw,
+      42px
+    );
 
   line-height:1;
 
@@ -212,38 +329,62 @@ button:disabled{
     transform,
     opacity;
 
-  transform-origin:center center;
+  transform-origin:
+    center center;
+
 }
 
 
+
 /* =========================================================
-   NAVIGATION
+   BACK BUTTON
    ========================================================= */
 
 #back{
+
   position:absolute;
 
   z-index:30;
 
   top:20px;
+
   left:20px;
 
-  border:1px solid rgba(103,122,197,.45);
+  border:
+    1px solid
+    rgba(
+      103,
+      122,
+      197,
+      .45
+    );
 
-  background:rgba(25,33,66,.75);
+  background:
+    rgba(
+      25,
+      33,
+      66,
+      .8
+    );
 
   color:#677AC5;
 
-  padding:9px 13px;
+  padding:
+    9px 13px;
 
   font-size:13px;
 
   opacity:.6;
+
 }
 
+
 #back:hover{
+
   opacity:1;
+
 }
+
 
 
 /* =========================================================
@@ -251,11 +392,15 @@ button:disabled{
    ========================================================= */
 
 #empty{
+
   position:absolute;
+
   inset:0;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   color:#677AC5;
@@ -263,41 +408,72 @@ button:disabled{
   font-size:15px;
 
   opacity:.6;
+
 }
 
 
+
 /* =========================================================
-   MODERATION
+   MODERATION BUTTON
    ========================================================= */
 
 #moderate{
+
   position:absolute;
 
   z-index:50;
 
-  right:20px;
   top:20px;
 
-  border:1px solid rgba(103,122,197,.45);
+  right:20px;
 
-  background:rgba(25,33,66,.75);
+  border:
+    1px solid
+    rgba(
+      103,
+      122,
+      197,
+      .45
+    );
+
+  background:
+    rgba(
+      25,
+      33,
+      66,
+      .8
+    );
 
   color:#677AC5;
 
-  padding:10px 14px;
+  padding:
+    10px 14px;
 
   font-size:13px;
+
 }
 
+
+
+/* =========================================================
+   MODERATION PANEL
+   ========================================================= */
+
 #moderationPanel{
+
   position:absolute;
 
   z-index:60;
 
-  right:20px;
   top:65px;
 
-  width:min(360px,calc(100% - 40px));
+  right:20px;
+
+  width:
+    min(
+      360px,
+      calc(100% - 40px)
+    );
 
   max-height:70vh;
 
@@ -305,115 +481,194 @@ button:disabled{
 
   background:#192142;
 
-  border:1px solid #677AC5;
+  border:
+    1px solid #677AC5;
 
   padding:16px;
 
   display:none;
 
   color:#677AC5;
+
 }
+
 
 #moderationPanel.open{
+
   display:block;
+
 }
+
 
 #moderationPanel h2{
+
   font-size:16px;
+
   font-weight:400;
 
-  margin:0 0 12px;
+  margin:
+    0 0 12px;
+
 }
+
 
 #adminLogin{
+
   display:flex;
+
   gap:8px;
+
 }
 
+
 #adminPin{
+
   flex:1;
 
   min-width:0;
 
   background:#192142;
+
   color:#677AC5;
 
-  border:1px solid #677AC5;
+  border:
+    1px solid #677AC5;
 
   padding:10px;
 
   font:inherit;
+
 }
 
+
 #adminPin::placeholder{
+
   color:#677AC5;
+
   opacity:.6;
+
 }
+
 
 #loginButton,
 #deleteButton{
-  padding:10px 14px;
+
+  padding:
+    10px 14px;
+
   min-height:42px;
 
   background:#677AC5;
+
   color:#192142;
+
 }
 
+
 #deleteButton{
+
   display:none;
 
   width:100%;
 
   margin-top:12px;
+
 }
 
+
 #moderationStatus{
+
   color:#677AC5;
 
   font-size:12px;
+
   line-height:1.35;
 
   margin-top:10px;
 
   opacity:.75;
+
 }
 
+
 #adminList{
+
   display:none;
 
   margin-top:12px;
+
 }
 
-.modItem{
-  border-top:1px solid rgba(103,122,197,.35);
 
-  padding:10px 6px;
+.modItem{
+
+  border-top:
+    1px solid
+    rgba(
+      103,
+      122,
+      197,
+      .35
+    );
+
+  padding:
+    10px 6px;
 
   font-size:13px;
+
   line-height:1.3;
 
   cursor:pointer;
 
   color:#677AC5;
+
 }
+
 
 .modItem:hover{
-  background:rgba(103,122,197,.1);
+
+  background:
+    rgba(
+      103,
+      122,
+      197,
+      .1
+    );
+
 }
+
 
 .modItem.selected{
-  background:rgba(103,122,197,.2);
+
+  background:
+    rgba(
+      103,
+      122,
+      197,
+      .2
+    );
+
 }
+
 
 .word.moderatable{
+
   cursor:pointer;
+
   pointer-events:auto;
+
 }
 
+
 .word.selected{
-  outline:1px solid #677AC5;
+
+  outline:
+    1px solid #677AC5;
+
   outline-offset:7px;
+
 }
+
 
 
 /* =========================================================
@@ -423,53 +678,82 @@ button:disabled{
 @media(max-width:600px){
 
   #entry{
+
     padding:22px;
+
   }
+
 
   .entry-bottom{
+
     align-items:flex-end;
+
   }
 
+
   button{
+
     width:100%;
+
   }
+
 
   #back,
   #moderate{
+
     width:auto;
+
   }
 
+
   .word{
-    font-size:clamp(15px,4vw,28px);
+
+    font-size:
+      clamp(
+        15px,
+        4vw,
+        28px
+      );
+
   }
 
 }
 
 </style>
+
 </head>
+
 
 
 <body>
 
 
+
 <!-- =======================================================
-     ENTRY
+     ENTRY PAGE
      ======================================================= -->
 
 <section id="entry">
 
   <div class="entry-inner">
 
+
     <h1>
       What have you been taught to make yourself smaller about?
     </h1>
 
+
     <p class="intro">
-      Write a confession. Once you release it, your words will
-      enter the shared space with everyone else's.
+
+      Write a confession. Once you release it,
+      your words will enter the shared space
+      with everyone else's.
+
     </p>
 
+
     <form id="form">
+
 
       <textarea
         id="input"
@@ -478,12 +762,15 @@ button:disabled{
         placeholder="Write something..."
       ></textarea>
 
+
       <div class="entry-bottom">
+
 
         <span
           id="status"
           aria-live="polite"
         ></span>
+
 
         <button
           id="release"
@@ -492,9 +779,12 @@ button:disabled{
           Release
         </button>
 
+
       </div>
 
+
     </form>
+
 
     <button
       id="enterSpace"
@@ -502,6 +792,7 @@ button:disabled{
     >
       Enter the shared space
     </button>
+
 
   </div>
 
@@ -517,6 +808,7 @@ button:disabled{
   id="space"
   aria-label="Shared confession space"
 >
+
 
   <div id="empty">
     The space is waiting.
@@ -539,6 +831,7 @@ button:disabled{
   </button>
 
 
+
   <!-- =====================================================
        MODERATION PANEL
        ===================================================== -->
@@ -548,11 +841,14 @@ button:disabled{
     aria-label="Moderation panel"
   >
 
+
     <h2>
       Moderation
     </h2>
 
+
     <div id="adminLogin">
+
 
       <input
         id="adminPin"
@@ -561,6 +857,7 @@ button:disabled{
         autocomplete="off"
       >
 
+
       <button
         id="loginButton"
         type="button"
@@ -568,13 +865,19 @@ button:disabled{
         Enter
       </button>
 
+
     </div>
+
 
     <div id="moderationStatus">
+
       Enter the admin PIN to manage submissions.
+
     </div>
 
+
     <div id="adminList"></div>
+
 
     <button
       id="deleteButton"
@@ -582,6 +885,7 @@ button:disabled{
     >
       Delete selected confession
     </button>
+
 
   </aside>
 
@@ -593,36 +897,46 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
    ========================================================= */
 
 const firebaseConfig = {
 
+
   apiKey:
     "AIzaSyBnzqy7qtsuGJEcKkXlW2CIy76ZwZu3uQ4",
+
 
   authDomain:
     "confession-installation.firebaseapp.com",
 
+
   databaseURL:
     "https://confession-installation-default-rtdb.firebaseio.com",
+
 
   projectId:
     "confession-installation",
 
+
   storageBucket:
     "confession-installation.firebasestorage.app",
+
 
   messagingSenderId:
     "715428481943",
 
+
   appId:
     "1:715428481943:web:49e9e0d3d3aaad7ef2d2d2",
+
 
   measurementId:
     "G-325RR1JKNW"
 
+
 };
+
 
 
 import {
@@ -644,8 +958,11 @@ from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
 
 
+
 const app =
-  initializeApp(firebaseConfig);
+  initializeApp(
+    firebaseConfig
+  );
 
 
 const database =
@@ -653,7 +970,10 @@ const database =
 
 
 const confessionRef =
-  ref(database,"confessions");
+  ref(
+    database,
+    "confessions"
+  );
 
 
 
@@ -662,52 +982,99 @@ const confessionRef =
    ========================================================= */
 
 const entry =
-  document.getElementById("entry");
+  document.getElementById(
+    "entry"
+  );
+
 
 const space =
-  document.getElementById("space");
+  document.getElementById(
+    "space"
+  );
+
 
 const form =
-  document.getElementById("form");
+  document.getElementById(
+    "form"
+  );
+
 
 const input =
-  document.getElementById("input");
+  document.getElementById(
+    "input"
+  );
+
 
 const release =
-  document.getElementById("release");
+  document.getElementById(
+    "release"
+  );
+
 
 const status =
-  document.getElementById("status");
+  document.getElementById(
+    "status"
+  );
+
 
 const enterSpace =
-  document.getElementById("enterSpace");
+  document.getElementById(
+    "enterSpace"
+  );
+
 
 const back =
-  document.getElementById("back");
+  document.getElementById(
+    "back"
+  );
+
 
 const empty =
-  document.getElementById("empty");
+  document.getElementById(
+    "empty"
+  );
+
 
 const moderate =
-  document.getElementById("moderate");
+  document.getElementById(
+    "moderate"
+  );
+
 
 const moderationPanel =
-  document.getElementById("moderationPanel");
+  document.getElementById(
+    "moderationPanel"
+  );
+
 
 const adminPin =
-  document.getElementById("adminPin");
+  document.getElementById(
+    "adminPin"
+  );
+
 
 const loginButton =
-  document.getElementById("loginButton");
+  document.getElementById(
+    "loginButton"
+  );
+
 
 const moderationStatus =
-  document.getElementById("moderationStatus");
+  document.getElementById(
+    "moderationStatus"
+  );
+
 
 const adminList =
-  document.getElementById("adminList");
+  document.getElementById(
+    "adminList"
+  );
+
 
 const deleteButton =
-  document.getElementById("deleteButton");
+  document.getElementById(
+    "deleteButton"
+  );
 
 
 
@@ -715,63 +1082,82 @@ const deleteButton =
    MODERATION
    ========================================================= */
 
-const ADMIN_PIN = "0092";
-
-let adminUnlocked = false;
-
-let selectedId = null;
+const ADMIN_PIN =
+  "0092";
 
 
-
-/* =========================================================
-   FALLING WORD SETTINGS
-   ========================================================= */
-
-const MAX_WORDS = 150;
+let adminUnlocked =
+  false;
 
 
-/*
-  Number of horizontal columns.
-*/
-
-const COLUMN_COUNT = 16;
-
-
-/*
-  Slow falling speed.
-*/
-
-const FALL_SPEED_MIN = 0.045;
-
-const FALL_SPEED_MAX = 0.085;
-
-
-/*
-  Minimum spacing between words
-  in the same column.
-*/
-
-const WORD_GAP = 120;
+let selectedId =
+  null;
 
 
 
 /* =========================================================
-   WORD DATA
+   FALLING SETTINGS
    ========================================================= */
 
-const words = [];
+const MAX_WORDS =
+  150;
 
-const wordItems = new Map();
+
+const COLUMN_COUNT =
+  16;
+
+
+/*
+  Very slow movement.
+
+  Increase these numbers if
+  you want faster movement.
+*/
+
+const FALL_SPEED_MIN =
+  0.035;
+
+
+const FALL_SPEED_MAX =
+  0.075;
+
+
+/*
+  Space between words
+  when they are initially placed.
+*/
+
+const WORD_GAP =
+  100;
 
 
 
 /* =========================================================
-   HELPERS
+   WORD STORAGE
    ========================================================= */
 
-function random(min,max){
+const words =
+  [];
 
-  return Math.random() * (max-min) + min;
+
+const wordItems =
+  new Map();
+
+
+
+/* =========================================================
+   RANDOM
+   ========================================================= */
+
+function random(
+  min,
+  max
+){
+
+  return (
+    Math.random() *
+    (max - min)
+  ) + min;
 
 }
 
@@ -781,36 +1167,73 @@ function random(min,max){
    FONT SIZE
    ========================================================= */
 
-function getFontSize(text){
+function getFontSize(
+  text
+){
 
   const length =
     text.length;
 
 
-  if(length > 400)
-    return random(15,18);
+  if(
+    length > 400
+  ){
+
+    return random(
+      15,
+      18
+    );
+
+  }
 
 
-  if(length > 300)
-    return random(17,21);
+  if(
+    length > 300
+  ){
+
+    return random(
+      17,
+      21
+    );
+
+  }
 
 
-  if(length > 200)
-    return random(19,24);
+  if(
+    length > 200
+  ){
+
+    return random(
+      19,
+      24
+    );
+
+  }
 
 
-  if(length > 120)
-    return random(22,28);
+  if(
+    length > 120
+  ){
+
+    return random(
+      22,
+      28
+    );
+
+  }
 
 
-  return random(25,42);
+  return random(
+    25,
+    42
+  );
 
 }
 
 
 
 /* =========================================================
-   FIND LEAST USED COLUMN
+   COLUMN
    ========================================================= */
 
 function getBestColumn(){
@@ -824,13 +1247,16 @@ function getBestColumn(){
   words.forEach(
     item => {
 
-      counts[item.column]++;
+      counts[
+        item.column
+      ]++;
 
     }
   );
 
 
-  let best = 0;
+  let best =
+    0;
 
 
   for(
@@ -844,7 +1270,8 @@ function getBestColumn(){
       counts[best]
     ){
 
-      best = i;
+      best =
+        i;
 
     }
 
@@ -864,11 +1291,16 @@ function getBestColumn(){
 function addWord(
   id,
   text,
-  initial=false
+  initial = false
 ){
 
-  if(!text)
+  if(
+    !text
+  ){
+
     return;
+
+  }
 
 
   empty.style.display =
@@ -876,7 +1308,9 @@ function addWord(
 
 
   const el =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
 
   el.className =
@@ -891,11 +1325,18 @@ function addWord(
     id;
 
 
+  /*
+    Size based on confession length.
+  */
+
   el.style.fontSize =
-    getFontSize(text) + "px";
+    getFontSize(text) +
+    "px";
 
 
-  space.appendChild(el);
+  space.appendChild(
+    el
+  );
 
 
   const width =
@@ -911,15 +1352,20 @@ function addWord(
 
 
   const columnWidth =
-    width / COLUMN_COUNT;
+    width /
+    COLUMN_COUNT;
 
 
   /*
     Horizontal position.
   */
 
-  const x =
-    column * columnWidth +
+  let x =
+    column *
+    columnWidth;
+
+
+  x +=
     random(
       0,
       Math.max(
@@ -930,8 +1376,8 @@ function addWord(
 
 
   /*
-    Scale long confessions down
-    instead of wrapping them.
+    Long confessions are scaled
+    instead of wrapping.
   */
 
   const naturalWidth =
@@ -939,10 +1385,12 @@ function addWord(
 
 
   const maximumWidth =
-    columnWidth * 3.5;
+    columnWidth *
+    3.5;
 
 
-  let scale = 1;
+  let scale =
+    1;
 
 
   if(
@@ -958,57 +1406,52 @@ function addWord(
 
 
   /*
-    INITIAL WORDS
+    Existing confessions are
+    distributed throughout the
+    screen.
 
-    When the shared space first opens,
-    distribute existing confessions
-    throughout the screen.
-
-    This prevents the screen from
-    starting empty.
+    New confessions start above it.
   */
 
   let y;
 
 
-  if(initial){
+  if(
+    initial
+  ){
 
     y =
       random(
-        20,
+        30,
         Math.max(
-          30,
+          40,
           height - 100
         )
       );
 
   }else{
 
-    /*
-      New confessions always enter
-      from above the screen.
-    */
-
     y =
       -el.offsetHeight -
       random(
-        30,
-        250
+        50,
+        500
       );
 
   }
 
 
   /*
-    Make sure another word isn't
-    immediately sitting in the same
-    vertical area.
+    Prevent initial words from
+    sitting directly on top of
+    one another.
   */
 
   const sameColumn =
     words.filter(
       item =>
-        item.column === column
+        item.column ===
+        column
     );
 
 
@@ -1026,8 +1469,10 @@ function addWord(
 
         const bottom =
           item.y +
-          item.el.offsetHeight *
-          item.scale;
+          (
+            item.el.offsetHeight *
+            item.scale
+          );
 
 
         if(
@@ -1056,8 +1501,7 @@ function addWord(
 
 
   /*
-    Give every word a slightly
-    different speed.
+    Speed.
   */
 
   const speed =
@@ -1066,6 +1510,11 @@ function addWord(
       FALL_SPEED_MAX
     );
 
+
+  /*
+    Each word gets its own
+    pulse rhythm.
+  */
 
   const item = {
 
@@ -1091,20 +1540,23 @@ function addWord(
 
     pulseSpeed:
       random(
-        0.0007,
-        0.0013
+        0.0006,
+        0.0012
       ),
 
     opacityBase:
       random(
-        .48,
-        .72
+        0.50,
+        0.75
       )
 
   };
 
 
-  words.push(item);
+  words.push(
+    item
+  );
+
 
   wordItems.set(
     id,
@@ -1113,25 +1565,33 @@ function addWord(
 
 
   /*
-    Moderation selection.
+    Moderation.
   */
 
   el.addEventListener(
     "click",
     () => {
 
-      if(!adminUnlocked)
+      if(
+        !adminUnlocked
+      ){
+
         return;
 
-      selectConfession(id);
+      }
+
+
+      selectConfession(
+        id
+      );
 
     }
   );
 
 
   /*
-    Keep the projection dense,
-    but never let it exceed 150.
+    Never let more than
+    150 exist.
   */
 
   while(
@@ -1154,14 +1614,16 @@ function addWord(
 
 
   /*
-    New submission gets a little
-    more presence.
+    Newly submitted confessions
+    are a little brighter.
   */
 
-  if(!initial){
+  if(
+    !initial
+  ){
 
     item.opacityBase =
-      .82;
+      0.82;
 
   }
 
@@ -1182,6 +1644,7 @@ function showSpace(){
     "hidden"
   );
 
+
   space.classList.add(
     "visible"
   );
@@ -1200,9 +1663,11 @@ function showEntry(){
     "visible"
   );
 
+
   entry.classList.remove(
     "hidden"
   );
+
 
   input.focus();
 
@@ -1211,7 +1676,7 @@ function showEntry(){
 
 
 /* =========================================================
-   ENTER SHARED SPACE
+   ENTER SPACE
    ========================================================= */
 
 enterSpace.addEventListener(
@@ -1239,11 +1704,19 @@ form.addEventListener(
     const text =
       input.value
         .trim()
-        .replace(/\s+/g," ");
+        .replace(
+          /\s+/g,
+          " "
+        );
 
 
-    if(!text)
+    if(
+      !text
+    ){
+
       return;
+
+    }
 
 
     release.disabled =
@@ -1282,7 +1755,9 @@ form.addEventListener(
 
     }catch(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
 
       status.textContent =
@@ -1309,8 +1784,10 @@ back.addEventListener(
 
     showEntry();
 
+
     release.disabled =
       false;
+
 
     status.textContent =
       "";
@@ -1334,7 +1811,8 @@ onChildAdded(
 
     if(
       !data ||
-      typeof data.text !== "string"
+      typeof data.text !==
+      "string"
     ){
 
       return;
@@ -1343,13 +1821,14 @@ onChildAdded(
 
 
     /*
-      If this is one of the existing
-      database entries when the page
-      loads, distribute it across
-      the screen.
+      If the space hasn't been
+      entered yet, distribute
+      existing confessions
+      across the screen.
 
-      New submissions enter from
-      the top.
+      Once the space is active,
+      new confessions enter
+      from the top.
     */
 
     const initial =
@@ -1382,24 +1861,37 @@ onChildRemoved(
 
 
     const item =
-      wordItems.get(id);
+      wordItems.get(
+        id
+      );
 
 
-    if(!item)
+    if(
+      !item
+    ){
+
       return;
+
+    }
 
 
     item.el.remove();
 
 
-    wordItems.delete(id);
+    wordItems.delete(
+      id
+    );
 
 
     const index =
-      words.indexOf(item);
+      words.indexOf(
+        item
+      );
 
 
-    if(index !== -1){
+    if(
+      index !== -1
+    ){
 
       words.splice(
         index,
@@ -1409,10 +1901,13 @@ onChildRemoved(
     }
 
 
-    if(selectedId === id){
+    if(
+      selectedId === id
+    ){
 
       selectedId =
         null;
+
 
       deleteButton.style.display =
         "none";
@@ -1428,10 +1923,12 @@ onChildRemoved(
 
 
 /* =========================================================
-   SELECT
+   SELECT CONFESSION
    ========================================================= */
 
-function selectConfession(id){
+function selectConfession(
+  id
+){
 
   selectedId =
     id;
@@ -1449,10 +1946,14 @@ function selectConfession(id){
 
 
   const item =
-    wordItems.get(id);
+    wordItems.get(
+      id
+    );
 
 
-  if(item){
+  if(
+    item
+  ){
 
     item.el.classList.add(
       "selected"
@@ -1462,7 +1963,9 @@ function selectConfession(id){
 
 
   document
-    .querySelectorAll(".modItem")
+    .querySelectorAll(
+      ".modItem"
+    )
     .forEach(
       row => {
 
@@ -1496,7 +1999,9 @@ function buildAdminList(){
     (item,id) => {
 
       const row =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
 
       row.className =
@@ -1515,7 +2020,9 @@ function buildAdminList(){
         "click",
         () => {
 
-          selectConfession(id);
+          selectConfession(
+            id
+          );
 
         }
       );
@@ -1554,7 +2061,9 @@ moderate.addEventListener(
       adminPin.focus();
 
 
-      if(adminUnlocked){
+      if(
+        adminUnlocked
+      ){
 
         buildAdminList();
 
@@ -1568,7 +2077,7 @@ moderate.addEventListener(
 
 
 /* =========================================================
-   LOGIN
+   ADMIN LOGIN
    ========================================================= */
 
 loginButton.addEventListener(
@@ -1612,12 +2121,12 @@ loginButton.addEventListener(
 
     }else{
 
-      moderationStatus.textContent =
-        "Incorrect PIN.";
-
-
       adminUnlocked =
         false;
+
+
+      moderationStatus.textContent =
+        "Incorrect PIN.";
 
     }
 
@@ -1634,7 +2143,9 @@ deleteButton.addEventListener(
   "click",
   async () => {
 
-    if(!adminUnlocked){
+    if(
+      !adminUnlocked
+    ){
 
       moderationStatus.textContent =
         "Moderation is locked.";
@@ -1644,7 +2155,9 @@ deleteButton.addEventListener(
     }
 
 
-    if(!selectedId){
+    if(
+      !selectedId
+    ){
 
       moderationStatus.textContent =
         "Select a confession first.";
@@ -1664,7 +2177,9 @@ deleteButton.addEventListener(
       );
 
 
-    if(!item){
+    if(
+      !item
+    ){
 
       moderationStatus.textContent =
         "That confession could not be found.";
@@ -1710,7 +2225,10 @@ deleteButton.addEventListener(
 
     }catch(error){
 
-      console.error(error);
+      console.error(
+        "Delete error:",
+        error
+      );
 
 
       moderationStatus.textContent =
@@ -1724,14 +2242,16 @@ deleteButton.addEventListener(
 
 
 /* =========================================================
-   ANIMATION
+   CONTINUOUS FALLING ANIMATION
    ========================================================= */
 
 let lastTime =
   performance.now();
 
 
-function animate(currentTime){
+function animate(
+  currentTime
+){
 
   const delta =
     currentTime -
@@ -1742,6 +2262,10 @@ function animate(currentTime){
     currentTime;
 
 
+  const width =
+    space.clientWidth;
+
+
   const height =
     space.clientHeight;
 
@@ -1749,8 +2273,11 @@ function animate(currentTime){
   words.forEach(
     item => {
 
+
       /*
-        Slowly move downward.
+        ---------------------------------
+        MOVE DOWN
+        ---------------------------------
       */
 
       item.y +=
@@ -1758,16 +2285,23 @@ function animate(currentTime){
         delta;
 
 
+
+      /*
+        ---------------------------------
+        PROGRESS THROUGH SCREEN
+        ---------------------------------
+      */
+
       const progress =
         item.y /
         height;
 
 
-      /*
-        Soft pulse.
 
-        Each confession has a slightly
-        different rhythm.
+      /*
+        ---------------------------------
+        PULSE
+        ---------------------------------
       */
 
       const pulse =
@@ -1780,43 +2314,59 @@ function animate(currentTime){
 
       let opacity =
         item.opacityBase +
-        pulse * .13;
+        pulse * 0.12;
+
 
 
       /*
-        Fade in when entering
-        from above.
+        ---------------------------------
+        FADE IN AT TOP
+        ---------------------------------
       */
 
-      if(progress < .12){
+      if(
+        item.y < 180
+      ){
 
         const fadeIn =
-          progress / .12;
-
-
-        opacity *=
           Math.max(
             0,
             Math.min(
               1,
-              fadeIn
+              (item.y + 100) /
+              280
             )
           );
+
+
+        opacity *=
+          fadeIn;
 
       }
 
 
+
       /*
-        Fade out near the bottom.
+        ---------------------------------
+        FADE OUT AT BOTTOM
+        ---------------------------------
       */
 
-      if(progress > .80){
+      if(
+        item.y >
+        height * 0.78
+      ){
 
         const fadeOut =
           1 -
           (
-            (progress - .80) /
-            .20
+            (
+              item.y -
+              height * 0.78
+            ) /
+            (
+              height * 0.22
+            )
           );
 
 
@@ -1832,91 +2382,111 @@ function animate(currentTime){
       }
 
 
+
+      /*
+        ---------------------------------
+        KEEP OPACITY SAFE
+        ---------------------------------
+      */
+
       opacity =
         Math.max(
           0,
           Math.min(
-            .95,
+            0.95,
             opacity
           )
         );
 
 
+
       /*
-        Move the word.
+        ---------------------------------
+        POSITION
+        ---------------------------------
       */
 
       item.el.style.transform =
-        `translate(${item.x}px, ${item.y}px) scale(${item.scale})`;
+        "translate(" +
+        item.x +
+        "px," +
+        item.y +
+        "px) scale(" +
+        item.scale +
+        ")";
 
 
       item.el.style.opacity =
         opacity;
 
 
+
       /*
-        IMPORTANT:
+        =================================================
+        CONTINUOUS LOOP
+        =================================================
 
-        We do NOT delete the word.
+        THIS IS THE IMPORTANT PART.
 
-        Instead, when it reaches the
-        bottom, immediately send it
-        back to the top.
+        The word is NEVER deleted.
 
-        This creates a continuous loop
-        so the projection never empties.
+        When it reaches the bottom,
+        immediately move it above
+        the top of the screen.
+
+        It then starts falling again.
+        =================================================
       */
 
       if(
         item.y >
-        height + 120
+        height + 100
       ){
 
         /*
-          Put it above the screen.
+          Move above the viewport.
         */
 
         item.y =
           -item.el.offsetHeight -
           random(
-            100,
-            500
+            150,
+            700
           );
 
 
         /*
-          Give it a new horizontal
+          Give it a fresh horizontal
           position.
 
-          This prevents the same
-          confession from always
-          falling down the exact same
-          path.
+          This makes each cycle feel
+          different.
         */
 
-        const width =
-          space.clientWidth;
-
-
-        const columnWidth =
-          width /
-          COLUMN_COUNT;
-
-
         item.x =
-          item.column *
-          columnWidth +
           random(
             0,
             Math.max(
-              1,
-              columnWidth - 20
+              0,
+              width -
+              item.el.offsetWidth
             )
           );
 
 
         /*
-          Give it a new pulse phase.
+          Slightly change its speed.
+        */
+
+        item.speed =
+          random(
+            FALL_SPEED_MIN,
+            FALL_SPEED_MAX
+          );
+
+
+        /*
+          New pulse rhythm.
         */
 
         item.pulseOffset =
@@ -1924,6 +2494,25 @@ function animate(currentTime){
             0,
             Math.PI * 2
           );
+
+
+        item.pulseSpeed =
+          random(
+            0.0006,
+            0.0012
+          );
+
+
+        /*
+          Reset opacity.
+
+          The fade-in code above will
+          gradually make it visible
+          again as it enters.
+        */
+
+        item.el.style.opacity =
+          0;
 
       }
 
@@ -1937,6 +2526,11 @@ function animate(currentTime){
 
 }
 
+
+
+/* =========================================================
+   START ANIMATION
+   ========================================================= */
 
 requestAnimationFrame(
   animate
