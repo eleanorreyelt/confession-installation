@@ -70,17 +70,21 @@ body{
 
 
 #entry.hidden{
+
   opacity:0;
   visibility:hidden;
   pointer-events:none;
+
 }
 
 
 .entry-inner{
+
   width:min(
     720px,
     100%
   );
+
 }
 
 
@@ -103,6 +107,7 @@ h1{
     0 0 22px;
 
   max-width:700px;
+
 }
 
 
@@ -116,6 +121,7 @@ h1{
 
   margin:
     0 0 28px;
+
 }
 
 
@@ -143,6 +149,7 @@ textarea{
   line-height:1.35;
 
   outline:none;
+
 }
 
 
@@ -150,6 +157,7 @@ textarea:focus{
 
   box-shadow:
     0 0 0 2px #171717;
+
 }
 
 
@@ -164,6 +172,7 @@ textarea:focus{
   gap:16px;
 
   margin-top:12px;
+
 }
 
 
@@ -183,6 +192,7 @@ button{
   font:inherit;
 
   cursor:pointer;
+
 }
 
 
@@ -191,6 +201,7 @@ button:disabled{
   opacity:.45;
 
   cursor:default;
+
 }
 
 
@@ -199,6 +210,7 @@ button:disabled{
   font-size:14px;
 
   min-height:20px;
+
 }
 
 
@@ -217,6 +229,7 @@ button:disabled{
     12px 18px;
 
   font-size:14px;
+
 }
 
 
@@ -225,6 +238,7 @@ button:disabled{
   background:#171717;
 
   color:#fff;
+
 }
 
 
@@ -249,6 +263,7 @@ button:disabled{
 
   transition:
     opacity 1.5s ease;
+
 }
 
 
@@ -257,6 +272,7 @@ button:disabled{
   opacity:1;
 
   pointer-events:auto;
+
 }
 
 
@@ -287,12 +303,13 @@ button:disabled{
     scale(1.015);
 
   pointer-events:none;
+
 }
 
 
 
 /* =========================================================
-   VIDEO COLOR OVERLAY
+   VIDEO OVERLAY
    ========================================================= */
 
 #videoOverlay{
@@ -312,12 +329,13 @@ button:disabled{
     );
 
   pointer-events:none;
+
 }
 
 
 
 /* =========================================================
-   CONFESSIONS
+   FALLING CONFESSIONS
    ========================================================= */
 
 .word{
@@ -325,6 +343,7 @@ button:disabled{
   position:absolute;
 
   left:0;
+
   top:0;
 
   z-index:5;
@@ -346,7 +365,7 @@ button:disabled{
 
   /*
     Long confessions wrap instead
-    of becoming tiny.
+    of becoming extremely small.
   */
 
   white-space:normal;
@@ -365,6 +384,7 @@ button:disabled{
 
   transform-origin:
     center center;
+
 }
 
 
@@ -380,6 +400,7 @@ button:disabled{
   z-index:30;
 
   top:20px;
+
   left:20px;
 
   border:
@@ -407,12 +428,14 @@ button:disabled{
   font-size:13px;
 
   opacity:.6;
+
 }
 
 
 #back:hover{
 
   opacity:1;
+
 }
 
 
@@ -438,6 +461,7 @@ button:disabled{
   font-size:15px;
 
   opacity:.6;
+
 }
 
 
@@ -453,6 +477,7 @@ button:disabled{
   z-index:50;
 
   top:20px;
+
   right:20px;
 
   border:
@@ -478,6 +503,7 @@ button:disabled{
     10px 14px;
 
   font-size:13px;
+
 }
 
 
@@ -493,6 +519,7 @@ button:disabled{
   z-index:60;
 
   top:65px;
+
   right:20px;
 
   width:
@@ -515,12 +542,14 @@ button:disabled{
   display:none;
 
   color:#677AC5;
+
 }
 
 
 #moderationPanel.open{
 
   display:block;
+
 }
 
 
@@ -532,6 +561,7 @@ button:disabled{
 
   margin:
     0 0 12px;
+
 }
 
 
@@ -540,6 +570,7 @@ button:disabled{
   display:flex;
 
   gap:8px;
+
 }
 
 
@@ -559,6 +590,7 @@ button:disabled{
   padding:10px;
 
   font:inherit;
+
 }
 
 
@@ -567,6 +599,7 @@ button:disabled{
   color:#677AC5;
 
   opacity:.6;
+
 }
 
 
@@ -581,6 +614,7 @@ button:disabled{
   background:#677AC5;
 
   color:#192142;
+
 }
 
 
@@ -591,6 +625,7 @@ button:disabled{
   width:100%;
 
   margin-top:12px;
+
 }
 
 
@@ -605,6 +640,7 @@ button:disabled{
   margin-top:10px;
 
   opacity:.75;
+
 }
 
 
@@ -613,6 +649,7 @@ button:disabled{
   display:none;
 
   margin-top:12px;
+
 }
 
 
@@ -637,6 +674,7 @@ button:disabled{
   cursor:pointer;
 
   color:#677AC5;
+
 }
 
 
@@ -649,6 +687,7 @@ button:disabled{
       197,
       .1
     );
+
 }
 
 
@@ -661,6 +700,7 @@ button:disabled{
       197,
       .2
     );
+
 }
 
 
@@ -669,6 +709,7 @@ button:disabled{
   cursor:pointer;
 
   pointer-events:auto;
+
 }
 
 
@@ -678,6 +719,7 @@ button:disabled{
     1px solid #677AC5;
 
   outline-offset:7px;
+
 }
 
 
@@ -689,21 +731,33 @@ button:disabled{
 @media(max-width:600px){
 
   #entry{
+
     padding:22px;
+
   }
+
 
   .entry-bottom{
+
     align-items:flex-end;
+
   }
 
+
   button{
+
     width:100%;
+
   }
+
 
   #back,
   #moderate{
+
     width:auto;
+
   }
+
 
   .word{
 
@@ -723,7 +777,6 @@ button:disabled{
 </style>
 
 </head>
-
 
 
 <body>
@@ -810,7 +863,9 @@ button:disabled{
 >
 
 
-  <!-- VIDEO -->
+  <!-- =====================================================
+       VIDEO
+       ===================================================== -->
 
   <video
     id="backgroundVideo"
@@ -822,21 +877,27 @@ button:disabled{
   >
 
     <source
-      src="Eleanor%20Reyelt%20Final%20Digital%20Tools%20Video.mov"
-      type="video/quicktime"
+      src="Adobe%20Express%20-%20Eleanor%20Reyelt.Somewhere%20Between%20Then%20%26%20Now.mp4"
+      type="video/mp4"
     >
 
   </video>
 
 
-  <!-- VIDEO COLOR WASH -->
+
+  <!-- =====================================================
+       VIDEO OVERLAY
+       ===================================================== -->
 
   <div
     id="videoOverlay"
   ></div>
 
 
-  <!-- EMPTY STATE -->
+
+  <!-- =====================================================
+       EMPTY STATE
+       ===================================================== -->
 
   <div id="empty">
 
@@ -845,7 +906,10 @@ button:disabled{
   </div>
 
 
-  <!-- BACK -->
+
+  <!-- =====================================================
+       BACK
+       ===================================================== -->
 
   <button
     id="back"
@@ -857,7 +921,10 @@ button:disabled{
   </button>
 
 
-  <!-- MODERATE -->
+
+  <!-- =====================================================
+       MODERATION
+       ===================================================== -->
 
   <button
     id="moderate"
@@ -869,7 +936,6 @@ button:disabled{
   </button>
 
 
-  <!-- MODERATION PANEL -->
 
   <aside
     id="moderationPanel"
@@ -968,11 +1034,13 @@ const firebaseConfig = {
 };
 
 
+
 import {
   initializeApp
 }
 from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+
 
 
 import {
@@ -985,6 +1053,7 @@ import {
 }
 from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+
 
 
 const app =
@@ -1113,7 +1182,7 @@ const backgroundVideo =
 
 
 /* =========================================================
-   START VIDEO
+   VIDEO
    ========================================================= */
 
 function startVideo(){
@@ -1157,8 +1226,8 @@ const MAX_WORDS =
 
 
 /*
-  More columns = more horizontal
-  breathing room.
+  More lanes means more
+  horizontal breathing room.
 */
 
 const COLUMN_COUNT =
@@ -1166,7 +1235,7 @@ const COLUMN_COUNT =
 
 
 /*
-  Slow falling.
+  Very slow movement.
 
   Approximately 12–24 pixels
   per second.
@@ -1181,7 +1250,7 @@ const FALL_SPEED_MAX =
 
 
 /*
-  Space between words.
+  Minimum vertical separation.
 */
 
 const WORD_GAP =
@@ -1190,7 +1259,7 @@ const WORD_GAP =
 
 
 /* =========================================================
-   WORD STORAGE
+   STORAGE
    ========================================================= */
 
 const words =
@@ -1233,8 +1302,7 @@ function getFontSize(
 
 
   /*
-    Long confessions remain
-    readable.
+    Long confessions remain readable.
   */
 
   if(
@@ -1295,7 +1363,7 @@ function getFontSize(
 
 
 /* =========================================================
-   GET BEST COLUMN
+   BEST COLUMN
    ========================================================= */
 
 function getBestColumn(){
@@ -1388,18 +1456,17 @@ function getColumnX(
 
 
 /* =========================================================
-   INITIAL Y POSITION
+   INITIAL POSITION
    ========================================================= */
 
 function getInitialY(
   index,
-  height,
-  wordHeight
+  height
 ){
 
   /*
-    Spread existing confessions
-    from the top to the bottom.
+    Spread the existing confessions
+    across the entire frame.
   */
 
   const totalSlots =
@@ -1480,7 +1547,7 @@ function addWord(
 
 
   /*
-    Readable size.
+    Readable font size.
   */
 
   el.style.fontSize =
@@ -1494,7 +1561,8 @@ function addWord(
 
 
   /*
-    Measure after adding it.
+    Measure the text after
+    putting it into the DOM.
   */
 
   const wordWidth =
@@ -1514,7 +1582,7 @@ function addWord(
 
 
   /*
-    Select column.
+    Pick the least-used column.
   */
 
   const column =
@@ -1522,7 +1590,7 @@ function addWord(
 
 
   /*
-    Horizontal position.
+    Find horizontal position.
   */
 
   const x =
@@ -1534,7 +1602,7 @@ function addWord(
 
 
   /*
-    Vertical position.
+    Initial vertical position.
   */
 
   let y;
@@ -1544,82 +1612,38 @@ function addWord(
     initial
   ){
 
+    /*
+      Existing words fill
+      the whole screen.
+    */
+
     y =
       getInitialY(
         words.length,
-        height,
-        wordHeight
+        height
       );
 
   }else{
 
     /*
-      New confession starts just
-      above the frame.
+      NEW WORD
+
+      Start immediately above
+      the frame.
     */
 
     y =
       -wordHeight -
       random(
-        20,
-        80
+        10,
+        60
       );
 
   }
 
 
   /*
-    Keep new confessions from
-    immediately stacking.
-  */
-
-  const sameColumn =
-    words.filter(
-      item =>
-        item.column ===
-        column
-    );
-
-
-  if(
-    !initial &&
-    sameColumn.length
-  ){
-
-    let highest =
-      Infinity;
-
-
-    sameColumn.forEach(
-      item => {
-
-        if(
-          item.y <
-          highest
-        ){
-
-          highest =
-            item.y;
-
-        }
-
-      }
-    );
-
-
-    y =
-      Math.min(
-        y,
-        highest -
-        wordHeight -
-        WORD_GAP
-      );
-
-  }
-
-
-  /*
-    Create animation object.
+    Store item.
   */
 
   const item = {
@@ -1673,7 +1697,21 @@ function addWord(
 
 
   /*
-    Moderation.
+    Make new submissions more visible.
+  */
+
+  if(
+    !initial
+  ){
+
+    item.opacityBase =
+      0.82;
+
+  }
+
+
+  /*
+    Moderation selection.
   */
 
   el.addEventListener(
@@ -1698,8 +1736,8 @@ function addWord(
 
 
   /*
-    Keep maximum number
-    at 150.
+    Keep a maximum of 150
+    confession objects.
   */
 
   while(
@@ -1717,21 +1755,6 @@ function addWord(
 
 
     old.el.remove();
-
-  }
-
-
-  /*
-    New submissions are
-    slightly brighter.
-  */
-
-  if(
-    !initial
-  ){
-
-    item.opacityBase =
-      0.82;
 
   }
 
@@ -1802,7 +1825,7 @@ enterSpace.addEventListener(
 
 
 /* =========================================================
-   SUBMIT CONFESSION
+   SUBMIT
    ========================================================= */
 
 form.addEventListener(
@@ -1910,7 +1933,7 @@ back.addEventListener(
 
 
 /* =========================================================
-   FIREBASE: ADD
+   FIREBASE: NEW CONFESSION
    ========================================================= */
 
 onChildAdded(
@@ -1933,11 +1956,11 @@ onChildAdded(
 
 
     /*
-      Existing entries fill
-      the projection.
+      Existing confessions are
+      distributed across the screen.
 
-      New entries come from
-      above the screen.
+      New confessions enter from
+      the top.
     */
 
     const initial =
@@ -1958,7 +1981,7 @@ onChildAdded(
 
 
 /* =========================================================
-   FIREBASE: REMOVE
+   FIREBASE: REMOVED CONFESSION
    ========================================================= */
 
 onChildRemoved(
@@ -2186,7 +2209,7 @@ moderate.addEventListener(
 
 
 /* =========================================================
-   LOGIN
+   ADMIN LOGIN
    ========================================================= */
 
 loginButton.addEventListener(
@@ -2484,7 +2507,7 @@ function animate(
 
       /*
         ---------------------------------
-        OPACITY
+        OPACITY LIMIT
         ---------------------------------
       */
 
@@ -2523,11 +2546,11 @@ function animate(
         CONTINUOUS RECYCLING
         =================================================
 
-        The confession is never deleted.
+        The confession is NOT deleted.
 
-        Once it leaves the bottom,
-        immediately bring it back
-        above the top.
+        As soon as it leaves the bottom,
+        it goes back above the top and
+        begins falling again.
         =================================================
       */
 
@@ -2537,8 +2560,7 @@ function animate(
       ){
 
         /*
-          Put it immediately above
-          the visible frame.
+          Immediately above the frame.
         */
 
         item.y =
@@ -2566,7 +2588,7 @@ function animate(
 
 
         /*
-          Slightly new speed.
+          New speed.
         */
 
         item.speed =
@@ -2577,7 +2599,7 @@ function animate(
 
 
         /*
-          New pulse timing.
+          New pulse.
         */
 
         item.pulseOffset =
@@ -2595,10 +2617,7 @@ function animate(
 
 
         /*
-          Reset opacity.
-
-          The fade-in system will
-          bring it back.
+          Begin faint and fade in.
         */
 
         item.el.style.opacity =
