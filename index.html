@@ -28,11 +28,16 @@ body{
   margin:0;
   width:100%;
   height:100%;
-  font-family:Arial, Helvetica, sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 body{
   overflow:hidden;
+
   background:#192142;
 }
 
@@ -43,19 +48,23 @@ body{
    ========================================================= */
 
 #entry{
+
   position:relative;
+
   z-index:20;
 
   width:100%;
   height:100vh;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
   padding:30px;
 
   background:#f4f1ec;
+
   color:#171717;
 
   transition:
@@ -63,111 +72,179 @@ body{
     visibility 1.2s ease;
 }
 
+
 #entry.hidden{
+
   opacity:0;
+
   visibility:hidden;
+
   pointer-events:none;
+
 }
+
 
 .entry-inner{
-  width:min(720px,100%);
+
+  width:min(
+    720px,
+    100%
+  );
+
 }
+
 
 h1{
-  font-size:clamp(38px,7vw,76px);
+
+  font-size:
+    clamp(
+      38px,
+      7vw,
+      76px
+    );
+
   font-weight:400;
+
   line-height:.92;
+
   letter-spacing:-.055em;
 
-  margin:0 0 22px;
+  margin:
+    0 0 22px;
 
   max-width:700px;
+
 }
 
+
 .intro{
+
   font-size:18px;
+
   line-height:1.45;
 
   max-width:580px;
 
-  margin:0 0 28px;
+  margin:
+    0 0 28px;
+
 }
 
+
 textarea{
+
   width:100%;
+
   min-height:190px;
 
   resize:vertical;
 
-  border:1px solid #171717;
+  border:
+    1px solid #171717;
 
   background:#fff;
+
   color:#171717;
 
   padding:18px;
 
   font:inherit;
+
   font-size:19px;
+
   line-height:1.35;
 
   outline:none;
+
 }
+
 
 textarea:focus{
-  box-shadow:0 0 0 2px #171717;
+
+  box-shadow:
+    0 0 0 2px #171717;
+
 }
 
+
 .entry-bottom{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   gap:16px;
 
   margin-top:12px;
+
 }
 
+
 button{
+
   border:0;
 
   background:#171717;
+
   color:#fff;
 
-  padding:15px 25px;
+  padding:
+    15px 25px;
+
   min-height:50px;
 
   font:inherit;
 
   cursor:pointer;
+
 }
+
 
 button:disabled{
+
   opacity:.45;
+
   cursor:default;
+
 }
+
 
 #status{
+
   font-size:14px;
+
   min-height:20px;
+
 }
 
+
 #enterSpace{
+
   margin-top:14px;
 
   background:transparent;
 
-  border:1px solid #171717;
+  border:
+    1px solid #171717;
 
   color:#171717;
 
-  padding:12px 18px;
+  padding:
+    12px 18px;
 
   font-size:14px;
+
 }
 
+
 #enterSpace:hover{
+
   background:#171717;
+
   color:#fff;
+
 }
 
 
@@ -177,7 +254,9 @@ button:disabled{
    ========================================================= */
 
 #space{
+
   position:absolute;
+
   inset:0;
 
   overflow:hidden;
@@ -185,41 +264,50 @@ button:disabled{
   background:#192142;
 
   opacity:0;
+
   pointer-events:none;
 
-  transition:opacity 1.5s ease;
+  transition:
+    opacity 1.5s ease;
 }
 
+
 #space.visible{
+
   opacity:1;
+
   pointer-events:auto;
+
 }
 
 
 
 /* =========================================================
-   FALLING CONFESSIONS
+   CONFESSION WORDS
    ========================================================= */
 
 .word{
+
   position:absolute;
 
   left:0;
+
   top:0;
 
   color:#677AC5;
 
   /*
-    Readable but not overwhelming.
+    Readable size.
   */
 
-  font-size:clamp(
-    21px,
-    2vw,
-    38px
-  );
+  font-size:
+    clamp(
+      21px,
+      2vw,
+      38px
+    );
 
-  line-height:1.08;
+  line-height:1.06;
 
   font-weight:400;
 
@@ -227,14 +315,14 @@ button:disabled{
 
   /*
     Long confessions wrap instead
-    of shrinking.
+    of becoming microscopic.
   */
 
   white-space:normal;
 
   width:max-content;
 
-  max-width:38vw;
+  max-width:36vw;
 
   opacity:0;
 
@@ -244,7 +332,8 @@ button:disabled{
     transform,
     opacity;
 
-  transform-origin:center center;
+  transform-origin:
+    center center;
 }
 
 
@@ -254,11 +343,13 @@ button:disabled{
    ========================================================= */
 
 #back{
+
   position:absolute;
 
   z-index:30;
 
   top:20px;
+
   left:20px;
 
   border:
@@ -280,15 +371,19 @@ button:disabled{
 
   color:#677AC5;
 
-  padding:9px 13px;
+  padding:
+    9px 13px;
 
   font-size:13px;
 
   opacity:.6;
 }
 
+
 #back:hover{
+
   opacity:1;
+
 }
 
 
@@ -298,11 +393,15 @@ button:disabled{
    ========================================================= */
 
 #empty{
+
   position:absolute;
+
   inset:0;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   color:#677AC5;
@@ -319,11 +418,13 @@ button:disabled{
    ========================================================= */
 
 #moderate{
+
   position:absolute;
 
   z-index:50;
 
   top:20px;
+
   right:20px;
 
   border:
@@ -345,9 +446,11 @@ button:disabled{
 
   color:#677AC5;
 
-  padding:10px 14px;
+  padding:
+    10px 14px;
 
   font-size:13px;
+
 }
 
 
@@ -357,11 +460,13 @@ button:disabled{
    ========================================================= */
 
 #moderationPanel{
+
   position:absolute;
 
   z-index:60;
 
   top:65px;
+
   right:20px;
 
   width:
@@ -384,25 +489,40 @@ button:disabled{
   display:none;
 
   color:#677AC5;
+
 }
+
 
 #moderationPanel.open{
+
   display:block;
+
 }
+
 
 #moderationPanel h2{
+
   font-size:16px;
+
   font-weight:400;
 
-  margin:0 0 12px;
+  margin:
+    0 0 12px;
+
 }
+
 
 #adminLogin{
+
   display:flex;
+
   gap:8px;
+
 }
 
+
 #adminPin{
+
   flex:1;
 
   min-width:0;
@@ -417,48 +537,71 @@ button:disabled{
   padding:10px;
 
   font:inherit;
+
 }
 
+
 #adminPin::placeholder{
+
   color:#677AC5;
+
   opacity:.6;
+
 }
+
 
 #loginButton,
 #deleteButton{
-  padding:10px 14px;
+
+  padding:
+    10px 14px;
+
   min-height:42px;
 
   background:#677AC5;
+
   color:#192142;
+
 }
 
+
 #deleteButton{
+
   display:none;
 
   width:100%;
 
   margin-top:12px;
+
 }
 
+
 #moderationStatus{
+
   color:#677AC5;
 
   font-size:12px;
+
   line-height:1.35;
 
   margin-top:10px;
 
   opacity:.75;
+
 }
 
+
 #adminList{
+
   display:none;
 
   margin-top:12px;
+
 }
 
+
 .modItem{
+
   border-top:
     1px solid
     rgba(
@@ -468,17 +611,22 @@ button:disabled{
       .35
     );
 
-  padding:10px 6px;
+  padding:
+    10px 6px;
 
   font-size:13px;
+
   line-height:1.3;
 
   cursor:pointer;
 
   color:#677AC5;
+
 }
 
+
 .modItem:hover{
+
   background:
     rgba(
       103,
@@ -486,9 +634,12 @@ button:disabled{
       197,
       .1
     );
+
 }
 
+
 .modItem.selected{
+
   background:
     rgba(
       103,
@@ -496,18 +647,26 @@ button:disabled{
       197,
       .2
     );
+
 }
+
 
 .word.moderatable{
+
   cursor:pointer;
+
   pointer-events:auto;
+
 }
 
+
 .word.selected{
+
   outline:
     1px solid #677AC5;
 
   outline-offset:7px;
+
 }
 
 
@@ -519,23 +678,36 @@ button:disabled{
 @media(max-width:600px){
 
   #entry{
+
     padding:22px;
+
   }
+
 
   .entry-bottom{
+
     align-items:flex-end;
+
   }
 
+
   button{
+
     width:100%;
+
   }
+
 
   #back,
   #moderate{
+
     width:auto;
+
   }
 
+
   .word{
+
     font-size:
       clamp(
         17px,
@@ -543,7 +715,8 @@ button:disabled{
         27px
       );
 
-    max-width:72vw;
+    max-width:70vw;
+
   }
 
 }
@@ -553,11 +726,13 @@ button:disabled{
 </head>
 
 
+
 <body>
 
 
+
 <!-- =======================================================
-     ENTRY PAGE
+     ENTRY
      ======================================================= -->
 
 <section id="entry">
@@ -571,9 +746,11 @@ button:disabled{
 
 
     <p class="intro">
+
       Write a confession. Once you release it,
       your words will enter the shared space
       with everyone else's.
+
     </p>
 
 
@@ -636,7 +813,9 @@ button:disabled{
 
 
   <div id="empty">
+
     The space is waiting.
+
   </div>
 
 
@@ -644,7 +823,9 @@ button:disabled{
     id="back"
     type="button"
   >
+
     Add another confession
+
   </button>
 
 
@@ -652,12 +833,15 @@ button:disabled{
     id="moderate"
     type="button"
   >
+
     Moderate
+
   </button>
 
 
+
   <!-- =====================================================
-       MODERATION
+       MODERATION PANEL
        ===================================================== -->
 
   <aside
@@ -686,7 +870,9 @@ button:disabled{
         id="loginButton"
         type="button"
       >
+
         Enter
+
       </button>
 
 
@@ -694,7 +880,9 @@ button:disabled{
 
 
     <div id="moderationStatus">
+
       Enter the admin PIN to manage submissions.
+
     </div>
 
 
@@ -705,7 +893,9 @@ button:disabled{
       id="deleteButton"
       type="button"
     >
+
       Delete selected confession
+
     </button>
 
 
@@ -725,7 +915,7 @@ button:disabled{
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyBnzqy7qtsuGJEcKkXlW2CIy76ZwZu3uQ4",
+    "AIzaSyBnzqy7qtsuGJEKkXlW2CIy76ZwZu3uQ4",
 
   authDomain:
     "confession-installation.firebaseapp.com",
@@ -881,8 +1071,10 @@ const deleteButton =
 const ADMIN_PIN =
   "0092";
 
+
 let adminUnlocked =
   false;
+
 
 let selectedId =
   null;
@@ -895,7 +1087,8 @@ let selectedId =
 
 
 /*
-  Keep the field relatively sparse.
+  Maximum number of confession
+  objects that can exist.
 */
 
 const MAX_WORDS =
@@ -903,48 +1096,37 @@ const MAX_WORDS =
 
 
 /*
-  Fewer columns means each confession
-  gets more breathing room.
+  More columns gives us more
+  horizontal breathing room while
+  still allowing the projection
+  to feel populated.
 */
 
 const COLUMN_COUNT =
-  10;
+  12;
 
 
 /*
-  VERY SLOW.
+  Very slow movement.
 
-  These are pixels per millisecond.
-
-  Approximately 15–30 pixels per second.
+  Roughly 12–24 pixels per second.
 */
 
 const FALL_SPEED_MIN =
-  0.015;
+  0.012;
+
 
 const FALL_SPEED_MAX =
-  0.030;
+  0.024;
 
 
 /*
-  Minimum vertical gap between
-  words in the same column.
+  Space between confessions
+  within the same vertical lane.
 */
 
 const WORD_GAP =
-  180;
-
-
-/*
-  How much empty space is allowed
-  above a newly recycled confession.
-*/
-
-const RECYCLE_GAP_MIN =
-  250;
-
-const RECYCLE_GAP_MAX =
-  700;
+  140;
 
 
 
@@ -954,6 +1136,7 @@ const RECYCLE_GAP_MAX =
 
 const words =
   [];
+
 
 const wordItems =
   new Map();
@@ -991,7 +1174,7 @@ function getFontSize(
 
 
   /*
-    Long confessions remain
+    Keep long submissions
     readable.
   */
 
@@ -1053,7 +1236,7 @@ function getFontSize(
 
 
 /* =========================================================
-   FIND BEST COLUMN
+   BEST COLUMN
    ========================================================= */
 
 function getBestColumn(){
@@ -1105,12 +1288,13 @@ function getBestColumn(){
 
 
 /* =========================================================
-   FIND HORIZONTAL POSITION
+   COLUMN POSITION
    ========================================================= */
 
 function getColumnX(
   column,
-  width
+  width,
+  wordWidth
 ){
 
   const columnWidth =
@@ -1118,16 +1302,86 @@ function getColumnX(
     COLUMN_COUNT;
 
 
-  return (
+  const left =
     column *
-    columnWidth
-  ) +
+    columnWidth;
+
+
+  const available =
+    Math.max(
+      10,
+      columnWidth -
+      wordWidth -
+      20
+    );
+
+
+  return (
+    left +
+    random(
+      10,
+      available + 10
+    )
+  );
+
+}
+
+
+
+/* =========================================================
+   FIND INITIAL Y
+   ========================================================= */
+
+function getInitialY(
+  index,
+  height,
+  wordHeight
+){
+
+  /*
+    IMPORTANT:
+
+    Instead of starting all words
+    somewhere in the middle of the
+    screen, spread them through the
+    entire vertical field.
+
+    Some begin slightly above the
+    screen so that new words are
+    already entering as the projection
+    begins.
+  */
+
+  const totalSlots =
+    Math.max(
+      8,
+      Math.min(
+        18,
+        words.length + 4
+      )
+    );
+
+
+  const slot =
+    index %
+    totalSlots;
+
+
+  const slotHeight =
+    (
+      height +
+      300
+    ) /
+    totalSlots;
+
+
+  return (
+    slot *
+    slotHeight
+  ) -
   random(
     20,
-    Math.max(
-      21,
-      columnWidth - 80
-    )
+    100
   );
 
 }
@@ -1176,7 +1430,7 @@ function addWord(
 
 
   /*
-    Set readable font size.
+    Readable font size.
   */
 
   el.style.fontSize =
@@ -1189,6 +1443,19 @@ function addWord(
   );
 
 
+  /*
+    Force the browser to calculate
+    its dimensions before positioning.
+  */
+
+  const wordWidth =
+    el.offsetWidth;
+
+
+  const wordHeight =
+    el.offsetHeight;
+
+
   const width =
     space.clientWidth;
 
@@ -1198,8 +1465,7 @@ function addWord(
 
 
   /*
-    Select the least populated
-    column.
+    Pick the least populated lane.
   */
 
   const column =
@@ -1207,23 +1473,19 @@ function addWord(
 
 
   /*
-    Put the confession somewhere
-    within that column.
+    Horizontal position.
   */
 
   const x =
     getColumnX(
       column,
-      width
+      width,
+      wordWidth
     );
 
 
   /*
-    Existing confessions are spread
-    throughout the screen.
-
-    New confessions begin above
-    the projection.
+    Vertical position.
   */
 
   let y;
@@ -1234,50 +1496,40 @@ function addWord(
   ){
 
     /*
-      Divide the screen into
-      generous vertical zones.
+      Spread existing confessions
+      through the entire screen,
+      including a few above the top.
     */
 
-    const zoneHeight =
-      height /
-      5;
-
-
-    const zone =
-      words.length %
-      5;
-
-
     y =
-      (
-        zone *
-        zoneHeight
-      ) +
-      random(
-        20,
-        Math.max(
-          30,
-          zoneHeight -
-          120
-        )
+      getInitialY(
+        words.length,
+        height,
+        wordHeight
       );
 
   }else{
 
+    /*
+      NEW CONFESSION
+
+      Immediately enters from the
+      top rather than waiting.
+    */
+
     y =
-      -el.offsetHeight -
+      -wordHeight -
       random(
-        200,
-        600
+        20,
+        100
       );
 
   }
 
 
   /*
-    Look at words already occupying
-    this column and make sure the
-    new word has plenty of room.
+    Keep words in the same column
+    separated.
   */
 
   const sameColumn =
@@ -1293,11 +1545,10 @@ function addWord(
   ){
 
     /*
-      Find the word that is highest
-      on the screen.
+      Find the highest existing word.
     */
 
-    let closestToTop =
+    let highest =
       Infinity;
 
 
@@ -1306,10 +1557,10 @@ function addWord(
 
         if(
           item.y <
-          closestToTop
+          highest
         ){
 
-          closestToTop =
+          highest =
             item.y;
 
         }
@@ -1318,6 +1569,12 @@ function addWord(
     );
 
 
+    /*
+      For newly submitted words,
+      place them above the existing
+      stream.
+    */
+
     if(
       !initial
     ){
@@ -1325,9 +1582,9 @@ function addWord(
       y =
         Math.min(
           y,
-          closestToTop -
-          WORD_GAP -
-          el.offsetHeight
+          highest -
+          wordHeight -
+          WORD_GAP
         );
 
     }
@@ -1336,7 +1593,7 @@ function addWord(
 
 
   /*
-    Individual speed.
+    Individual slow speed.
   */
 
   const speed =
@@ -1347,7 +1604,7 @@ function addWord(
 
 
   /*
-    Individual pulse rhythm.
+    Individual pulse.
   */
 
   const item = {
@@ -1378,7 +1635,7 @@ function addWord(
 
     opacityBase:
       random(
-        0.52,
+        0.50,
         0.72
       )
 
@@ -1422,7 +1679,7 @@ function addWord(
 
 
   /*
-    Keep up to 150.
+    Maximum number of objects.
   */
 
   while(
@@ -1445,8 +1702,7 @@ function addWord(
 
 
   /*
-    New submissions are slightly
-    more visible.
+    New submissions are brighter.
   */
 
   if(
@@ -1475,6 +1731,7 @@ function showSpace(){
     "hidden"
   );
 
+
   space.classList.add(
     "visible"
   );
@@ -1493,9 +1750,11 @@ function showEntry(){
     "visible"
   );
 
+
   entry.classList.remove(
     "hidden"
   );
+
 
   input.focus();
 
@@ -1604,7 +1863,7 @@ form.addEventListener(
 
 
 /* =========================================================
-   BACK TO ENTRY
+   BACK
    ========================================================= */
 
 back.addEventListener(
@@ -1651,10 +1910,11 @@ onChildAdded(
 
     /*
       Existing confessions are
-      distributed across the space.
+      spread across the entire
+      projection.
 
-      New confessions enter
-      from above.
+      New confessions enter from
+      the top.
     */
 
     const initial =
@@ -1797,8 +2057,7 @@ function selectConfession(
 
         row.classList.toggle(
           "selected",
-          row.dataset.id ===
-          id
+          row.dataset.id === id
         );
 
       }
@@ -1904,7 +2163,7 @@ moderate.addEventListener(
 
 
 /* =========================================================
-   ADMIN LOGIN
+   LOGIN
    ========================================================= */
 
 loginButton.addEventListener(
@@ -2103,7 +2362,7 @@ function animate(
 
       /*
         ---------------------------------
-        SLOW FALL
+        FALL
         ---------------------------------
       */
 
@@ -2115,7 +2374,7 @@ function animate(
 
       /*
         ---------------------------------
-        SOFT PULSE
+        PULSE
         ---------------------------------
       */
 
@@ -2135,7 +2394,7 @@ function animate(
 
       /*
         ---------------------------------
-        FADE IN
+        FADE IN AT TOP
         ---------------------------------
       */
 
@@ -2165,13 +2424,13 @@ function animate(
 
       /*
         ---------------------------------
-        FADE OUT
+        FADE OUT AT BOTTOM
         ---------------------------------
       */
 
       if(
         item.y >
-        height * 0.78
+        height * .82
       ){
 
         const fadeOut =
@@ -2179,10 +2438,10 @@ function animate(
           (
             (
               item.y -
-              height * 0.78
+              height * .82
             ) /
             (
-              height * 0.22
+              height * .18
             )
           );
 
@@ -2210,7 +2469,7 @@ function animate(
         Math.max(
           0,
           Math.min(
-            0.90,
+            .90,
             opacity
           )
         );
@@ -2238,39 +2497,48 @@ function animate(
 
       /*
         =================================================
-        RECYCLE
+        IMMEDIATE RECYCLING
         =================================================
 
-        The confession never gets deleted.
+        As soon as a confession has
+        completely left the bottom,
+        it is immediately placed just
+        above the top.
 
-        It goes back above the screen
-        and begins another slow fall.
+        There is NO 500px–700px gap.
+
+        This is what keeps the projection
+        continuously populated.
         =================================================
       */
 
       if(
         item.y >
-        height + 150
+        height + 20
       ){
 
         /*
-          Send it well above the
-          visible area.
-
-          This creates more separation
-          between cycles.
+          Immediately put the same
+          confession just above the
+          top edge.
         */
 
         item.y =
           -item.el.offsetHeight -
           random(
-            RECYCLE_GAP_MIN,
-            RECYCLE_GAP_MAX
+            10,
+            60
           );
 
 
         /*
-          New horizontal position.
+          Give it a new horizontal
+          position.
+
+          This keeps the composition
+          changing instead of making
+          every confession follow the
+          same path.
         */
 
         item.x =
@@ -2286,7 +2554,7 @@ function animate(
 
 
         /*
-          New speed.
+          Slight variation in speed.
         */
 
         item.speed =
@@ -2297,7 +2565,7 @@ function animate(
 
 
         /*
-          New pulse rhythm.
+          New pulse phase.
         */
 
         item.pulseOffset =
@@ -2307,16 +2575,9 @@ function animate(
           );
 
 
-        item.pulseSpeed =
-          random(
-            0.0005,
-            0.0010
-          );
-
-
         /*
-          Start invisible so it
-          fades in naturally.
+          Start faint and fade back in
+          as it enters.
         */
 
         item.el.style.opacity =
