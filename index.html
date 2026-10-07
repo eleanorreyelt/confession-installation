@@ -49,21 +49,18 @@ body{
 #entry{
 
   position:relative;
-
   z-index:20;
 
   width:100%;
   height:100vh;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
   padding:30px;
 
   background:#f4f1ec;
-
   color:#171717;
 
   transition:
@@ -73,23 +70,17 @@ body{
 
 
 #entry.hidden{
-
   opacity:0;
-
   visibility:hidden;
-
   pointer-events:none;
-
 }
 
 
 .entry-inner{
-
   width:min(
     720px,
     100%
   );
-
 }
 
 
@@ -112,7 +103,6 @@ h1{
     0 0 22px;
 
   max-width:700px;
-
 }
 
 
@@ -126,7 +116,6 @@ h1{
 
   margin:
     0 0 28px;
-
 }
 
 
@@ -154,7 +143,6 @@ textarea{
   line-height:1.35;
 
   outline:none;
-
 }
 
 
@@ -162,7 +150,6 @@ textarea:focus{
 
   box-shadow:
     0 0 0 2px #171717;
-
 }
 
 
@@ -177,7 +164,6 @@ textarea:focus{
   gap:16px;
 
   margin-top:12px;
-
 }
 
 
@@ -197,7 +183,6 @@ button{
   font:inherit;
 
   cursor:pointer;
-
 }
 
 
@@ -206,7 +191,6 @@ button:disabled{
   opacity:.45;
 
   cursor:default;
-
 }
 
 
@@ -215,7 +199,6 @@ button:disabled{
   font-size:14px;
 
   min-height:20px;
-
 }
 
 
@@ -234,7 +217,6 @@ button:disabled{
     12px 18px;
 
   font-size:14px;
-
 }
 
 
@@ -243,7 +225,6 @@ button:disabled{
   background:#171717;
 
   color:#fff;
-
 }
 
 
@@ -276,7 +257,6 @@ button:disabled{
   opacity:1;
 
   pointer-events:auto;
-
 }
 
 
@@ -298,15 +278,15 @@ button:disabled{
 
   z-index:0;
 
-  /*
-    Keeps the video atmospheric
-    rather than overly bright.
-  */
+  opacity:.72;
 
-  opacity:.75;
+  filter:
+    blur(1px);
+
+  transform:
+    scale(1.015);
 
   pointer-events:none;
-
 }
 
 
@@ -328,42 +308,16 @@ button:disabled{
       25,
       33,
       66,
-      .62
+      .58
     );
 
   pointer-events:none;
-
 }
 
 
 
 /* =========================================================
-   SUBTLE VIDEO BLUR
-   ========================================================= */
-
-/*
-  A tiny amount of blur helps prevent
-  the video from competing with the
-  words.
-
-  Remove this if you want the video
-  to stay completely sharp.
-*/
-
-#backgroundVideo{
-
-  filter:
-    blur(1px);
-
-  transform:
-    scale(1.015);
-
-}
-
-
-
-/* =========================================================
-   FALLING CONFESSIONS
+   CONFESSIONS
    ========================================================= */
 
 .word{
@@ -371,16 +325,11 @@ button:disabled{
   position:absolute;
 
   left:0;
-
   top:0;
 
   z-index:5;
 
   color:#677AC5;
-
-  /*
-    Readable sizes.
-  */
 
   font-size:
     clamp(
@@ -397,7 +346,7 @@ button:disabled{
 
   /*
     Long confessions wrap instead
-    of becoming microscopic.
+    of becoming tiny.
   */
 
   white-space:normal;
@@ -416,13 +365,12 @@ button:disabled{
 
   transform-origin:
     center center;
-
 }
 
 
 
 /* =========================================================
-   NAVIGATION
+   BACK BUTTON
    ========================================================= */
 
 #back{
@@ -432,7 +380,6 @@ button:disabled{
   z-index:30;
 
   top:20px;
-
   left:20px;
 
   border:
@@ -449,7 +396,7 @@ button:disabled{
       25,
       33,
       66,
-      .65
+      .68
     );
 
   color:#677AC5;
@@ -460,14 +407,12 @@ button:disabled{
   font-size:13px;
 
   opacity:.6;
-
 }
 
 
 #back:hover{
 
   opacity:1;
-
 }
 
 
@@ -493,7 +438,6 @@ button:disabled{
   font-size:15px;
 
   opacity:.6;
-
 }
 
 
@@ -509,7 +453,6 @@ button:disabled{
   z-index:50;
 
   top:20px;
-
   right:20px;
 
   border:
@@ -526,7 +469,7 @@ button:disabled{
       25,
       33,
       66,
-      .65
+      .68
     );
 
   color:#677AC5;
@@ -535,7 +478,6 @@ button:disabled{
     10px 14px;
 
   font-size:13px;
-
 }
 
 
@@ -551,7 +493,6 @@ button:disabled{
   z-index:60;
 
   top:65px;
-
   right:20px;
 
   width:
@@ -574,14 +515,12 @@ button:disabled{
   display:none;
 
   color:#677AC5;
-
 }
 
 
 #moderationPanel.open{
 
   display:block;
-
 }
 
 
@@ -593,7 +532,6 @@ button:disabled{
 
   margin:
     0 0 12px;
-
 }
 
 
@@ -602,7 +540,6 @@ button:disabled{
   display:flex;
 
   gap:8px;
-
 }
 
 
@@ -622,7 +559,6 @@ button:disabled{
   padding:10px;
 
   font:inherit;
-
 }
 
 
@@ -631,7 +567,6 @@ button:disabled{
   color:#677AC5;
 
   opacity:.6;
-
 }
 
 
@@ -646,7 +581,6 @@ button:disabled{
   background:#677AC5;
 
   color:#192142;
-
 }
 
 
@@ -657,7 +591,6 @@ button:disabled{
   width:100%;
 
   margin-top:12px;
-
 }
 
 
@@ -672,7 +605,6 @@ button:disabled{
   margin-top:10px;
 
   opacity:.75;
-
 }
 
 
@@ -681,7 +613,6 @@ button:disabled{
   display:none;
 
   margin-top:12px;
-
 }
 
 
@@ -706,7 +637,6 @@ button:disabled{
   cursor:pointer;
 
   color:#677AC5;
-
 }
 
 
@@ -719,7 +649,6 @@ button:disabled{
       197,
       .1
     );
-
 }
 
 
@@ -732,7 +661,6 @@ button:disabled{
       197,
       .2
     );
-
 }
 
 
@@ -741,7 +669,6 @@ button:disabled{
   cursor:pointer;
 
   pointer-events:auto;
-
 }
 
 
@@ -751,7 +678,6 @@ button:disabled{
     1px solid #677AC5;
 
   outline-offset:7px;
-
 }
 
 
@@ -763,33 +689,21 @@ button:disabled{
 @media(max-width:600px){
 
   #entry{
-
     padding:22px;
-
   }
-
 
   .entry-bottom{
-
     align-items:flex-end;
-
   }
-
 
   button{
-
     width:100%;
-
   }
-
 
   #back,
   #moderate{
-
     width:auto;
-
   }
-
 
   .word{
 
@@ -813,7 +727,6 @@ button:disabled{
 
 
 <body>
-
 
 
 <!-- =======================================================
@@ -897,9 +810,7 @@ button:disabled{
 >
 
 
-  <!-- =====================================================
-       VIDEO
-       ===================================================== -->
+  <!-- VIDEO -->
 
   <video
     id="backgroundVideo"
@@ -911,25 +822,21 @@ button:disabled{
   >
 
     <source
-      src="SFIN330.Eleanor%20Reyelt.Somewhere%20Between%20Then%20%26%20Now.mp4"
-      type="video/mp4"
+      src="Eleanor%20Reyelt%20Final%20Digital%20Tools%20Video.mov"
+      type="video/quicktime"
     >
 
   </video>
 
 
-  <!-- =====================================================
-       COLOR WASH
-       ===================================================== -->
+  <!-- VIDEO COLOR WASH -->
 
   <div
     id="videoOverlay"
   ></div>
 
 
-  <!-- =====================================================
-       EMPTY STATE
-       ===================================================== -->
+  <!-- EMPTY STATE -->
 
   <div id="empty">
 
@@ -938,9 +845,7 @@ button:disabled{
   </div>
 
 
-  <!-- =====================================================
-       BACK
-       ===================================================== -->
+  <!-- BACK -->
 
   <button
     id="back"
@@ -952,9 +857,7 @@ button:disabled{
   </button>
 
 
-  <!-- =====================================================
-       MODERATION
-       ===================================================== -->
+  <!-- MODERATE -->
 
   <button
     id="moderate"
@@ -965,6 +868,8 @@ button:disabled{
 
   </button>
 
+
+  <!-- MODERATION PANEL -->
 
   <aside
     id="moderationPanel"
@@ -1031,13 +936,13 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
    ========================================================= */
 
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyBnzqy7qtsuGJEKkXlW2CIy76ZwZu3uQ4",
+    "AIzaSyBnzqy7qtsuGJEcKkXlW2CIy76ZwZu3uQ4",
 
   authDomain:
     "confession-installation.firebaseapp.com",
@@ -1109,80 +1014,96 @@ const entry =
     "entry"
   );
 
+
 const space =
   document.getElementById(
     "space"
   );
+
 
 const form =
   document.getElementById(
     "form"
   );
 
+
 const input =
   document.getElementById(
     "input"
   );
+
 
 const release =
   document.getElementById(
     "release"
   );
 
+
 const status =
   document.getElementById(
     "status"
   );
+
 
 const enterSpace =
   document.getElementById(
     "enterSpace"
   );
 
+
 const back =
   document.getElementById(
     "back"
   );
+
 
 const empty =
   document.getElementById(
     "empty"
   );
 
+
 const moderate =
   document.getElementById(
     "moderate"
   );
+
 
 const moderationPanel =
   document.getElementById(
     "moderationPanel"
   );
 
+
 const adminPin =
   document.getElementById(
     "adminPin"
   );
+
 
 const loginButton =
   document.getElementById(
     "loginButton"
   );
 
+
 const moderationStatus =
   document.getElementById(
     "moderationStatus"
   );
+
 
 const adminList =
   document.getElementById(
     "adminList"
   );
 
+
 const deleteButton =
   document.getElementById(
     "deleteButton"
   );
+
 
 const backgroundVideo =
   document.getElementById(
@@ -1192,22 +1113,21 @@ const backgroundVideo =
 
 
 /* =========================================================
-   VIDEO
+   START VIDEO
    ========================================================= */
 
-/*
-  Some browsers block autoplay even
-  when a video is muted.
+function startVideo(){
 
-  Try to start it explicitly when
-  the page loads.
-*/
+  backgroundVideo
+    .play()
+    .catch(
+      () => {}
+    );
 
-backgroundVideo
-  .play()
-  .catch(
-    () => {}
-  );
+}
+
+
+startVideo();
 
 
 
@@ -1237,8 +1157,8 @@ const MAX_WORDS =
 
 
 /*
-  Twelve lanes gives the projection
-  plenty of breathing room.
+  More columns = more horizontal
+  breathing room.
 */
 
 const COLUMN_COUNT =
@@ -1246,9 +1166,10 @@ const COLUMN_COUNT =
 
 
 /*
-  Very slow falling.
+  Slow falling.
 
-  Approximately 12–24 pixels/sec.
+  Approximately 12–24 pixels
+  per second.
 */
 
 const FALL_SPEED_MIN =
@@ -1260,7 +1181,7 @@ const FALL_SPEED_MAX =
 
 
 /*
-  Vertical breathing room.
+  Space between words.
 */
 
 const WORD_GAP =
@@ -1310,6 +1231,11 @@ function getFontSize(
   const length =
     text.length;
 
+
+  /*
+    Long confessions remain
+    readable.
+  */
 
   if(
     length > 400
@@ -1369,7 +1295,7 @@ function getFontSize(
 
 
 /* =========================================================
-   BEST COLUMN
+   GET BEST COLUMN
    ========================================================= */
 
 function getBestColumn(){
@@ -1421,7 +1347,7 @@ function getBestColumn(){
 
 
 /* =========================================================
-   COLUMN POSITION
+   HORIZONTAL POSITION
    ========================================================= */
 
 function getColumnX(
@@ -1442,7 +1368,7 @@ function getColumnX(
 
   const available =
     Math.max(
-      10,
+      20,
       columnWidth -
       wordWidth -
       20
@@ -1462,7 +1388,7 @@ function getColumnX(
 
 
 /* =========================================================
-   INITIAL POSITION
+   INITIAL Y POSITION
    ========================================================= */
 
 function getInitialY(
@@ -1473,14 +1399,14 @@ function getInitialY(
 
   /*
     Spread existing confessions
-    throughout the entire frame.
+    from the top to the bottom.
   */
 
   const totalSlots =
     Math.max(
-      8,
+      10,
       Math.min(
-        18,
+        20,
         words.length + 4
       )
     );
@@ -1494,7 +1420,7 @@ function getInitialY(
   const slotHeight =
     (
       height +
-      250
+      300
     ) /
     totalSlots;
 
@@ -1553,6 +1479,10 @@ function addWord(
     id;
 
 
+  /*
+    Readable size.
+  */
+
   el.style.fontSize =
     getFontSize(text) +
     "px";
@@ -1564,8 +1494,7 @@ function addWord(
 
 
   /*
-    Get dimensions after adding
-    the element to the page.
+    Measure after adding it.
   */
 
   const wordWidth =
@@ -1585,12 +1514,16 @@ function addWord(
 
 
   /*
-    Pick a relatively empty column.
+    Select column.
   */
 
   const column =
     getBestColumn();
 
+
+  /*
+    Horizontal position.
+  */
 
   const x =
     getColumnX(
@@ -1599,6 +1532,10 @@ function addWord(
       wordWidth
     );
 
+
+  /*
+    Vertical position.
+  */
 
   let y;
 
@@ -1617,8 +1554,8 @@ function addWord(
   }else{
 
     /*
-      New confessions begin
-      immediately above the frame.
+      New confession starts just
+      above the frame.
     */
 
     y =
@@ -1632,8 +1569,8 @@ function addWord(
 
 
   /*
-    Look for existing words
-    in the same column.
+    Keep new confessions from
+    immediately stacking.
   */
 
   const sameColumn =
@@ -1643,11 +1580,6 @@ function addWord(
         column
     );
 
-
-  /*
-    Don't stack new words directly
-    on top of another word.
-  */
 
   if(
     !initial &&
@@ -1687,18 +1619,7 @@ function addWord(
 
 
   /*
-    Individual speed.
-  */
-
-  const speed =
-    random(
-      FALL_SPEED_MIN,
-      FALL_SPEED_MAX
-    );
-
-
-  /*
-    Individual pulse.
+    Create animation object.
   */
 
   const item = {
@@ -1713,7 +1634,11 @@ function addWord(
 
     y,
 
-    speed,
+    speed:
+      random(
+        FALL_SPEED_MIN,
+        FALL_SPEED_MAX
+      ),
 
     pulseOffset:
       random(
@@ -1748,7 +1673,7 @@ function addWord(
 
 
   /*
-    Moderation selection.
+    Moderation.
   */
 
   el.addEventListener(
@@ -1773,7 +1698,8 @@ function addWord(
 
 
   /*
-    Keep maximum at 150.
+    Keep maximum number
+    at 150.
   */
 
   while(
@@ -1796,8 +1722,8 @@ function addWord(
 
 
   /*
-    New submissions are slightly
-    brighter.
+    New submissions are
+    slightly brighter.
   */
 
   if(
@@ -1832,16 +1758,7 @@ function showSpace(){
   );
 
 
-  /*
-    Try video again when the
-    projection becomes visible.
-  */
-
-  backgroundVideo
-    .play()
-    .catch(
-      () => {}
-    );
+  startVideo();
 
 }
 
@@ -1885,7 +1802,7 @@ enterSpace.addEventListener(
 
 
 /* =========================================================
-   SUBMIT
+   SUBMIT CONFESSION
    ========================================================= */
 
 form.addEventListener(
@@ -2016,11 +1933,11 @@ onChildAdded(
 
 
     /*
-      Existing confessions fill
+      Existing entries fill
       the projection.
 
-      New confessions enter from
-      the top.
+      New entries come from
+      above the screen.
     */
 
     const initial =
@@ -2163,8 +2080,7 @@ function selectConfession(
 
         row.classList.toggle(
           "selected",
-          row.dataset.id ===
-          id
+          row.dataset.id === id
         );
 
       }
@@ -2469,7 +2385,7 @@ function animate(
 
       /*
         ---------------------------------
-        SLOW FALL
+        FALL
         ---------------------------------
       */
 
@@ -2481,7 +2397,7 @@ function animate(
 
       /*
         ---------------------------------
-        SOFT PULSE
+        PULSE
         ---------------------------------
       */
 
@@ -2604,12 +2520,14 @@ function animate(
 
       /*
         =================================================
-        IMMEDIATE RECYCLING
+        CONTINUOUS RECYCLING
         =================================================
 
-        As soon as the word leaves
-        the bottom, it comes back
-        immediately above the top.
+        The confession is never deleted.
+
+        Once it leaves the bottom,
+        immediately bring it back
+        above the top.
         =================================================
       */
 
@@ -2619,18 +2537,15 @@ function animate(
       ){
 
         /*
-          Only a tiny distance above
-          the frame.
-
-          This is intentional so there
-          is no dead period.
+          Put it immediately above
+          the visible frame.
         */
 
         item.y =
           -item.el.offsetHeight -
           random(
             10,
-            50
+            60
           );
 
 
@@ -2651,7 +2566,7 @@ function animate(
 
 
         /*
-          Slight speed variation.
+          Slightly new speed.
         */
 
         item.speed =
@@ -2662,7 +2577,7 @@ function animate(
 
 
         /*
-          New pulse.
+          New pulse timing.
         */
 
         item.pulseOffset =
@@ -2680,7 +2595,10 @@ function animate(
 
 
         /*
-          Fade back in as it enters.
+          Reset opacity.
+
+          The fade-in system will
+          bring it back.
         */
 
         item.el.style.opacity =
@@ -2701,7 +2619,7 @@ function animate(
 
 
 /* =========================================================
-   START
+   START ANIMATION
    ========================================================= */
 
 requestAnimationFrame(
