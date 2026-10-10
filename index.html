@@ -49,18 +49,21 @@ body{
 #entry{
 
   position:relative;
+
   z-index:20;
 
   width:100%;
   height:100vh;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
   padding:30px;
 
   background:#f4f1ec;
+
   color:#171717;
 
   transition:
@@ -72,7 +75,9 @@ body{
 #entry.hidden{
 
   opacity:0;
+
   visibility:hidden;
+
   pointer-events:none;
 
 }
@@ -278,7 +283,7 @@ button:disabled{
 
 
 /* =========================================================
-   VIDEO BACKGROUND
+   VIDEO
    ========================================================= */
 
 #backgroundVideo{
@@ -307,11 +312,6 @@ button:disabled{
 }
 
 
-
-/* =========================================================
-   VIDEO OVERLAY
-   ========================================================= */
-
 #videoOverlay{
 
   position:absolute;
@@ -335,7 +335,7 @@ button:disabled{
 
 
 /* =========================================================
-   FALLING CONFESSIONS
+   CONFESSIONS
    ========================================================= */
 
 .word{
@@ -364,15 +364,18 @@ button:disabled{
   letter-spacing:-.035em;
 
   /*
-    Long confessions wrap instead
-    of becoming extremely small.
+    Long confessions wrap rather
+    than becoming tiny.
   */
 
   white-space:normal;
 
   width:max-content;
 
-  max-width:36vw;
+  max-width:min(
+    38vw,
+    620px
+  );
 
   opacity:0;
 
@@ -390,7 +393,7 @@ button:disabled{
 
 
 /* =========================================================
-   BACK BUTTON
+   NAVIGATION
    ========================================================= */
 
 #back{
@@ -731,33 +734,21 @@ button:disabled{
 @media(max-width:600px){
 
   #entry{
-
     padding:22px;
-
   }
-
 
   .entry-bottom{
-
     align-items:flex-end;
-
   }
-
 
   button{
-
     width:100%;
-
   }
-
 
   #back,
   #moderate{
-
     width:auto;
-
   }
-
 
   .word{
 
@@ -768,7 +759,7 @@ button:disabled{
         27px
       );
 
-    max-width:70vw;
+    max-width:72vw;
 
   }
 
@@ -780,6 +771,7 @@ button:disabled{
 
 
 <body>
+
 
 
 <!-- =======================================================
@@ -863,9 +855,7 @@ button:disabled{
 >
 
 
-  <!-- =====================================================
-       VIDEO
-       ===================================================== -->
+  <!-- VIDEO -->
 
   <video
     id="backgroundVideo"
@@ -884,10 +874,7 @@ button:disabled{
   </video>
 
 
-
-  <!-- =====================================================
-       VIDEO OVERLAY
-       ===================================================== -->
+  <!-- VIDEO COLOR WASH -->
 
   <div
     id="videoOverlay"
@@ -895,9 +882,7 @@ button:disabled{
 
 
 
-  <!-- =====================================================
-       EMPTY STATE
-       ===================================================== -->
+  <!-- EMPTY STATE -->
 
   <div id="empty">
 
@@ -907,9 +892,7 @@ button:disabled{
 
 
 
-  <!-- =====================================================
-       BACK
-       ===================================================== -->
+  <!-- BACK -->
 
   <button
     id="back"
@@ -922,9 +905,7 @@ button:disabled{
 
 
 
-  <!-- =====================================================
-       MODERATION
-       ===================================================== -->
+  <!-- MODERATE -->
 
   <button
     id="moderate"
@@ -936,6 +917,8 @@ button:disabled{
   </button>
 
 
+
+  <!-- MODERATION PANEL -->
 
   <aside
     id="moderationPanel"
@@ -1002,7 +985,7 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE
    ========================================================= */
 
 const firebaseConfig = {
@@ -1034,13 +1017,11 @@ const firebaseConfig = {
 };
 
 
-
 import {
   initializeApp
 }
 from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-
 
 
 import {
@@ -1053,7 +1034,6 @@ import {
 }
 from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
-
 
 
 const app =
@@ -1083,96 +1063,80 @@ const entry =
     "entry"
   );
 
-
 const space =
   document.getElementById(
     "space"
   );
-
 
 const form =
   document.getElementById(
     "form"
   );
 
-
 const input =
   document.getElementById(
     "input"
   );
-
 
 const release =
   document.getElementById(
     "release"
   );
 
-
 const status =
   document.getElementById(
     "status"
   );
-
 
 const enterSpace =
   document.getElementById(
     "enterSpace"
   );
 
-
 const back =
   document.getElementById(
     "back"
   );
-
 
 const empty =
   document.getElementById(
     "empty"
   );
 
-
 const moderate =
   document.getElementById(
     "moderate"
   );
-
 
 const moderationPanel =
   document.getElementById(
     "moderationPanel"
   );
 
-
 const adminPin =
   document.getElementById(
     "adminPin"
   );
-
 
 const loginButton =
   document.getElementById(
     "loginButton"
   );
 
-
 const moderationStatus =
   document.getElementById(
     "moderationStatus"
   );
-
 
 const adminList =
   document.getElementById(
     "adminList"
   );
 
-
 const deleteButton =
   document.getElementById(
     "deleteButton"
   );
-
 
 const backgroundVideo =
   document.getElementById(
@@ -1221,40 +1185,58 @@ let selectedId =
    FALLING SETTINGS
    ========================================================= */
 
+/*
+  Maximum number of confession
+  objects in the projection.
+*/
+
 const MAX_WORDS =
   150;
 
 
 /*
-  More lanes means more
-  horizontal breathing room.
+  ONE shared speed.
+
+  This is important.
+
+  Because every word moves at
+  the same speed, one confession
+  cannot catch up to another.
 */
 
-const COLUMN_COUNT =
-  12;
+const FALL_SPEED =
+  0.018;
 
 
 /*
-  Very slow movement.
-
-  Approximately 12–24 pixels
-  per second.
-*/
-
-const FALL_SPEED_MIN =
-  0.012;
-
-
-const FALL_SPEED_MAX =
-  0.024;
-
-
-/*
-  Minimum vertical separation.
+  Minimum distance between
+  confession boxes.
 */
 
 const WORD_GAP =
-  140;
+  70;
+
+
+/*
+  How many attempts we make
+  to find a truly open area.
+*/
+
+const PLACEMENT_ATTEMPTS =
+  250;
+
+
+/*
+  Initial field density.
+
+  This determines how many
+  confessions are visibly spread
+  across the screen when the
+  shared space opens.
+*/
+
+const INITIAL_FILL =
+  0.62;
 
 
 
@@ -1302,7 +1284,8 @@ function getFontSize(
 
 
   /*
-    Long confessions remain readable.
+    Longer confessions stay
+    readable.
   */
 
   if(
@@ -1363,143 +1346,396 @@ function getFontSize(
 
 
 /* =========================================================
-   BEST COLUMN
+   RECTANGLE
    ========================================================= */
 
-function getBestColumn(){
+function getRect(
+  x,
+  y,
+  width,
+  height
+){
 
-  const counts =
-    new Array(
-      COLUMN_COUNT
-    ).fill(0);
+  return {
+
+    left:
+      x,
+
+    top:
+      y,
+
+    right:
+      x + width,
+
+    bottom:
+      y + height
+
+  };
+
+}
 
 
-  words.forEach(
-    item => {
 
-      counts[
-        item.column
-      ]++;
+/* =========================================================
+   RECTANGLE COLLISION
+   ========================================================= */
 
-    }
+function rectanglesOverlap(
+  a,
+  b,
+  gap
+){
+
+  return !(
+    a.right + gap <= b.left ||
+    a.left >= b.right + gap ||
+    a.bottom + gap <= b.top ||
+    a.top >= b.bottom + gap
   );
 
+}
 
-  let best =
-    0;
+
+
+/* =========================================================
+   CHECK WHETHER POSITION IS OPEN
+   ========================================================= */
+
+function positionIsOpen(
+  x,
+  y,
+  width,
+  height,
+  ignoreItem=null
+){
+
+  const candidate =
+    getRect(
+      x,
+      y,
+      width,
+      height
+    );
 
 
   for(
-    let i=1;
-    i<COLUMN_COUNT;
-    i++
+    const item of words
   ){
 
     if(
-      counts[i] <
-      counts[best]
+      item === ignoreItem
     ){
 
-      best =
-        i;
+      continue;
+
+    }
+
+
+    const itemRect =
+      getRect(
+        item.x,
+        item.y,
+        item.el.offsetWidth,
+        item.el.offsetHeight
+      );
+
+
+    if(
+      rectanglesOverlap(
+        candidate,
+        itemRect,
+        WORD_GAP
+      )
+    ){
+
+      return false;
 
     }
 
   }
 
 
-  return best;
+  return true;
 
 }
 
 
 
 /* =========================================================
-   HORIZONTAL POSITION
+   FIND OPEN POSITION
    ========================================================= */
 
-function getColumnX(
-  column,
+function findOpenPosition(
   width,
-  wordWidth
+  height,
+  initial=false
 ){
 
-  const columnWidth =
-    width /
-    COLUMN_COUNT;
+  const spaceWidth =
+    space.clientWidth;
 
 
-  const left =
-    column *
-    columnWidth;
+  const spaceHeight =
+    space.clientHeight;
 
-
-  const available =
-    Math.max(
-      20,
-      columnWidth -
-      wordWidth -
-      20
-    );
-
-
-  return (
-    left +
-    random(
-      10,
-      available + 10
-    )
-  );
-
-}
-
-
-
-/* =========================================================
-   INITIAL POSITION
-   ========================================================= */
-
-function getInitialY(
-  index,
-  height
-){
 
   /*
-    Spread the existing confessions
-    across the entire frame.
+    For new/recycled words,
+    search across the entire
+    horizontal width while keeping
+    them immediately above the top.
   */
 
-  const totalSlots =
-    Math.max(
-      10,
-      Math.min(
+  if(
+    !initial
+  ){
+
+    const topY =
+      -height -
+      random(
+        15,
+        50
+      );
+
+
+    /*
+      Try lots of horizontal
+      positions above the screen.
+
+      Since the word is above the
+      viewport, we only need to
+      make sure its future path
+      has enough separation.
+    */
+
+    for(
+      let attempt=0;
+      attempt<PLACEMENT_ATTEMPTS;
+      attempt++
+    ){
+
+      const x =
+        random(
+          0,
+          Math.max(
+            1,
+            spaceWidth -
+            width
+          )
+        );
+
+
+      /*
+        Check a little distance
+        down the path, too.
+      */
+
+      const candidate =
+        getRect(
+          x,
+          topY,
+          width,
+          height
+        );
+
+
+      let blocked =
+        false;
+
+
+      for(
+        const item of words
+      ){
+
+        const itemRect =
+          getRect(
+            item.x,
+            item.y,
+            item.el.offsetWidth,
+            item.el.offsetHeight
+          );
+
+
+        /*
+          Only worry about items
+          close enough vertically
+          that the paths could meet.
+        */
+
+        if(
+          itemRect.bottom <
+          candidate.top - WORD_GAP
+        ){
+
+          continue;
+
+        }
+
+
+        if(
+          itemRect.top >
+          candidate.bottom + WORD_GAP
+        ){
+
+          continue;
+
+        }
+
+
+        if(
+          rectanglesOverlap(
+            candidate,
+            itemRect,
+            WORD_GAP
+          )
+        ){
+
+          blocked =
+            true;
+
+          break;
+
+        }
+
+      }
+
+
+      if(
+        !blocked
+      ){
+
+        return {
+          x,
+          y:topY
+        };
+
+      }
+
+    }
+
+
+    /*
+      If every horizontal position
+      is occupied, put it at a random
+      point above the frame.
+
+      Because everything moves at
+      the same speed, it will still
+      keep its relative position.
+    */
+
+    return {
+
+      x:
+        random(
+          0,
+          Math.max(
+            1,
+            spaceWidth -
+            width
+          )
+        ),
+
+      y:
+        topY -
+        random(
+          20,
+          80
+        )
+
+    };
+
+  }
+
+
+
+  /*
+    ---------------------------------
+    INITIAL SCREEN FILL
+    ---------------------------------
+
+    Search for random open areas.
+  */
+
+  for(
+    let attempt=0;
+    attempt<PLACEMENT_ATTEMPTS;
+    attempt++
+  ){
+
+    const x =
+      random(
+        0,
+        Math.max(
+          1,
+          spaceWidth -
+          width
+        )
+      );
+
+
+    const y =
+      random(
         20,
-        words.length + 4
+        Math.max(
+          21,
+          spaceHeight -
+          height -
+          20
+        )
+      );
+
+
+    if(
+      positionIsOpen(
+        x,
+        y,
+        width,
+        height
       )
-    );
+    ){
+
+      return {
+        x,
+        y
+      };
+
+    }
+
+  }
 
 
-  const slot =
-    index %
-    totalSlots;
+  /*
+    If there truly isn't enough
+    empty room, return a random
+    position rather than causing
+    the code to fail.
+  */
 
+  return {
 
-  const slotHeight =
-    (
-      height +
-      300
-    ) /
-    totalSlots;
+    x:
+      random(
+        0,
+        Math.max(
+          1,
+          spaceWidth -
+          width
+        )
+      ),
 
+    y:
+      random(
+        20,
+        Math.max(
+          21,
+          spaceHeight -
+          height -
+          20
+        )
+      )
 
-  return (
-    slot *
-    slotHeight
-  ) -
-  random(
-    20,
-    100
-  );
+  };
 
 }
 
@@ -1547,7 +1783,7 @@ function addWord(
 
 
   /*
-    Readable font size.
+    Set the readable font size.
   */
 
   el.style.fontSize =
@@ -1561,8 +1797,8 @@ function addWord(
 
 
   /*
-    Measure the text after
-    putting it into the DOM.
+    Force layout so we can
+    measure the real dimensions.
   */
 
   const wordWidth =
@@ -1573,78 +1809,17 @@ function addWord(
     el.offsetHeight;
 
 
-  const width =
-    space.clientWidth;
-
-
-  const height =
-    space.clientHeight;
-
-
   /*
-    Pick the least-used column.
+    Find an open area.
   */
 
-  const column =
-    getBestColumn();
-
-
-  /*
-    Find horizontal position.
-  */
-
-  const x =
-    getColumnX(
-      column,
-      width,
-      wordWidth
+  const position =
+    findOpenPosition(
+      wordWidth,
+      wordHeight,
+      initial
     );
 
-
-  /*
-    Initial vertical position.
-  */
-
-  let y;
-
-
-  if(
-    initial
-  ){
-
-    /*
-      Existing words fill
-      the whole screen.
-    */
-
-    y =
-      getInitialY(
-        words.length,
-        height
-      );
-
-  }else{
-
-    /*
-      NEW WORD
-
-      Start immediately above
-      the frame.
-    */
-
-    y =
-      -wordHeight -
-      random(
-        10,
-        60
-      );
-
-  }
-
-
-  /*
-    Store item.
-  */
 
   const item = {
 
@@ -1652,17 +1827,28 @@ function addWord(
 
     el,
 
-    column,
+    x:
+      position.x,
 
-    x,
+    y:
+      position.y,
 
-    y,
+    /*
+      EVERY WORD HAS EXACTLY
+      THE SAME SPEED.
+
+      This prevents catch-up
+      and collisions caused by
+      different speeds.
+    */
 
     speed:
-      random(
-        FALL_SPEED_MIN,
-        FALL_SPEED_MAX
-      ),
+      FALL_SPEED,
+
+
+    /*
+      Individual pulse.
+    */
 
     pulseOffset:
       random(
@@ -1670,15 +1856,17 @@ function addWord(
         Math.PI * 2
       ),
 
+
     pulseSpeed:
       random(
         0.0005,
         0.0010
       ),
 
+
     opacityBase:
       random(
-        0.50,
+        0.48,
         0.72
       )
 
@@ -1697,7 +1885,8 @@ function addWord(
 
 
   /*
-    Make new submissions more visible.
+    New confessions get slightly
+    stronger visibility.
   */
 
   if(
@@ -1736,8 +1925,7 @@ function addWord(
 
 
   /*
-    Keep a maximum of 150
-    confession objects.
+    Prevent too many objects.
   */
 
   while(
@@ -1810,7 +1998,7 @@ function showEntry(){
 
 
 /* =========================================================
-   ENTER SHARED SPACE
+   ENTER SPACE
    ========================================================= */
 
 enterSpace.addEventListener(
@@ -1933,7 +2121,7 @@ back.addEventListener(
 
 
 /* =========================================================
-   FIREBASE: NEW CONFESSION
+   FIREBASE: ADD
    ========================================================= */
 
 onChildAdded(
@@ -1956,11 +2144,11 @@ onChildAdded(
 
 
     /*
-      Existing confessions are
-      distributed across the screen.
+      Existing database confessions
+      fill the projection.
 
-      New confessions enter from
-      the top.
+      New submissions enter from
+      above.
     */
 
     const initial =
@@ -1981,7 +2169,7 @@ onChildAdded(
 
 
 /* =========================================================
-   FIREBASE: REMOVED CONFESSION
+   FIREBASE: REMOVE
    ========================================================= */
 
 onChildRemoved(
@@ -2055,7 +2243,7 @@ onChildRemoved(
 
 
 /* =========================================================
-   SELECT CONFESSION
+   SELECT
    ========================================================= */
 
 function selectConfession(
@@ -2209,7 +2397,7 @@ moderate.addEventListener(
 
 
 /* =========================================================
-   ADMIN LOGIN
+   LOGIN
    ========================================================= */
 
 loginButton.addEventListener(
@@ -2374,7 +2562,7 @@ deleteButton.addEventListener(
 
 
 /* =========================================================
-   CONTINUOUS FALLING ANIMATION
+   CONTINUOUS ANIMATION
    ========================================================= */
 
 let lastTime =
@@ -2407,9 +2595,9 @@ function animate(
 
 
       /*
-        ---------------------------------
+        =================================
         FALL
-        ---------------------------------
+        =================================
       */
 
       item.y +=
@@ -2419,9 +2607,9 @@ function animate(
 
 
       /*
-        ---------------------------------
+        =================================
         PULSE
-        ---------------------------------
+        =================================
       */
 
       const pulse =
@@ -2439,13 +2627,14 @@ function animate(
 
 
       /*
-        ---------------------------------
+        =================================
         FADE IN
-        ---------------------------------
+        =================================
       */
 
       if(
-        item.y < 180
+        item.y <
+        180
       ){
 
         const fadeIn =
@@ -2454,7 +2643,8 @@ function animate(
             Math.min(
               1,
               (
-                item.y + 120
+                item.y +
+                120
               ) /
               300
             )
@@ -2469,14 +2659,14 @@ function animate(
 
 
       /*
-        ---------------------------------
+        =================================
         FADE OUT
-        ---------------------------------
+        =================================
       */
 
       if(
         item.y >
-        height * .82
+        height * .80
       ){
 
         const fadeOut =
@@ -2484,10 +2674,10 @@ function animate(
           (
             (
               item.y -
-              height * .82
+              height * .80
             ) /
             (
-              height * .18
+              height * .20
             )
           );
 
@@ -2506,9 +2696,9 @@ function animate(
 
 
       /*
-        ---------------------------------
-        OPACITY LIMIT
-        ---------------------------------
+        =================================
+        OPACITY
+        =================================
       */
 
       opacity =
@@ -2523,9 +2713,9 @@ function animate(
 
 
       /*
-        ---------------------------------
+        =================================
         POSITION
-        ---------------------------------
+        =================================
       */
 
       item.el.style.transform =
@@ -2542,16 +2732,15 @@ function animate(
 
 
       /*
-        =================================================
+        =================================
         CONTINUOUS RECYCLING
-        =================================================
+        =================================
 
-        The confession is NOT deleted.
+        The word is NEVER deleted
+        because of reaching the bottom.
 
-        As soon as it leaves the bottom,
-        it goes back above the top and
-        begins falling again.
-        =================================================
+        It immediately returns above
+        the screen.
       */
 
       if(
@@ -2560,46 +2749,43 @@ function animate(
       ){
 
         /*
-          Immediately above the frame.
+          Measure again in case the
+          browser changed the text
+          dimensions.
         */
 
-        item.y =
-          -item.el.offsetHeight -
-          random(
-            10,
-            60
-          );
+        const wordWidth =
+          item.el.offsetWidth;
+
+
+        const wordHeight =
+          item.el.offsetHeight;
 
 
         /*
-          New horizontal position.
+          Find a new open position
+          above the frame.
         */
+
+        const position =
+          findOpenPosition(
+            wordWidth,
+            wordHeight,
+            false
+          );
+
 
         item.x =
-          random(
-            20,
-            Math.max(
-              21,
-              width -
-              item.el.offsetWidth -
-              20
-            )
-          );
+          position.x;
+
+
+        item.y =
+          position.y;
+
 
 
         /*
-          New speed.
-        */
-
-        item.speed =
-          random(
-            FALL_SPEED_MIN,
-            FALL_SPEED_MAX
-          );
-
-
-        /*
-          New pulse.
+          Reset pulse.
         */
 
         item.pulseOffset =
@@ -2617,7 +2803,10 @@ function animate(
 
 
         /*
-          Begin faint and fade in.
+          Reset opacity.
+
+          The fade-in section will
+          bring it back as it enters.
         */
 
         item.el.style.opacity =
@@ -2638,7 +2827,7 @@ function animate(
 
 
 /* =========================================================
-   START ANIMATION
+   START
    ========================================================= */
 
 requestAnimationFrame(
