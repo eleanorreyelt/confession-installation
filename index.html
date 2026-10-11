@@ -77,11 +77,13 @@ body{
     visibility 1.2s ease;
 }
 
+
 #entry.hidden{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
 }
+
 
 .entry-inner{
   width:min(680px,100%);
@@ -111,6 +113,7 @@ h1{
 
   max-width:700px;
 }
+
 
 .intro{
 
@@ -157,12 +160,14 @@ h1{
   outline:none;
 }
 
+
 #input::placeholder{
 
   color:var(--blue);
 
   opacity:.55;
 }
+
 
 #input:focus{
 
@@ -210,6 +215,7 @@ h1{
   margin-top:8px;
 }
 
+
 button{
 
   border:0;
@@ -229,6 +235,7 @@ button{
   cursor:pointer;
 }
 
+
 button:disabled{
 
   opacity:.45;
@@ -236,12 +243,14 @@ button:disabled{
   cursor:default;
 }
 
+
 #status{
 
   font-size:13px;
 
   min-height:18px;
 }
+
 
 #enterSpace{
 
@@ -263,6 +272,7 @@ button:disabled{
 
   font-size:14px;
 }
+
 
 #enterSpace:hover{
 
@@ -343,15 +353,14 @@ button:disabled{
     opacity 1.5s ease;
 
   z-index:10;
-
 }
+
 
 #space.visible{
 
   opacity:1;
 
   pointer-events:auto;
-
 }
 
 
@@ -382,7 +391,6 @@ button:disabled{
   transform:scale(1.015);
 
   pointer-events:none;
-
 }
 
 
@@ -405,7 +413,6 @@ button:disabled{
   overflow:hidden;
 
   pointer-events:none;
-
 }
 
 
@@ -447,16 +454,14 @@ button:disabled{
     620px
   );
 
-  opacity:.95;
-
   /*
-    This is the Adobe-style effect.
-    The text blends with the video
-    underneath instead of sitting as
-    a solid color on top.
+    Text interacts with the
+    video underneath it.
   */
 
-  mix-blend-mode:overlay;
+  opacity:.65;
+
+  mix-blend-mode:soft-light;
 
   pointer-events:none;
 
@@ -464,9 +469,7 @@ button:disabled{
     transform,
     opacity;
 
-  transform-origin:
-    center center;
-
+  transform-origin:center center;
 }
 
 
@@ -481,8 +484,8 @@ button:disabled{
     1.8s
     ease-out
     forwards;
-
 }
+
 
 @keyframes confessionIn{
 
@@ -491,10 +494,11 @@ button:disabled{
   }
 
   to{
-    opacity:.95;
+    opacity:.65;
   }
 
 }
+
 
 .word.fading{
 
@@ -503,13 +507,13 @@ button:disabled{
     1.4s
     ease-in
     forwards;
-
 }
+
 
 @keyframes confessionOut{
 
   from{
-    opacity:.95;
+    opacity:.65;
   }
 
   to{
@@ -568,6 +572,7 @@ button:disabled{
 
   opacity:.6;
 }
+
 
 #back:hover{
   opacity:1;
@@ -694,9 +699,11 @@ button:disabled{
   color:var(--blue);
 }
 
+
 #moderationPanel.open{
   display:block;
 }
+
 
 #moderationPanel h2{
 
@@ -707,12 +714,14 @@ button:disabled{
   margin:0 0 12px;
 }
 
+
 #adminLogin{
 
   display:flex;
 
   gap:8px;
 }
+
 
 #adminPin{
 
@@ -733,12 +742,14 @@ button:disabled{
   font:inherit;
 }
 
+
 #adminPin::placeholder{
 
   color:var(--blue);
 
   opacity:.6;
 }
+
 
 #loginButton,
 #deleteButton{
@@ -753,6 +764,7 @@ button:disabled{
   color:var(--navy);
 }
 
+
 #deleteButton{
 
   display:none;
@@ -761,6 +773,7 @@ button:disabled{
 
   margin-top:12px;
 }
+
 
 #moderationStatus{
 
@@ -775,12 +788,14 @@ button:disabled{
   opacity:.75;
 }
 
+
 #adminList{
 
   display:none;
 
   margin-top:12px;
 }
+
 
 .modItem{
 
@@ -804,6 +819,7 @@ button:disabled{
   color:var(--blue);
 }
 
+
 .modItem:hover{
 
   background:
@@ -814,6 +830,7 @@ button:disabled{
       .1
     );
 }
+
 
 .modItem.selected{
 
@@ -826,12 +843,14 @@ button:disabled{
     );
 }
 
+
 .word.moderatable{
 
   pointer-events:auto;
 
   cursor:pointer;
 }
+
 
 .word.selected{
 
@@ -1019,10 +1038,9 @@ button:disabled{
   }
 
 
-  /*
-    On phones, all confessions become
-    a vertical scrollable archive.
-  */
+  /* =======================================================
+     PHONE CONFESSIONS
+     ======================================================= */
 
   .word{
 
@@ -1052,9 +1070,9 @@ button:disabled{
 
     line-height:1.08;
 
-    opacity:.95;
+    opacity:.65;
 
-    mix-blend-mode:overlay;
+    mix-blend-mode:soft-light;
 
     transform:none !important;
 
@@ -1080,7 +1098,7 @@ button:disabled{
 
     to{
 
-      opacity:.95;
+      opacity:.65;
 
       transform:
         translateY(0);
@@ -1094,7 +1112,7 @@ button:disabled{
 
     animation:none;
 
-    opacity:.95;
+    opacity:.65;
 
   }
 
@@ -1163,7 +1181,7 @@ button:disabled{
 
 
   /* =======================================================
-     PHONE ARTIST CREDIT
+     PHONE CREDIT
      ======================================================= */
 
   .site-credit{
@@ -1477,7 +1495,7 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE
    ========================================================= */
 
 const firebaseConfig = {
@@ -1934,7 +1952,7 @@ function getFontSize(
 
 
 /* =========================================================
-   RECTANGLES
+   RECTANGLE HELPERS
    ========================================================= */
 
 function getItemRect(
@@ -2214,7 +2232,7 @@ function findSpawnPosition(
 
 
 /* =========================================================
-   CREATE DESKTOP CONFESSION
+   CREATE DESKTOP WORD
    ========================================================= */
 
 function createActiveWord(
@@ -2312,7 +2330,7 @@ function createActiveWord(
 
     opacity:
       mode === "initial"
-        ? .72
+        ? .65
         : 0,
 
     removing:
@@ -2578,7 +2596,7 @@ function addNextWord(){
 
 
 /* =========================================================
-   INITIAL DESKTOP FILL
+   FILL INITIAL DESKTOP
    ========================================================= */
 
 function fillInitialSpace(){
@@ -3064,13 +3082,13 @@ function animate(
 
 
           item.opacity =
-            .95 *
+            .65 *
             (1 - progress);
 
         }else{
 
           item.opacity =
-            .95;
+            .65;
 
         }
 
