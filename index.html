@@ -48,15 +48,18 @@ body{
    ========================================================= */
 
 #entry{
+
   position:relative;
 
   z-index:20;
 
   width:100%;
+
   min-height:100vh;
   min-height:100dvh;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -73,23 +76,28 @@ body{
 
 
 #entry.hidden{
+
   opacity:0;
 
   visibility:hidden;
 
   pointer-events:none;
+
 }
 
 
 .entry-inner{
+
   width:min(
     720px,
     100%
   );
+
 }
 
 
 h1{
+
   font-size:
     clamp(
       38px,
@@ -107,10 +115,12 @@ h1{
     0 0 22px;
 
   max-width:700px;
+
 }
 
 
 .intro{
+
   font-size:18px;
 
   line-height:1.45;
@@ -119,10 +129,12 @@ h1{
 
   margin:
     0 0 28px;
+
 }
 
 
 textarea{
+
   width:100%;
 
   min-height:190px;
@@ -149,19 +161,24 @@ textarea{
 
 
 textarea::placeholder{
+
   color:#677AC5;
 
   opacity:.55;
+
 }
 
 
 textarea:focus{
+
   box-shadow:
     0 0 0 2px #677AC5;
+
 }
 
 
 .entry-bottom{
+
   display:flex;
 
   align-items:center;
@@ -171,10 +188,12 @@ textarea:focus{
   gap:16px;
 
   margin-top:14px;
+
 }
 
 
 button{
+
   border:0;
 
   background:#677AC5;
@@ -189,20 +208,25 @@ button{
   font:inherit;
 
   cursor:pointer;
+
 }
 
 
 button:disabled{
+
   opacity:.45;
 
   cursor:default;
+
 }
 
 
 #status{
+
   font-size:14px;
 
   min-height:20px;
+
 }
 
 
@@ -290,9 +314,11 @@ button:disabled{
 
   opacity:.72;
 
-  filter:blur(1px);
+  filter:
+    blur(1px);
 
-  transform:scale(1.015);
+  transform:
+    scale(1.015);
 
   pointer-events:none;
 
@@ -335,7 +361,6 @@ button:disabled{
   position:absolute;
 
   left:0;
-
   top:0;
 
   z-index:5;
@@ -344,21 +369,16 @@ button:disabled{
 
   font-size:
     clamp(
-      21px,
+      22px,
       2vw,
       38px
     );
 
-  line-height:1.06;
+  line-height:1.05;
 
   font-weight:400;
 
   letter-spacing:-.035em;
-
-  /*
-    Long confessions wrap instead
-    of becoming tiny.
-  */
 
   white-space:normal;
 
@@ -378,14 +398,14 @@ button:disabled{
     opacity;
 
   transform-origin:
-    center center;
+    top left;
 
 }
 
 
 
 /* =========================================================
-   BACK BUTTON
+   NAVIGATION
    ========================================================= */
 
 #back{
@@ -430,7 +450,7 @@ button:disabled{
 
   font-size:13px;
 
-  opacity:.72;
+  opacity:.7;
 }
 
 
@@ -469,7 +489,7 @@ button:disabled{
 
 
 /* =========================================================
-   MODERATION BUTTON
+   MODERATION
    ========================================================= */
 
 #moderate{
@@ -744,14 +764,10 @@ button:disabled{
 
 
 /* =========================================================
-   PHONE
+   MOBILE ENTRY
    ========================================================= */
 
 @media(max-width:600px){
-
-  /* =========================================
-     ENTRY
-     ========================================= */
 
   #entry{
 
@@ -833,7 +849,8 @@ button:disabled{
 
 
   /*
-    Give the buttons more room.
+    More breathing room between
+    the phone buttons.
   */
 
   .entry-bottom{
@@ -881,11 +898,14 @@ button:disabled{
   }
 
 
+
   /* =========================================
-     PROJECTION
+     PHONE PROJECTION
      ========================================= */
 
   #space{
+
+    width:100%;
 
     height:100vh;
 
@@ -899,6 +919,7 @@ button:disabled{
   #backgroundVideo{
 
     width:100%;
+
     height:100%;
 
     object-fit:cover;
@@ -907,20 +928,17 @@ button:disabled{
 
 
   /*
-    Six confessions max on a phone.
-
-    They will cycle through all
-    submissions instead of all
-    appearing simultaneously.
+    Long confessions stay readable,
+    but are narrower on phones.
   */
 
   .word{
 
     font-size:
       clamp(
-        17px,
+        18px,
         5vw,
-        29px
+        27px
       );
 
     line-height:1.05;
@@ -931,7 +949,7 @@ button:disabled{
 
 
   /* =========================================
-     TOP CONTROLS
+     PHONE CONTROLS
      ========================================= */
 
   #back{
@@ -977,10 +995,6 @@ button:disabled{
 
   }
 
-
-  /* =========================================
-     MODERATION
-     ========================================= */
 
   #moderationPanel{
 
@@ -1063,17 +1077,6 @@ button:disabled{
 
   }
 
-
-  #back,
-  #moderate{
-
-    font-size:11px;
-
-    padding:
-      9px 10px;
-
-  }
-
 }
 
 </style>
@@ -1133,9 +1136,7 @@ button:disabled{
           id="release"
           type="submit"
         >
-
           Release
-
         </button>
 
 
@@ -1149,9 +1150,7 @@ button:disabled{
       id="enterSpace"
       type="button"
     >
-
       Enter the shared space
-
     </button>
 
 
@@ -1206,52 +1205,41 @@ button:disabled{
        ===================================================== -->
 
   <div id="empty">
-
     The space is waiting.
-
   </div>
 
 
 
   <!-- =====================================================
-       BACK BUTTON
+       BACK
        ===================================================== -->
 
   <button
     id="back"
     type="button"
   >
-
     Add another confession
-
   </button>
 
 
 
   <!-- =====================================================
-       MODERATION BUTTON
+       MODERATION
        ===================================================== -->
 
   <button
     id="moderate"
     type="button"
   >
-
     Moderate
-
   </button>
 
 
-
-  <!-- =====================================================
-       MODERATION PANEL
-       ===================================================== -->
 
   <aside
     id="moderationPanel"
     aria-label="Moderation panel"
   >
-
 
     <h2>
       Moderation
@@ -1259,7 +1247,6 @@ button:disabled{
 
 
     <div id="adminLogin">
-
 
       <input
         id="adminPin"
@@ -1273,11 +1260,8 @@ button:disabled{
         id="loginButton"
         type="button"
       >
-
         Enter
-
       </button>
-
 
     </div>
 
@@ -1296,11 +1280,8 @@ button:disabled{
       id="deleteButton"
       type="button"
     >
-
       Delete selected confession
-
     </button>
-
 
   </aside>
 
@@ -1488,19 +1469,10 @@ const backgroundVideo =
 
 
 /* =========================================================
-   VIDEO WITH SOUND
+   VIDEO
    ========================================================= */
 
 function startVideo(){
-
-  /*
-    Sound is enabled here.
-
-    This function is called from a
-    visitor interaction, which gives
-    the browser the best opportunity
-    to allow audible playback.
-  */
 
   backgroundVideo.muted =
     false;
@@ -1558,49 +1530,58 @@ let selectedId =
    PROJECTION SETTINGS
    ========================================================= */
 
-/*
-  Maximum number of confessions
-  visible at one time.
-
-  The actual number changes
-  depending on screen size.
-*/
-
 function getVisibleCount(){
 
   const width =
     window.innerWidth;
 
 
+  /*
+    Phones:
+
+    Only FOUR confession blocks
+    are active at one time.
+
+    All submissions still cycle
+    through the projection.
+  */
+
   if(
     width <= 600
   ){
 
-    return 6;
+    return 4;
 
   }
 
+
+  /*
+    Tablets.
+  */
 
   if(
     width <= 1000
   ){
 
-    return 10;
+    return 7;
 
   }
 
 
-  return 16;
+  /*
+    Desktop/projector.
+  */
+
+  return 12;
 
 }
 
 
 /*
-  All confessions use the same
-  falling speed.
+  Every active confession moves
+  at exactly the same speed.
 
-  This prevents one confession
-  from catching another.
+  This preserves their spacing.
 */
 
 const FALL_SPEED =
@@ -1608,42 +1589,34 @@ const FALL_SPEED =
 
 
 /*
-  Extra space around each
-  confession's bounding box.
+  Empty space around text blocks.
 */
 
 const WORD_GAP =
-  70;
+  60;
 
 
 /*
   Number of attempts used when
-  finding an open location.
+  finding a safe location.
 */
 
 const PLACEMENT_ATTEMPTS =
-  300;
+  400;
 
 
 
 /* =========================================================
-   CONFESSION DATA
+   ALL CONFESSIONS
    ========================================================= */
-
-/*
-  ALL submissions live here.
-
-  They are NOT limited to the number
-  currently visible.
-*/
 
 const confessions =
   new Map();
 
 
 /*
-  Currently visible confession
-  objects.
+  These are the ONLY confession
+  objects currently on screen.
 */
 
 const activeItems =
@@ -1651,8 +1624,8 @@ const activeItems =
 
 
 /*
-  Randomized order through which
-  every confession eventually appears.
+  Queue containing every
+  submission that needs to appear.
 */
 
 let cycleQueue =
@@ -1662,11 +1635,6 @@ let cycleQueue =
 let queueIndex =
   0;
 
-
-/*
-  Prevent initial setup from happening
-  before Firebase has loaded the data.
-*/
 
 let projectionInitialized =
   false;
@@ -1704,7 +1672,7 @@ function shuffle(
 
 
   for(
-    let i=copy.length-1;
+    let i=copy.length - 1;
     i>0;
     i--
   ){
@@ -1712,7 +1680,7 @@ function shuffle(
     const j =
       Math.floor(
         Math.random() *
-        (i+1)
+        (i + 1)
       );
 
 
@@ -1747,7 +1715,7 @@ function getFontSize(
 
 
   /*
-    Long confessions remain
+    Long submissions remain
     readable.
   */
 
@@ -1812,7 +1780,7 @@ function getFontSize(
    RECTANGLE
    ========================================================= */
 
-function getRect(
+function makeRect(
   x,
   y,
   width,
@@ -1838,13 +1806,13 @@ function getRect(
 
 
 /* =========================================================
-   COLLISION
+   RECTANGLE OVERLAP
    ========================================================= */
 
-function rectanglesOverlap(
+function overlaps(
   a,
   b,
-  gap
+  gap=0
 ){
 
   return !(
@@ -1859,7 +1827,71 @@ function rectanglesOverlap(
 
 
 /* =========================================================
-   INITIAL OPEN POSITION
+   IS POSITION OPEN
+   ========================================================= */
+
+function isPositionOpen(
+  x,
+  y,
+  width,
+  height,
+  ignoreItem=null
+){
+
+  const candidate =
+    makeRect(
+      x,
+      y,
+      width,
+      height
+    );
+
+
+  for(
+    const item of activeItems
+  ){
+
+    if(
+      item === ignoreItem
+    ){
+
+      continue;
+
+    }
+
+
+    const other =
+      makeRect(
+        item.x,
+        item.y,
+        item.el.offsetWidth,
+        item.el.offsetHeight
+      );
+
+
+    if(
+      overlaps(
+        candidate,
+        other,
+        WORD_GAP
+      )
+    ){
+
+      return false;
+
+    }
+
+  }
+
+
+  return true;
+
+}
+
+
+
+/* =========================================================
+   FIND INITIAL POSITION
    ========================================================= */
 
 function findInitialPosition(
@@ -1867,21 +1899,32 @@ function findInitialPosition(
   height
 ){
 
-  const spaceWidth =
+  const viewportWidth =
     space.clientWidth;
 
 
-  const spaceHeight =
+  const viewportHeight =
     space.clientHeight;
 
 
-  let bestPosition =
-    null;
+  /*
+    Keep the very top clear
+    for the buttons.
+  */
+
+  const topMargin =
+    window.innerWidth <= 600
+      ? 90
+      : 110;
+
+
+  const bottomMargin =
+    40;
 
 
   /*
-    Try many random locations.
-  */
+    RANDOM SEARCH
+    */
 
   for(
     let attempt=0;
@@ -1894,7 +1937,7 @@ function findInitialPosition(
         10,
         Math.max(
           11,
-          spaceWidth -
+          viewportWidth -
           width -
           10
         )
@@ -1903,62 +1946,23 @@ function findInitialPosition(
 
     const y =
       random(
-        10,
+        topMargin,
         Math.max(
-          11,
-          spaceHeight -
+          topMargin + 1,
+          viewportHeight -
           height -
-          10
+          bottomMargin
         )
       );
 
 
-    const candidate =
-      getRect(
+    if(
+      isPositionOpen(
         x,
         y,
         width,
         height
-      );
-
-
-    let blocked =
-      false;
-
-
-    for(
-      const item of activeItems
-    ){
-
-      const itemRect =
-        getRect(
-          item.x,
-          item.y,
-          item.el.offsetWidth,
-          item.el.offsetHeight
-        );
-
-
-      if(
-        rectanglesOverlap(
-          candidate,
-          itemRect,
-          WORD_GAP
-        )
-      ){
-
-        blocked =
-          true;
-
-        break;
-
-      }
-
-    }
-
-
-    if(
-      !blocked
+      )
     ){
 
       return {
@@ -1968,71 +1972,73 @@ function findInitialPosition(
 
     }
 
+  }
 
-    /*
-      Keep a fallback in case the
-      screen is becoming crowded.
-    */
 
-    if(
-      !bestPosition
+  /*
+    GRID FALLBACK
+
+    Instead of randomly putting
+    the word somewhere and allowing
+    overlap, systematically search
+    the entire screen.
+  */
+
+  const step =
+    20;
+
+
+  for(
+    let y=topMargin;
+    y<=viewportHeight-height-bottomMargin;
+    y+=step
+  ){
+
+    for(
+      let x=10;
+      x<=viewportWidth-width-10;
+      x+=step
     ){
 
-      bestPosition = {
-        x,
-        y
-      };
+      if(
+        isPositionOpen(
+          x,
+          y,
+          width,
+          height
+        )
+      ){
+
+        return {
+          x,
+          y
+        };
+
+      }
 
     }
 
   }
 
 
-  return (
-    bestPosition || {
+  /*
+    If there genuinely isn't room,
+    return null.
 
-      x:
-        random(
-          10,
-          Math.max(
-            11,
-            spaceWidth -
-            width -
-            10
-          )
-        ),
+    The caller will simply show
+    fewer active confessions rather
+    than stacking them.
+  */
 
-      y:
-        random(
-          10,
-          Math.max(
-            11,
-            spaceHeight -
-            height -
-            10
-          )
-        )
-
-    }
-  );
+  return null;
 
 }
 
 
 
 /* =========================================================
-   TOP SPAWN POSITION
+   FIND SAFE SPAWN POSITION
    ========================================================= */
-
-/*
-  Finds the highest possible entry
-  point above the screen.
-
-  Because every confession falls at
-  the same speed, a confession that
-  starts above another confession
-  maintains that separation.
-*/
 
 function findSpawnPosition(
   width,
@@ -2040,16 +2046,27 @@ function findSpawnPosition(
   ignoreItem=null
 ){
 
-  const spaceWidth =
+  const viewportWidth =
     space.clientWidth;
 
 
-  let best =
-    null;
+  /*
+    Base position immediately
+    above the top edge.
+  */
+
+  const baseY =
+    -height - 20;
 
 
   /*
-    Try lots of horizontal positions.
+    First try to find a horizontal
+    area with NO active confession
+    intersecting its falling path.
+
+    This is what prevents a word
+    from entering directly on top
+    of another word.
   */
 
   for(
@@ -2060,39 +2077,19 @@ function findSpawnPosition(
 
     const x =
       random(
-        0,
+        10,
         Math.max(
-          1,
-          spaceWidth -
-          width
+          11,
+          viewportWidth -
+          width -
+          10
         )
       );
 
 
-    /*
-      Start immediately above
-      the visible frame.
-    */
+    let horizontalConflict =
+      false;
 
-    let y =
-      -height -
-      20;
-
-
-    const candidateLeft =
-      x;
-
-
-    const candidateRight =
-      x + width;
-
-
-    /*
-      If another active confession
-      occupies the same horizontal
-      path, put this one high enough
-      above it to preserve separation.
-    */
 
     for(
       const item of activeItems
@@ -2107,34 +2104,177 @@ function findSpawnPosition(
       }
 
 
-      const itemLeft =
-        item.x;
+      const wordLeft =
+        x;
 
 
-      const itemRight =
+      const wordRight =
+        x + width;
+
+
+      const otherLeft =
+        item.x -
+        WORD_GAP;
+
+
+      const otherRight =
         item.x +
-        item.el.offsetWidth;
+        item.el.offsetWidth +
+        WORD_GAP;
 
 
-      const horizontalOverlap =
-        !(
-          candidateRight +
-          WORD_GAP <=
-          itemLeft
-          ||
-          candidateLeft >=
-          itemRight +
-          WORD_GAP
-        );
+      const conflict =
+        wordRight >
+        otherLeft
+        &&
+        wordLeft <
+        otherRight;
 
 
       if(
-        horizontalOverlap
+        conflict
       ){
 
-        y =
+        horizontalConflict =
+          true;
+
+        break;
+
+      }
+
+    }
+
+
+    /*
+      No horizontal conflict means
+      it can enter immediately above
+      the screen.
+    */
+
+    if(
+      !horizontalConflict
+    ){
+
+      return {
+
+        x,
+
+        y:baseY
+
+      };
+
+    }
+
+  }
+
+
+  /*
+    If every horizontal area has
+    another confession in it, put
+    the new one ABOVE the earliest
+    word on that path.
+
+    Because every word moves at
+    exactly the same speed, that
+    spacing remains constant.
+  */
+
+  let bestX =
+    random(
+      10,
+      Math.max(
+        11,
+        viewportWidth -
+        width -
+        10
+      )
+    );
+
+
+  let bestY =
+    baseY;
+
+
+  let bestScore =
+    Infinity;
+
+
+  for(
+    let attempt=0;
+    attempt<PLACEMENT_ATTEMPTS;
+    attempt++
+  ){
+
+    const x =
+      random(
+        10,
+        Math.max(
+          11,
+          viewportWidth -
+          width -
+          10
+        )
+      );
+
+
+    let requiredY =
+      baseY;
+
+
+    let conflictCount =
+      0;
+
+
+    for(
+      const item of activeItems
+    ){
+
+      if(
+        item === ignoreItem
+      ){
+
+        continue;
+
+      }
+
+
+      const wordLeft =
+        x;
+
+
+      const wordRight =
+        x + width;
+
+
+      const otherLeft =
+        item.x -
+        WORD_GAP;
+
+
+      const otherRight =
+        item.x +
+        item.el.offsetWidth +
+        WORD_GAP;
+
+
+      const horizontalConflict =
+        wordRight >
+        otherLeft
+        &&
+        wordLeft <
+        otherRight;
+
+
+      if(
+        horizontalConflict
+      ){
+
+        conflictCount++;
+
+
+        requiredY =
           Math.min(
-            y,
+            requiredY,
             item.y -
             height -
             WORD_GAP
@@ -2145,107 +2285,45 @@ function findSpawnPosition(
     }
 
 
-    /*
-      We want the highest possible
-      position, meaning the largest
-      Y value.
-    */
+    const score =
+      conflictCount *
+      1000 +
+      Math.abs(
+        requiredY -
+        baseY
+      );
+
 
     if(
-      !best ||
-      y > best.y
+      score <
+      bestScore
     ){
 
-      best = {
-        x,
-        y
-      };
-
-    }
+      bestScore =
+        score;
 
 
-    /*
-      A position immediately above
-      the frame is ideal, so stop
-      searching when we find one.
-    */
+      bestX =
+        x;
 
-    if(
-      y >=
-      -height -
-      25
-    ){
 
-      return {
-        x,
-        y
-      };
+      bestY =
+        requiredY;
 
     }
 
   }
 
 
-  return (
-    best || {
+  return {
 
-      x:
-        random(
-          0,
-          Math.max(
-            1,
-            spaceWidth -
-            width
-          )
-        ),
+    x:
+      bestX,
 
-      y:
-        -height -
-        20
+    y:
+      bestY
 
-    }
-  );
-
-}
-
-
-
-/* =========================================================
-   PREPARE CONFESSION
-   ========================================================= */
-
-function prepareElement(
-  item,
-  id,
-  text
-){
-
-  item.id =
-    id;
-
-
-  item.el.dataset.id =
-    id;
-
-
-  item.el.textContent =
-    text;
-
-
-  item.el.style.fontSize =
-    getFontSize(text) +
-    "px";
-
-
-  /*
-    Force layout so the dimensions
-    are accurate.
-  */
-
-  item.el.offsetWidth;
-
-
-  item.el.offsetHeight;
+  };
 
 }
 
@@ -2266,10 +2344,6 @@ function getNextConfessionId(){
   }
 
 
-  /*
-    Current visible IDs.
-  */
-
   const activeIds =
     new Set(
       activeItems.map(
@@ -2280,46 +2354,13 @@ function getNextConfessionId(){
 
 
   /*
-    Keep looking through the
-    current randomized cycle.
+    Continue through current cycle.
   */
 
-  let checked =
-    0;
-
-
   while(
-    checked <
-    confessions.size * 2
+    queueIndex <
+    cycleQueue.length
   ){
-
-    if(
-      queueIndex >=
-      cycleQueue.length
-    ){
-
-      cycleQueue =
-        shuffle(
-          Array.from(
-            confessions.keys()
-          )
-        );
-
-
-      queueIndex =
-        0;
-
-    }
-
-
-    if(
-      cycleQueue.length === 0
-    ){
-
-      return null;
-
-    }
-
 
     const id =
       cycleQueue[
@@ -2330,52 +2371,22 @@ function getNextConfessionId(){
     queueIndex++;
 
 
-    checked++;
-
-
-    /*
-      Database entry could have
-      been deleted since the queue
-      was created.
-    */
-
     if(
-      !confessions.has(id)
+      confessions.has(id) &&
+      !activeIds.has(id)
     ){
 
-      continue;
+      return id;
 
     }
-
-
-    /*
-      Don't show a confession twice
-      at the same time when there are
-      alternatives.
-    */
-
-    if(
-      activeIds.has(id) &&
-      confessions.size >
-      activeItems.length
-    ){
-
-      continue;
-
-    }
-
-
-    return id;
 
   }
 
 
   /*
-    Fallback.
+    Current cycle is exhausted.
 
-    This only happens when there
-    aren't enough unique submissions
-    to fill every visible slot.
+    Start a fresh randomized cycle.
   */
 
   const available =
@@ -2388,26 +2399,54 @@ function getNextConfessionId(){
 
 
   if(
-    available.length
+    available.length === 0
   ){
 
-    return (
-      available[
+    /*
+      Only happens when there are
+      fewer total submissions than
+      visible slots.
+    */
+
+    const all =
+      Array.from(
+        confessions.keys()
+      );
+
+
+    if(
+      all.length
+    ){
+
+      return all[
         Math.floor(
           Math.random() *
-          available.length
+          all.length
         )
-      ]
-    );
+      ];
+
+    }
+
+
+    return null;
 
   }
 
 
+  cycleQueue =
+    shuffle(
+      available
+    );
+
+
+  queueIndex =
+    0;
+
+
   return (
-    Array.from(
-      confessions.keys()
-    )[0] ||
-    null
+    cycleQueue[
+      queueIndex++
+    ] || null
   );
 
 }
@@ -2424,7 +2463,9 @@ function createActiveWord(
 ){
 
   const data =
-    confessions.get(id);
+    confessions.get(
+      id
+    );
 
 
   if(
@@ -2446,51 +2487,28 @@ function createActiveWord(
     "word";
 
 
+  el.textContent =
+    data.text;
+
+
+  el.dataset.id =
+    id;
+
+
+  el.style.fontSize =
+    getFontSize(
+      data.text
+    ) + "px";
+
+
   space.appendChild(
     el
   );
 
 
-  const item = {
-
-    id,
-
-    el,
-
-    x:0,
-
-    y:0,
-
-    speed:
-      FALL_SPEED,
-
-    pulseOffset:
-      random(
-        0,
-        Math.PI * 2
-      ),
-
-    pulseSpeed:
-      random(
-        0.0005,
-        0.0010
-      ),
-
-    opacityBase:
-      random(
-        0.48,
-        0.72
-      )
-
-  };
-
-
-  prepareElement(
-    item,
-    id,
-    data.text
-  );
-
+  /*
+    Force measurement.
+  */
 
   const width =
     el.offsetWidth;
@@ -2524,27 +2542,60 @@ function createActiveWord(
   }
 
 
-  item.x =
-    position.x;
-
-
-  item.y =
-    position.y;
-
-
   /*
-    New confessions are slightly
-    stronger.
+    There is genuinely not enough
+    room right now.
+
+    Do NOT stack the word.
   */
 
   if(
-    !initial
+    !position
   ){
 
-    item.opacityBase =
-      0.82;
+    el.remove();
+
+    return null;
 
   }
+
+
+  const item = {
+
+    id,
+
+    el,
+
+    x:
+      position.x,
+
+    y:
+      position.y,
+
+    speed:
+      FALL_SPEED,
+
+    pulseOffset:
+      random(
+        0,
+        Math.PI * 2
+      ),
+
+    pulseSpeed:
+      random(
+        0.0005,
+        0.0010
+      ),
+
+    opacityBase:
+      initial
+        ? random(
+            0.48,
+            0.68
+          )
+        : 0.82
+
+  };
 
 
   activeItems.push(
@@ -2553,12 +2604,7 @@ function createActiveWord(
 
 
   /*
-    Make the confession clickable
-    when moderation is unlocked.
-
-    The handler always reads the
-    item's current ID, so it still
-    works when the element is reused.
+    Moderation.
   */
 
   el.addEventListener(
@@ -2582,6 +2628,9 @@ function createActiveWord(
   );
 
 
+  applyModerationState();
+
+
   return item;
 
 }
@@ -2589,7 +2638,7 @@ function createActiveWord(
 
 
 /* =========================================================
-   ACTIVATE NEXT CONFESSION
+   RECYCLE ACTIVE WORD
    ========================================================= */
 
 function recycleItem(
@@ -2601,33 +2650,22 @@ function recycleItem(
 
 
   /*
-    Don't choose the same confession
-    immediately unless there are no
-    alternatives.
+    Find the next submission.
   */
 
   let nextId =
     getNextConfessionId();
 
 
-  if(
-    !nextId
-  ){
-
-    return;
-
-  }
-
-
   /*
-    If there are several submissions,
-    make sure we don't immediately
-    recycle the exact same one.
+    Avoid immediately showing
+    exactly the same confession
+    when alternatives exist.
   */
 
   if(
-    confessions.size > 1 &&
-    nextId === oldId
+    nextId === oldId &&
+    confessions.size > 1
   ){
 
     const alternatives =
@@ -2635,7 +2673,12 @@ function recycleItem(
         confessions.keys()
       ).filter(
         id =>
-          id !== oldId
+          id !== oldId &&
+          !activeItems.some(
+            active =>
+              active !== item &&
+              active.id === id
+          )
       );
 
 
@@ -2656,9 +2699,32 @@ function recycleItem(
   }
 
 
+  if(
+    !nextId
+  ){
+
+    return;
+
+  }
+
+
+  const nextData =
+    confessions.get(
+      nextId
+    );
+
+
+  if(
+    !nextData
+  ){
+
+    return;
+
+  }
+
+
   /*
-    Keep the item in the active
-    array but change its identity.
+    Remove old ID from moderation map.
   */
 
   wordItems.delete(
@@ -2666,14 +2732,33 @@ function recycleItem(
   );
 
 
-  prepareElement(
-    item,
-    nextId,
-    confessions.get(
-      nextId
-    ).text
-  );
+  /*
+    Change the active element
+    into the next confession.
+  */
 
+  item.id =
+    nextId;
+
+
+  item.el.dataset.id =
+    nextId;
+
+
+  item.el.textContent =
+    nextData.text;
+
+
+  item.el.style.fontSize =
+    getFontSize(
+      nextData.text
+    ) + "px";
+
+
+  /*
+    Force layout again because
+    the text dimensions changed.
+  */
 
   const width =
     item.el.offsetWidth;
@@ -2682,6 +2767,11 @@ function recycleItem(
   const height =
     item.el.offsetHeight;
 
+
+  /*
+    Find a safe position above
+    the screen.
+  */
 
   const position =
     findSpawnPosition(
@@ -2699,9 +2789,9 @@ function recycleItem(
     position.y;
 
 
-  item.speed =
-    FALL_SPEED;
-
+  /*
+    Reset pulse.
+  */
 
   item.pulseOffset =
     random(
@@ -2718,7 +2808,7 @@ function recycleItem(
 
 
   item.opacityBase =
-    0.70;
+    0.82;
 
 
   item.el.style.opacity =
@@ -2732,23 +2822,8 @@ function recycleItem(
 
 
   /*
-    If the moderator had selected
-    the old confession, clear it.
+    Update moderation.
   */
-
-  if(
-    selectedId === oldId
-  ){
-
-    selectedId =
-      null;
-
-
-    deleteButton.style.display =
-      "none";
-
-  }
-
 
   buildAdminList();
 
@@ -2762,6 +2837,27 @@ function recycleItem(
 
 const wordItems =
   new Map();
+
+
+
+/* =========================================================
+   APPLY MODERATION STATE
+   ========================================================= */
+
+function applyModerationState(){
+
+  activeItems.forEach(
+    item => {
+
+      item.el.classList.toggle(
+        "moderatable",
+        adminUnlocked
+      );
+
+    }
+  );
+
+}
 
 
 
@@ -2780,6 +2876,11 @@ function showSpace(){
     "visible"
   );
 
+
+  /*
+    Start the video from the
+    visitor interaction.
+  */
 
   startVideo();
 
@@ -2825,7 +2926,7 @@ enterSpace.addEventListener(
 
 
 /* =========================================================
-   SUBMIT CONFESSION
+   SUBMIT
    ========================================================= */
 
 form.addEventListener(
@@ -2836,8 +2937,8 @@ form.addEventListener(
 
 
     /*
-      Start video immediately from
-      the visitor's interaction.
+      Start video immediately
+      from the user interaction.
     */
 
     startVideo();
@@ -2941,7 +3042,7 @@ back.addEventListener(
 
 
 /* =========================================================
-   FIREBASE REAL-TIME DATA
+   FIREBASE DATA
    ========================================================= */
 
 onValue(
@@ -2985,11 +3086,10 @@ onValue(
     );
 
 
-    /*
-      ---------------------------------
-      INITIAL LOAD
-      ---------------------------------
-    */
+
+    /* -------------------------------------------------------
+       INITIAL LOAD
+       ------------------------------------------------------- */
 
     if(
       !projectionInitialized
@@ -3023,22 +3123,21 @@ onValue(
         true;
 
 
-      /*
-        Fill only the number of
-        visible slots appropriate
-        for the current screen.
-      */
-
-      const count =
+      const desired =
         Math.min(
           getVisibleCount(),
           confessions.size
         );
 
 
+      /*
+        Fill only what will actually
+        fit on the current screen.
+      */
+
       for(
         let i=0;
-        i<count;
+        i<desired;
         i++
       ){
 
@@ -3047,38 +3146,48 @@ onValue(
 
 
         if(
-          id
+          !id
         ){
 
-          const item =
-            createActiveWord(
-              id,
-              true
-            );
-
-
-          if(item){
-
-            wordItems.set(
-              id,
-              item
-            );
-
-          }
+          break;
 
         }
 
+
+        const item =
+          createActiveWord(
+            id,
+            true
+          );
+
+
+        if(
+          !item
+        ){
+
+          /*
+            If there genuinely isn't
+            room for another confession,
+            stop rather than overlapping.
+          */
+
+          break;
+
+        }
+
+
+        wordItems.set(
+          id,
+          item
+        );
+
       }
 
 
-      if(
+      empty.style.display =
         confessions.size
-      ){
-
-        empty.style.display =
-          "none";
-
-      }
+          ? "none"
+          : "flex";
 
 
       buildAdminList();
@@ -3090,11 +3199,9 @@ onValue(
 
 
 
-    /*
-      ---------------------------------
-      NEW SUBMISSIONS
-      ---------------------------------
-    */
+    /* -------------------------------------------------------
+       NEW / UPDATED CONFESSIONS
+       ------------------------------------------------------- */
 
     incoming.forEach(
       (data,id) => {
@@ -3110,8 +3217,12 @@ onValue(
 
 
           /*
-            Add the new submission
-            to the current cycle.
+            Add new submission to
+            the cycle queue.
+
+            It will appear naturally
+            as the queue moves through
+            submissions.
           */
 
           if(
@@ -3138,11 +3249,9 @@ onValue(
 
 
 
-    /*
-      ---------------------------------
-      DELETED SUBMISSIONS
-      ---------------------------------
-    */
+    /* -------------------------------------------------------
+       DELETED CONFESSIONS
+       ------------------------------------------------------- */
 
     const deletedIds =
       Array.from(
@@ -3169,19 +3278,15 @@ onValue(
 
 
         const active =
-          wordItems.get(
-            id
+          activeItems.find(
+            item =>
+              item.id === id
           );
 
 
         if(
           active
         ){
-
-          wordItems.delete(
-            id
-          );
-
 
           const index =
             activeItems.indexOf(
@@ -3193,15 +3298,6 @@ onValue(
             index !== -1
           ){
 
-            /*
-              Remove the deleted
-              confession from the
-              active array.
-
-              Then immediately
-              replace it with another.
-            */
-
             activeItems.splice(
               index,
               1
@@ -3210,38 +3306,43 @@ onValue(
           }
 
 
+          wordItems.delete(
+            id
+          );
+
+
           active.el.remove();
 
 
+          /*
+            Immediately replace the
+            deleted visible confession
+            with another one.
+          */
+
+          const replacementId =
+            getNextConfessionId();
+
+
           if(
-            confessions.size
+            replacementId
           ){
 
-            const replacementId =
-              getNextConfessionId();
+            const replacement =
+              createActiveWord(
+                replacementId,
+                false
+              );
 
 
             if(
-              replacementId
+              replacement
             ){
 
-              const replacement =
-                createActiveWord(
-                  replacementId,
-                  false
-                );
-
-
-              if(
+              wordItems.set(
+                replacementId,
                 replacement
-              ){
-
-                wordItems.set(
-                  replacementId,
-                  replacement
-                );
-
-              }
+              );
 
             }
 
@@ -3249,48 +3350,14 @@ onValue(
 
         }
 
-
-        if(
-          selectedId === id
-        ){
-
-          selectedId =
-            null;
-
-
-          deleteButton.style.display =
-            "none";
-
-        }
-
       }
     );
 
 
-    /*
-      Update empty state.
-    */
 
-    if(
-      confessions.size === 0
-    ){
-
-      empty.style.display =
-        "flex";
-
-    }else{
-
-      empty.style.display =
-        "none";
-
-    }
-
-
-    /*
-      Keep the number of active
-      words appropriate for the
-      current screen.
-    */
+    /* -------------------------------------------------------
+       MAINTAIN ACTIVE COUNT
+       ------------------------------------------------------- */
 
     const desired =
       Math.min(
@@ -3325,17 +3392,36 @@ onValue(
 
 
       if(
-        item
+        !item
       ){
 
-        wordItems.set(
-          id,
-          item
-        );
+        /*
+          Do not force another word
+          into an occupied area.
+        */
+
+        break;
 
       }
 
+
+      wordItems.set(
+        id,
+        item
+      );
+
     }
+
+
+
+    /* -------------------------------------------------------
+       EMPTY STATE
+       ------------------------------------------------------- */
+
+    empty.style.display =
+      confessions.size
+        ? "none"
+        : "flex";
 
 
     buildAdminList();
@@ -3368,17 +3454,18 @@ function selectConfession(
   );
 
 
-  const item =
-    wordItems.get(
-      id
+  const visibleItem =
+    activeItems.find(
+      item =>
+        item.id === id
     );
 
 
   if(
-    item
+    visibleItem
   ){
 
-    item.el.classList.add(
+    visibleItem.el.classList.add(
       "selected"
     );
 
@@ -3394,8 +3481,7 @@ function selectConfession(
 
         row.classList.toggle(
           "selected",
-          row.dataset.id ===
-          id
+          row.dataset.id === id
         );
 
       }
@@ -3440,6 +3526,17 @@ function buildAdminList(){
         data.text;
 
 
+      if(
+        id === selectedId
+      ){
+
+        row.classList.add(
+          "selected"
+        );
+
+      }
+
+
       row.addEventListener(
         "click",
         () => {
@@ -3450,17 +3547,6 @@ function buildAdminList(){
 
         }
       );
-
-
-      if(
-        id === selectedId
-      ){
-
-        row.classList.add(
-          "selected"
-        );
-
-      }
 
 
       adminList.appendChild(
@@ -3512,7 +3598,7 @@ moderate.addEventListener(
 
 
 /* =========================================================
-   ADMIN LOGIN
+   LOGIN
    ========================================================= */
 
 loginButton.addEventListener(
@@ -3543,15 +3629,7 @@ loginButton.addEventListener(
       buildAdminList();
 
 
-      activeItems.forEach(
-        item => {
-
-          item.el.classList.add(
-            "moderatable"
-          );
-
-        }
-      );
+      applyModerationState();
 
 
     }else{
@@ -3602,13 +3680,9 @@ deleteButton.addEventListener(
     }
 
 
-    const idToDelete =
-      selectedId;
-
-
     if(
       !confessions.has(
-        idToDelete
+        selectedId
       )
     ){
 
@@ -3637,7 +3711,7 @@ deleteButton.addEventListener(
         ref(
           database,
           "confessions/" +
-          idToDelete
+          selectedId
         )
       );
 
@@ -3652,6 +3726,7 @@ deleteButton.addEventListener(
 
       moderationStatus.textContent =
         "Confession deleted.";
+
 
     }catch(error){
 
@@ -3672,7 +3747,7 @@ deleteButton.addEventListener(
 
 
 /* =========================================================
-   CONTINUOUS ANIMATION
+   ANIMATION
    ========================================================= */
 
 let lastTime =
@@ -3699,9 +3774,10 @@ function animate(
   activeItems.forEach(
     item => {
 
+
       /*
         ---------------------------------
-        FALL
+        SLOW FALL
         ---------------------------------
       */
 
@@ -3713,7 +3789,7 @@ function animate(
 
       /*
         ---------------------------------
-        PULSE
+        SOFT PULSE
         ---------------------------------
       */
 
@@ -3805,7 +3881,7 @@ function animate(
         ---------------------------------
       */
 
-      opacity =
+      item.el.style.opacity =
         Math.max(
           0,
           Math.min(
@@ -3830,24 +3906,21 @@ function animate(
         "px)";
 
 
-      item.el.style.opacity =
-        opacity;
-
-
 
       /*
-        =================================
+        ---------------------------------
         RECYCLE
-        =================================
+        ---------------------------------
 
-        As soon as this confession
-        leaves the bottom, immediately
-        replace it with the next one.
+        Once this confession has
+        completely left the screen,
+        immediately replace it with
+        the next confession.
       */
 
       if(
         item.y >
-        height + 20
+        height + 30
       ){
 
         recycleItem(
