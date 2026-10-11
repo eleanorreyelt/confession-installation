@@ -12,6 +12,7 @@
 
 <title>Take Up Space</title>
 
+
 <style>
 
 /* =========================================================
@@ -21,6 +22,7 @@
 :root{
   --navy:#192142;
   --blue:#677AC5;
+  --text:#F5F2FA;
   --app-height:100dvh;
 }
 
@@ -34,8 +36,13 @@ body{
   width:100%;
   height:100%;
   min-height:100%;
+
   background:var(--navy);
-  font-family:Arial,Helvetica,sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 body{
@@ -50,22 +57,39 @@ body{
 #entry{
 
   position:fixed;
+
   inset:0;
 
   width:100%;
+
   height:var(--app-height);
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   padding:
-    calc(24px + env(safe-area-inset-top))
-    calc(22px + env(safe-area-inset-right))
-    calc(38px + env(safe-area-inset-bottom))
-    calc(22px + env(safe-area-inset-left));
+    calc(
+      24px +
+      env(safe-area-inset-top)
+    )
+    calc(
+      22px +
+      env(safe-area-inset-right)
+    )
+    calc(
+      38px +
+      env(safe-area-inset-bottom)
+    )
+    calc(
+      22px +
+      env(safe-area-inset-left)
+    );
 
   background:var(--navy);
+
   color:var(--blue);
 
   overflow:hidden;
@@ -78,13 +102,20 @@ body{
 }
 
 #entry.hidden{
+
   opacity:0;
+
   visibility:hidden;
+
   pointer-events:none;
 }
 
 .entry-inner{
-  width:min(680px,100%);
+
+  width:min(
+    680px,
+    100%
+  );
 }
 
 
@@ -107,7 +138,8 @@ h1{
 
   letter-spacing:-.055em;
 
-  margin:0 0 20px;
+  margin:
+    0 0 20px;
 
   max-width:700px;
 }
@@ -120,7 +152,8 @@ h1{
 
   max-width:560px;
 
-  margin:0 0 20px;
+  margin:
+    0 0 20px;
 }
 
 
@@ -140,7 +173,9 @@ h1{
 
   resize:none;
 
-  border:1px solid var(--blue);
+  border:
+    1px solid
+    var(--blue);
 
   background:transparent;
 
@@ -172,7 +207,7 @@ h1{
       103,
       122,
       197,
-      .35
+      .25
     );
 }
 
@@ -218,7 +253,8 @@ button{
 
   color:var(--navy);
 
-  padding:12px 20px;
+  padding:
+    12px 20px;
 
   min-height:46px;
 
@@ -253,11 +289,14 @@ button:disabled{
 
   background:transparent;
 
-  border:1px solid var(--blue);
+  border:
+    1px solid
+    var(--blue);
 
   color:var(--blue);
 
-  padding:10px 16px;
+  padding:
+    10px 16px;
 
   min-height:44px;
 
@@ -350,7 +389,6 @@ button:disabled{
   opacity:1;
 
   pointer-events:auto;
-
 }
 
 
@@ -420,7 +458,13 @@ button:disabled{
 
   z-index:5;
 
-  color:#ffffff;
+  color:
+    rgba(
+      245,
+      242,
+      250,
+      .74
+    );
 
   font-size:
     clamp(
@@ -444,27 +488,22 @@ button:disabled{
     620px
   );
 
-  /*
-    The text blends into the image
-    instead of sitting on top of it.
-  */
-
-  opacity:.65;
-
-  mix-blend-mode:soft-light;
+  opacity:.74;
 
   /*
-    Soft bloom around the letters.
-    Multiple shadows create a brighter
-    center and a larger glow.
+    Very subtle bloom.
+    This is intentionally restrained
+    so the letters do not look neon.
   */
 
   text-shadow:
-    0 0 3px rgba(255,255,255,.95),
-    0 0 8px rgba(255,255,255,.85),
-    0 0 16px rgba(255,255,255,.7),
-    0 0 28px rgba(255,255,255,.5),
-    0 0 48px rgba(255,255,255,.28);
+    0 0 8px
+    rgba(
+      255,
+      255,
+      255,
+      .16
+    );
 
   pointer-events:none;
 
@@ -496,14 +535,16 @@ button:disabled{
 
     opacity:0;
 
-    filter:blur(6px);
+    filter:blur(4px);
+
   }
 
   to{
 
-    opacity:.65;
+    opacity:.74;
 
     filter:blur(0);
+
   }
 
 }
@@ -522,16 +563,18 @@ button:disabled{
 
   from{
 
-    opacity:.65;
+    opacity:.74;
 
     filter:blur(0);
+
   }
 
   to{
 
     opacity:0;
 
-    filter:blur(4px);
+    filter:blur(3px);
+
   }
 
 }
@@ -578,7 +621,8 @@ button:disabled{
 
   color:var(--blue);
 
-  padding:9px 13px;
+  padding:
+    9px 13px;
 
   min-height:40px;
 
@@ -588,6 +632,7 @@ button:disabled{
 }
 
 #back:hover{
+
   opacity:1;
 }
 
@@ -659,7 +704,8 @@ button:disabled{
 
   color:var(--blue);
 
-  padding:9px 13px;
+  padding:
+    9px 13px;
 
   min-height:40px;
 
@@ -713,6 +759,7 @@ button:disabled{
 }
 
 #moderationPanel.open{
+
   display:block;
 }
 
@@ -722,7 +769,8 @@ button:disabled{
 
   font-weight:400;
 
-  margin:0 0 12px;
+  margin:
+    0 0 12px;
 }
 
 #adminLogin{
@@ -811,7 +859,8 @@ button:disabled{
       .35
     );
 
-  padding:10px 6px;
+  padding:
+    10px 6px;
 
   font-size:13px;
 
@@ -1047,7 +1096,13 @@ button:disabled{
 
     padding:0;
 
-    color:#ffffff;
+    color:
+      rgba(
+        245,
+        242,
+        250,
+        .74
+      );
 
     font-size:
       clamp(
@@ -1058,16 +1113,16 @@ button:disabled{
 
     line-height:1.08;
 
-    opacity:.65;
-
-    mix-blend-mode:soft-light;
+    opacity:.74;
 
     text-shadow:
-      0 0 3px rgba(255,255,255,.95),
-      0 0 7px rgba(255,255,255,.8),
-      0 0 15px rgba(255,255,255,.65),
-      0 0 26px rgba(255,255,255,.45),
-      0 0 40px rgba(255,255,255,.25);
+      0 0 7px
+      rgba(
+        255,
+        255,
+        255,
+        .15
+      );
 
     transform:none !important;
 
@@ -1085,7 +1140,7 @@ button:disabled{
 
       opacity:0;
 
-      filter:blur(5px);
+      filter:blur(3px);
 
       transform:
         translateY(20px);
@@ -1094,7 +1149,7 @@ button:disabled{
 
     to{
 
-      opacity:.65;
+      opacity:.74;
 
       filter:blur(0);
 
@@ -1110,7 +1165,7 @@ button:disabled{
 
     animation:none;
 
-    opacity:.65;
+    opacity:.74;
 
   }
 
@@ -1392,6 +1447,7 @@ button:disabled{
   id="space"
   aria-label="Shared confession space"
 >
+
 
   <video
     id="backgroundVideo"
@@ -1732,7 +1788,14 @@ function startVideo(){
   backgroundVideo
     .play()
     .catch(
-      () => {}
+      error => {
+
+        console.log(
+          "Video playback:",
+          error
+        );
+
+      }
     );
 
 }
@@ -2239,7 +2302,7 @@ function findSpawnPosition(
 
 
 /* =========================================================
-   CREATE DESKTOP CONFESSION
+   CREATE DESKTOP WORD
    ========================================================= */
 
 function createActiveWord(
@@ -2257,7 +2320,9 @@ function createActiveWord(
 
 
   const data =
-    confessions.get(id);
+    confessions.get(
+      id
+    );
 
 
   if(
@@ -2337,7 +2402,7 @@ function createActiveWord(
 
     opacity:
       mode === "initial"
-        ? .65
+        ? .74
         : 0,
 
     removing:
@@ -2364,7 +2429,9 @@ function createActiveWord(
     item.opacity;
 
 
-  if(mode !== "initial"){
+  if(
+    mode !== "initial"
+  ){
 
     requestAnimationFrame(
       () => {
@@ -2858,6 +2925,8 @@ onValue(
       );
 
 
+    /* Remove deleted */
+
     previousIds.forEach(
       id => {
 
@@ -2887,6 +2956,8 @@ onValue(
       }
     );
 
+
+    /* Add or update */
 
     incomingIds.forEach(
       id => {
@@ -2936,7 +3007,7 @@ onValue(
     );
 
 
-    /* PHONE */
+    /* Phone */
 
     if(
       isPhone()
@@ -2963,7 +3034,7 @@ onValue(
     }
 
 
-    /* DESKTOP */
+    /* Desktop */
 
     if(
       confessions.size === 0
@@ -3089,13 +3160,13 @@ function animate(
 
 
           item.opacity =
-            .65 *
+            .74 *
             (1 - progress);
 
         }else{
 
           item.opacity =
-            .65;
+            .74;
 
         }
 
@@ -3266,7 +3337,7 @@ input.addEventListener(
 
 
 /* =========================================================
-   SUBMIT
+   SUBMIT CONFESSION
    ========================================================= */
 
 form.addEventListener(
@@ -3302,6 +3373,15 @@ form.addEventListener(
       return;
 
     }
+
+
+    /*
+      Start the video immediately from
+      the user's tap before the Firebase
+      request finishes.
+    */
+
+    startVideo();
 
 
     release.disabled =
@@ -3340,7 +3420,6 @@ form.addEventListener(
 
 
       showSpace();
-
 
     }catch(error){
 
@@ -3670,7 +3749,6 @@ deleteButton.addEventListener(
       moderationStatus.textContent =
         "Confession deleted.";
 
-
     }catch(error){
 
       console.error(
@@ -3719,4 +3797,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
