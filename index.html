@@ -343,6 +343,7 @@ button:disabled{
     opacity 1.5s ease;
 
   z-index:10;
+
 }
 
 #space.visible{
@@ -350,6 +351,7 @@ button:disabled{
   opacity:1;
 
   pointer-events:auto;
+
 }
 
 
@@ -380,6 +382,7 @@ button:disabled{
   transform:scale(1.015);
 
   pointer-events:none;
+
 }
 
 
@@ -402,6 +405,7 @@ button:disabled{
   overflow:hidden;
 
   pointer-events:none;
+
 }
 
 
@@ -419,7 +423,7 @@ button:disabled{
 
   z-index:5;
 
-  color:var(--blue);
+  color:#ffffff;
 
   font-size:
     clamp(
@@ -443,7 +447,16 @@ button:disabled{
     620px
   );
 
-  opacity:0;
+  opacity:.95;
+
+  /*
+    This is the Adobe-style effect.
+    The text blends with the video
+    underneath instead of sitting as
+    a solid color on top.
+  */
+
+  mix-blend-mode:overlay;
 
   pointer-events:none;
 
@@ -453,7 +466,13 @@ button:disabled{
 
   transform-origin:
     center center;
+
 }
+
+
+/* =========================================================
+   DESKTOP APPEARANCE
+   ========================================================= */
 
 .word.appearing{
 
@@ -462,6 +481,7 @@ button:disabled{
     1.8s
     ease-out
     forwards;
+
 }
 
 @keyframes confessionIn{
@@ -471,7 +491,7 @@ button:disabled{
   }
 
   to{
-    opacity:.88;
+    opacity:.95;
   }
 
 }
@@ -483,12 +503,13 @@ button:disabled{
     1.4s
     ease-in
     forwards;
+
 }
 
 @keyframes confessionOut{
 
   from{
-    opacity:.88;
+    opacity:.95;
   }
 
   to{
@@ -722,7 +743,8 @@ button:disabled{
 #loginButton,
 #deleteButton{
 
-  padding:10px 14px;
+  padding:
+    10px 14px;
 
   min-height:42px;
 
@@ -842,14 +864,18 @@ button:disabled{
         env(safe-area-inset-bottom)
       )
       22px;
+
   }
+
 
   .entry-inner{
 
     width:100%;
 
     max-width:500px;
+
   }
+
 
   h1{
 
@@ -863,7 +889,9 @@ button:disabled{
     line-height:.9;
 
     margin-bottom:15px;
+
   }
+
 
   .intro{
 
@@ -872,7 +900,9 @@ button:disabled{
     line-height:1.32;
 
     margin-bottom:14px;
+
   }
+
 
   #input{
 
@@ -883,21 +913,27 @@ button:disabled{
     padding:12px;
 
     font-size:15px;
+
   }
+
 
   #counter{
 
     font-size:10px;
 
     margin-top:4px;
+
   }
+
 
   .entry-bottom{
 
     gap:8px;
 
     margin-top:7px;
+
   }
+
 
   #release{
 
@@ -909,7 +945,9 @@ button:disabled{
       10px 20px;
 
     font-size:15px;
+
   }
+
 
   #enterSpace{
 
@@ -923,11 +961,14 @@ button:disabled{
       9px 14px;
 
     font-size:13px;
+
   }
+
 
   #status{
 
     font-size:11px;
+
   }
 
 
@@ -938,7 +979,9 @@ button:disabled{
   #space{
 
     overflow:hidden;
+
   }
+
 
   #wordLayer{
 
@@ -972,11 +1015,14 @@ button:disabled{
     -webkit-overflow-scrolling:touch;
 
     overscroll-behavior:contain;
+
   }
 
 
-  /* Every confession appears
-     in a scrollable phone feed. */
+  /*
+    On phones, all confessions become
+    a vertical scrollable archive.
+  */
 
   .word{
 
@@ -995,6 +1041,8 @@ button:disabled{
 
     padding:0;
 
+    color:#ffffff;
+
     font-size:
       clamp(
         18px,
@@ -1004,7 +1052,9 @@ button:disabled{
 
     line-height:1.08;
 
-    opacity:.88;
+    opacity:.95;
+
+    mix-blend-mode:overlay;
 
     transform:none !important;
 
@@ -1013,7 +1063,9 @@ button:disabled{
       1s
       ease-out
       both;
+
   }
+
 
   @keyframes phoneFadeIn{
 
@@ -1023,24 +1075,29 @@ button:disabled{
 
       transform:
         translateY(20px);
+
     }
 
     to{
 
-      opacity:.88;
+      opacity:.95;
 
       transform:
         translateY(0);
+
     }
 
   }
+
 
   .word.fading{
 
     animation:none;
 
-    opacity:.88;
+    opacity:.95;
+
   }
+
 
   .word.selected{
 
@@ -1049,6 +1106,7 @@ button:disabled{
       var(--blue);
 
     outline-offset:6px;
+
   }
 
 
@@ -1076,7 +1134,9 @@ button:disabled{
     min-height:36px;
 
     font-size:11px;
+
   }
+
 
   #moderate{
 
@@ -1098,11 +1158,12 @@ button:disabled{
     min-height:36px;
 
     font-size:11px;
+
   }
 
 
   /* =======================================================
-     PHONE CREDIT
+     PHONE ARTIST CREDIT
      ======================================================= */
 
   .site-credit{
@@ -1121,7 +1182,9 @@ button:disabled{
     font-size:8px;
 
     letter-spacing:0;
+
   }
+
 
   #empty{
 
@@ -1129,6 +1192,7 @@ button:disabled{
       0 30px;
 
     text-align:center;
+
   }
 
 }
@@ -1149,30 +1213,39 @@ button:disabled{
     font-size:31px;
 
     margin-bottom:12px;
+
   }
+
 
   .intro{
 
     font-size:13px;
 
     margin-bottom:11px;
+
   }
+
 
   #input{
 
     height:88px;
 
     min-height:88px;
+
   }
+
 
   #enterSpace{
 
     min-height:40px;
+
   }
+
 
   #release{
 
     min-height:42px;
+
   }
 
 }
@@ -1404,7 +1477,7 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
    ========================================================= */
 
 const firebaseConfig = {
@@ -1691,7 +1764,7 @@ let cycleStarted =
 
 
 /* =========================================================
-   DISPLAY SETTINGS
+   DESKTOP SETTINGS
    ========================================================= */
 
 const MAX_VISIBLE_TABLET =
@@ -1861,7 +1934,7 @@ function getFontSize(
 
 
 /* =========================================================
-   RECTANGLE HELPERS
+   RECTANGLES
    ========================================================= */
 
 function getItemRect(
@@ -2141,7 +2214,7 @@ function findSpawnPosition(
 
 
 /* =========================================================
-   CREATE DESKTOP WORD
+   CREATE DESKTOP CONFESSION
    ========================================================= */
 
 function createActiveWord(
@@ -2300,7 +2373,7 @@ function createActiveWord(
 
 
 /* =========================================================
-   MAKE WORD MODERATABLE
+   MODERATION CLICK
    ========================================================= */
 
 function makeWordModeratable(
@@ -2505,7 +2578,7 @@ function addNextWord(){
 
 
 /* =========================================================
-   FILL INITIAL DESKTOP
+   INITIAL DESKTOP FILL
    ========================================================= */
 
 function fillInitialSpace(){
@@ -2838,6 +2911,8 @@ onValue(
     );
 
 
+    /* PHONE */
+
     if(
       isPhone()
     ){
@@ -2862,6 +2937,8 @@ onValue(
 
     }
 
+
+    /* DESKTOP */
 
     if(
       confessions.size === 0
@@ -2987,13 +3064,13 @@ function animate(
 
 
           item.opacity =
-            .88 *
+            .95 *
             (1 - progress);
 
         }else{
 
           item.opacity =
-            .88;
+            .95;
 
         }
 
@@ -3196,7 +3273,6 @@ form.addEventListener(
 
       status.textContent =
         "Your confession is too long.";
-
 
       return;
 
