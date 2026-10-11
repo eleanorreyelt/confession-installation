@@ -283,7 +283,6 @@ button:disabled{
    ========================================================= */
 
 .site-credit{
-
   position:absolute;
 
   z-index:70;
@@ -305,7 +304,7 @@ button:disabled{
 
   text-align:center;
 
-  color:var(--blue);
+  color:#ffffff;
 
   font-size:10px;
 
@@ -315,7 +314,7 @@ button:disabled{
 
   letter-spacing:.015em;
 
-  opacity:.6;
+  opacity:.7;
 
   pointer-events:none;
 
@@ -1261,6 +1260,8 @@ button:disabled{
      PHONE ARTIST CREDIT
      ======================================================= */
 
+  @media(max-width:600px){
+
   .site-credit{
 
     bottom:
@@ -1274,12 +1275,16 @@ button:disabled{
         100% - 18px
       );
 
+    color:#ffffff;
+
     font-size:8px;
 
     letter-spacing:0;
 
+    opacity:.7;
   }
 
+}
 
   #empty{
 
