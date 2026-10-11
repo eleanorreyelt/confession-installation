@@ -77,21 +77,14 @@ body{
     visibility 1.2s ease;
 }
 
-
 #entry.hidden{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
 }
 
-
 .entry-inner{
-
-  width:min(
-    680px,
-    100%
-  );
-
+  width:min(680px,100%);
 }
 
 
@@ -114,12 +107,10 @@ h1{
 
   letter-spacing:-.055em;
 
-  margin:
-    0 0 20px;
+  margin:0 0 20px;
 
   max-width:700px;
 }
-
 
 .intro{
 
@@ -129,8 +120,7 @@ h1{
 
   max-width:560px;
 
-  margin:
-    0 0 20px;
+  margin:0 0 20px;
 }
 
 
@@ -150,8 +140,7 @@ h1{
 
   resize:none;
 
-  border:
-    1px solid var(--blue);
+  border:1px solid var(--blue);
 
   background:transparent;
 
@@ -168,15 +157,12 @@ h1{
   outline:none;
 }
 
-
 #input::placeholder{
 
   color:var(--blue);
 
   opacity:.55;
-
 }
-
 
 #input:focus{
 
@@ -188,7 +174,6 @@ h1{
       197,
       .35
     );
-
 }
 
 
@@ -205,7 +190,6 @@ h1{
   opacity:.5;
 
   font-size:11px;
-
 }
 
 
@@ -226,7 +210,6 @@ h1{
   margin-top:8px;
 }
 
-
 button{
 
   border:0;
@@ -235,8 +218,7 @@ button{
 
   color:var(--navy);
 
-  padding:
-    12px 20px;
+  padding:12px 20px;
 
   min-height:46px;
 
@@ -247,7 +229,6 @@ button{
   cursor:pointer;
 }
 
-
 button:disabled{
 
   opacity:.45;
@@ -255,14 +236,12 @@ button:disabled{
   cursor:default;
 }
 
-
 #status{
 
   font-size:13px;
 
   min-height:18px;
 }
-
 
 #enterSpace{
 
@@ -274,27 +253,22 @@ button:disabled{
 
   background:transparent;
 
-  border:
-    1px solid
-    var(--blue);
+  border:1px solid var(--blue);
 
   color:var(--blue);
 
-  padding:
-    10px 16px;
+  padding:10px 16px;
 
   min-height:44px;
 
   font-size:14px;
 }
 
-
 #enterSpace:hover{
 
   background:var(--blue);
 
   color:var(--navy);
-
 }
 
 
@@ -340,7 +314,6 @@ button:disabled{
   pointer-events:none;
 
   white-space:nowrap;
-
 }
 
 
@@ -372,13 +345,11 @@ button:disabled{
   z-index:10;
 }
 
-
 #space.visible{
 
   opacity:1;
 
   pointer-events:auto;
-
 }
 
 
@@ -409,32 +380,6 @@ button:disabled{
   transform:scale(1.015);
 
   pointer-events:none;
-
-}
-
-
-/* =========================================================
-   VIDEO OVERLAY
-   ========================================================= */
-
-#videoOverlay{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:1;
-
-  background:
-    rgba(
-      25,
-      33,
-      66,
-      .18
-    );
-
-  pointer-events:none;
-
 }
 
 
@@ -457,7 +402,6 @@ button:disabled{
   overflow:hidden;
 
   pointer-events:none;
-
 }
 
 
@@ -509,9 +453,7 @@ button:disabled{
 
   transform-origin:
     center center;
-
 }
-
 
 .word.appearing{
 
@@ -520,9 +462,7 @@ button:disabled{
     1.8s
     ease-out
     forwards;
-
 }
-
 
 @keyframes confessionIn{
 
@@ -536,7 +476,6 @@ button:disabled{
 
 }
 
-
 .word.fading{
 
   animation:
@@ -544,9 +483,7 @@ button:disabled{
     1.4s
     ease-in
     forwards;
-
 }
-
 
 @keyframes confessionOut{
 
@@ -602,8 +539,7 @@ button:disabled{
 
   color:var(--blue);
 
-  padding:
-    9px 13px;
+  padding:9px 13px;
 
   min-height:40px;
 
@@ -612,11 +548,8 @@ button:disabled{
   opacity:.6;
 }
 
-
 #back:hover{
-
   opacity:1;
-
 }
 
 
@@ -643,7 +576,6 @@ button:disabled{
   opacity:.6;
 
   z-index:4;
-
 }
 
 
@@ -688,13 +620,11 @@ button:disabled{
 
   color:var(--blue);
 
-  padding:
-    9px 13px;
+  padding:9px 13px;
 
   min-height:40px;
 
   font-size:13px;
-
 }
 
 
@@ -741,16 +671,11 @@ button:disabled{
   display:none;
 
   color:var(--blue);
-
 }
-
 
 #moderationPanel.open{
-
   display:block;
-
 }
-
 
 #moderationPanel h2{
 
@@ -758,20 +683,15 @@ button:disabled{
 
   font-weight:400;
 
-  margin:
-    0 0 12px;
-
+  margin:0 0 12px;
 }
-
 
 #adminLogin{
 
   display:flex;
 
   gap:8px;
-
 }
-
 
 #adminPin{
 
@@ -790,33 +710,26 @@ button:disabled{
   padding:10px;
 
   font:inherit;
-
 }
-
 
 #adminPin::placeholder{
 
   color:var(--blue);
 
   opacity:.6;
-
 }
-
 
 #loginButton,
 #deleteButton{
 
-  padding:
-    10px 14px;
+  padding:10px 14px;
 
   min-height:42px;
 
   background:var(--blue);
 
   color:var(--navy);
-
 }
-
 
 #deleteButton{
 
@@ -825,9 +738,7 @@ button:disabled{
   width:100%;
 
   margin-top:12px;
-
 }
-
 
 #moderationStatus{
 
@@ -840,18 +751,14 @@ button:disabled{
   margin-top:10px;
 
   opacity:.75;
-
 }
-
 
 #adminList{
 
   display:none;
 
   margin-top:12px;
-
 }
-
 
 .modItem{
 
@@ -864,8 +771,7 @@ button:disabled{
       .35
     );
 
-  padding:
-    10px 6px;
+  padding:10px 6px;
 
   font-size:13px;
 
@@ -874,9 +780,7 @@ button:disabled{
   cursor:pointer;
 
   color:var(--blue);
-
 }
-
 
 .modItem:hover{
 
@@ -887,9 +791,7 @@ button:disabled{
       197,
       .1
     );
-
 }
-
 
 .modItem.selected{
 
@@ -900,18 +802,14 @@ button:disabled{
       197,
       .2
     );
-
 }
-
 
 .word.moderatable{
 
   pointer-events:auto;
 
   cursor:pointer;
-
 }
-
 
 .word.selected{
 
@@ -920,7 +818,6 @@ button:disabled{
     var(--blue);
 
   outline-offset:7px;
-
 }
 
 
@@ -945,18 +842,14 @@ button:disabled{
         env(safe-area-inset-bottom)
       )
       22px;
-
   }
-
 
   .entry-inner{
 
     width:100%;
 
     max-width:500px;
-
   }
-
 
   h1{
 
@@ -970,9 +863,7 @@ button:disabled{
     line-height:.9;
 
     margin-bottom:15px;
-
   }
-
 
   .intro{
 
@@ -981,9 +872,7 @@ button:disabled{
     line-height:1.32;
 
     margin-bottom:14px;
-
   }
-
 
   #input{
 
@@ -994,27 +883,21 @@ button:disabled{
     padding:12px;
 
     font-size:15px;
-
   }
-
 
   #counter{
 
     font-size:10px;
 
     margin-top:4px;
-
   }
-
 
   .entry-bottom{
 
     gap:8px;
 
     margin-top:7px;
-
   }
-
 
   #release{
 
@@ -1026,9 +909,7 @@ button:disabled{
       10px 20px;
 
     font-size:15px;
-
   }
-
 
   #enterSpace{
 
@@ -1042,14 +923,11 @@ button:disabled{
       9px 14px;
 
     font-size:13px;
-
   }
-
 
   #status{
 
     font-size:11px;
-
   }
 
 
@@ -1060,9 +938,7 @@ button:disabled{
   #space{
 
     overflow:hidden;
-
   }
-
 
   #wordLayer{
 
@@ -1096,9 +972,11 @@ button:disabled{
     -webkit-overflow-scrolling:touch;
 
     overscroll-behavior:contain;
-
   }
 
+
+  /* Every confession appears
+     in a scrollable phone feed. */
 
   .word{
 
@@ -1135,9 +1013,7 @@ button:disabled{
       1s
       ease-out
       both;
-
   }
-
 
   @keyframes phoneFadeIn{
 
@@ -1147,7 +1023,6 @@ button:disabled{
 
       transform:
         translateY(20px);
-
     }
 
     to{
@@ -1156,20 +1031,16 @@ button:disabled{
 
       transform:
         translateY(0);
-
     }
 
   }
-
 
   .word.fading{
 
     animation:none;
 
     opacity:.88;
-
   }
-
 
   .word.selected{
 
@@ -1178,7 +1049,6 @@ button:disabled{
       var(--blue);
 
     outline-offset:6px;
-
   }
 
 
@@ -1206,9 +1076,7 @@ button:disabled{
     min-height:36px;
 
     font-size:11px;
-
   }
-
 
   #moderate{
 
@@ -1230,7 +1098,6 @@ button:disabled{
     min-height:36px;
 
     font-size:11px;
-
   }
 
 
@@ -1254,9 +1121,7 @@ button:disabled{
     font-size:8px;
 
     letter-spacing:0;
-
   }
-
 
   #empty{
 
@@ -1264,7 +1129,6 @@ button:disabled{
       0 30px;
 
     text-align:center;
-
   }
 
 }
@@ -1285,39 +1149,30 @@ button:disabled{
     font-size:31px;
 
     margin-bottom:12px;
-
   }
-
 
   .intro{
 
     font-size:13px;
 
     margin-bottom:11px;
-
   }
-
 
   #input{
 
     height:88px;
 
     min-height:88px;
-
   }
-
 
   #enterSpace{
 
     min-height:40px;
-
   }
-
 
   #release{
 
     min-height:42px;
-
   }
 
 }
@@ -1465,9 +1320,6 @@ button:disabled{
   </video>
 
 
-  <div id="videoOverlay"></div>
-
-
   <div id="wordLayer"></div>
 
 
@@ -1552,7 +1404,7 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE
    ========================================================= */
 
 const firebaseConfig = {
@@ -2289,7 +2141,7 @@ function findSpawnPosition(
 
 
 /* =========================================================
-   CREATE DESKTOP CONFESSION
+   CREATE DESKTOP WORD
    ========================================================= */
 
 function createActiveWord(
@@ -2653,7 +2505,7 @@ function addNextWord(){
 
 
 /* =========================================================
-   FILL INITIAL SPACE
+   FILL INITIAL DESKTOP
    ========================================================= */
 
 function fillInitialSpace(){
@@ -2908,10 +2760,6 @@ onValue(
       );
 
 
-    /* -----------------------------------------------
-       REMOVE DELETED
-       ----------------------------------------------- */
-
     previousIds.forEach(
       id => {
 
@@ -2941,10 +2789,6 @@ onValue(
       }
     );
 
-
-    /* -----------------------------------------------
-       ADD / UPDATE
-       ----------------------------------------------- */
 
     incomingIds.forEach(
       id => {
@@ -2994,10 +2838,6 @@ onValue(
     );
 
 
-    /* -----------------------------------------------
-       PHONE
-       ----------------------------------------------- */
-
     if(
       isPhone()
     ){
@@ -3022,10 +2862,6 @@ onValue(
 
     }
 
-
-    /* -----------------------------------------------
-       DESKTOP
-       ----------------------------------------------- */
 
     if(
       confessions.size === 0
@@ -3427,7 +3263,7 @@ form.addEventListener(
 
 
 /* =========================================================
-   BACK TO ENTRY
+   BACK
    ========================================================= */
 
 back.addEventListener(
