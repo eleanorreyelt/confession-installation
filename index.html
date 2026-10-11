@@ -12,7 +12,6 @@
 
 <title>Take Up Space</title>
 
-
 <style>
 
 /* =========================================================
@@ -22,7 +21,6 @@
 :root{
   --navy:#192142;
   --blue:#677AC5;
-  --text:#F5F2FA;
   --app-height:100dvh;
 }
 
@@ -36,13 +34,8 @@ body{
   width:100%;
   height:100%;
   min-height:100%;
-
   background:var(--navy);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
@@ -57,39 +50,22 @@ body{
 #entry{
 
   position:fixed;
-
   inset:0;
 
   width:100%;
-
   height:var(--app-height);
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   padding:
-    calc(
-      24px +
-      env(safe-area-inset-top)
-    )
-    calc(
-      22px +
-      env(safe-area-inset-right)
-    )
-    calc(
-      38px +
-      env(safe-area-inset-bottom)
-    )
-    calc(
-      22px +
-      env(safe-area-inset-left)
-    );
+    calc(24px + env(safe-area-inset-top))
+    calc(22px + env(safe-area-inset-right))
+    calc(38px + env(safe-area-inset-bottom))
+    calc(22px + env(safe-area-inset-left));
 
   background:var(--navy);
-
   color:var(--blue);
 
   overflow:hidden;
@@ -102,20 +78,13 @@ body{
 }
 
 #entry.hidden{
-
   opacity:0;
-
   visibility:hidden;
-
   pointer-events:none;
 }
 
 .entry-inner{
-
-  width:min(
-    680px,
-    100%
-  );
+  width:min(680px,100%);
 }
 
 
@@ -138,8 +107,7 @@ h1{
 
   letter-spacing:-.055em;
 
-  margin:
-    0 0 20px;
+  margin:0 0 20px;
 
   max-width:700px;
 }
@@ -152,8 +120,7 @@ h1{
 
   max-width:560px;
 
-  margin:
-    0 0 20px;
+  margin:0 0 20px;
 }
 
 
@@ -460,10 +427,10 @@ button:disabled{
 
   color:
     rgba(
-      245,
-      242,
-      250,
-      .74
+      255,
+      255,
+      255,
+      .85
     );
 
   font-size:
@@ -488,21 +455,50 @@ button:disabled{
     620px
   );
 
-  opacity:.74;
+  opacity:.85;
 
   /*
-    Very subtle bloom.
-    This is intentionally restrained
-    so the letters do not look neon.
+    This is the main visual effect.
+    The video remains visible through
+    the text and changes the way the
+    letters appear.
+  */
+
+  mix-blend-mode:overlay;
+
+  /*
+    Very subtle luminous edge,
+    closer to the reference image
+    than a large neon glow.
   */
 
   text-shadow:
-    0 0 8px
+    0 0 2px
     rgba(
       255,
       255,
       255,
-      .16
+      .35
+    ),
+    0 0 6px
+    rgba(
+      255,
+      255,
+      255,
+      .12
+    );
+
+  /*
+    Slight edge definition.
+  */
+
+  -webkit-text-stroke:
+    1px
+    rgba(
+      255,
+      255,
+      255,
+      .12
     );
 
   pointer-events:none;
@@ -535,13 +531,13 @@ button:disabled{
 
     opacity:0;
 
-    filter:blur(4px);
+    filter:blur(3px);
 
   }
 
   to{
 
-    opacity:.74;
+    opacity:.85;
 
     filter:blur(0);
 
@@ -563,7 +559,7 @@ button:disabled{
 
   from{
 
-    opacity:.74;
+    opacity:.85;
 
     filter:blur(0);
 
@@ -573,7 +569,7 @@ button:disabled{
 
     opacity:0;
 
-    filter:blur(3px);
+    filter:blur(2px);
 
   }
 
@@ -634,6 +630,7 @@ button:disabled{
 #back:hover{
 
   opacity:1;
+
 }
 
 
@@ -761,6 +758,7 @@ button:disabled{
 #moderationPanel.open{
 
   display:block;
+
 }
 
 #moderationPanel h2{
@@ -778,6 +776,7 @@ button:disabled{
   display:flex;
 
   gap:8px;
+
 }
 
 #adminPin{
@@ -880,6 +879,7 @@ button:disabled{
       197,
       .1
     );
+
 }
 
 .modItem.selected{
@@ -891,6 +891,7 @@ button:disabled{
       197,
       .2
     );
+
 }
 
 .word.moderatable{
@@ -898,6 +899,7 @@ button:disabled{
   pointer-events:auto;
 
   cursor:pointer;
+
 }
 
 .word.selected{
@@ -907,6 +909,7 @@ button:disabled{
     var(--blue);
 
   outline-offset:7px;
+
 }
 
 
@@ -931,16 +934,16 @@ button:disabled{
         env(safe-area-inset-bottom)
       )
       22px;
-  }
 
+  }
 
   .entry-inner{
 
     width:100%;
 
     max-width:500px;
-  }
 
+  }
 
   h1{
 
@@ -954,8 +957,8 @@ button:disabled{
     line-height:.9;
 
     margin-bottom:15px;
-  }
 
+  }
 
   .intro{
 
@@ -964,8 +967,8 @@ button:disabled{
     line-height:1.32;
 
     margin-bottom:14px;
-  }
 
+  }
 
   #input{
 
@@ -976,24 +979,24 @@ button:disabled{
     padding:12px;
 
     font-size:15px;
-  }
 
+  }
 
   #counter{
 
     font-size:10px;
 
     margin-top:4px;
-  }
 
+  }
 
   .entry-bottom{
 
     gap:8px;
 
     margin-top:7px;
-  }
 
+  }
 
   #release{
 
@@ -1005,8 +1008,8 @@ button:disabled{
       10px 20px;
 
     font-size:15px;
-  }
 
+  }
 
   #enterSpace{
 
@@ -1020,12 +1023,13 @@ button:disabled{
       9px 14px;
 
     font-size:13px;
-  }
 
+  }
 
   #status{
 
     font-size:11px;
+
   }
 
 
@@ -1036,8 +1040,8 @@ button:disabled{
   #space{
 
     overflow:hidden;
-  }
 
+  }
 
   #wordLayer{
 
@@ -1071,12 +1075,13 @@ button:disabled{
     -webkit-overflow-scrolling:touch;
 
     overscroll-behavior:contain;
+
   }
 
 
   /*
-    On phones every confession
-    becomes part of the scrollable feed.
+    Every submission becomes part
+    of the phone archive.
   */
 
   .word{
@@ -1098,10 +1103,10 @@ button:disabled{
 
     color:
       rgba(
-        245,
-        242,
-        250,
-        .74
+        255,
+        255,
+        255,
+        .85
       );
 
     font-size:
@@ -1113,15 +1118,33 @@ button:disabled{
 
     line-height:1.08;
 
-    opacity:.74;
+    opacity:.85;
+
+    mix-blend-mode:overlay;
 
     text-shadow:
-      0 0 7px
+      0 0 2px
       rgba(
         255,
         255,
         255,
-        .15
+        .35
+      ),
+      0 0 5px
+      rgba(
+        255,
+        255,
+        255,
+        .12
+      );
+
+    -webkit-text-stroke:
+      1px
+      rgba(
+        255,
+        255,
+        255,
+        .1
       );
 
     transform:none !important;
@@ -1131,6 +1154,7 @@ button:disabled{
       1s
       ease-out
       both;
+
   }
 
 
@@ -1149,7 +1173,7 @@ button:disabled{
 
     to{
 
-      opacity:.74;
+      opacity:.85;
 
       filter:blur(0);
 
@@ -1165,7 +1189,7 @@ button:disabled{
 
     animation:none;
 
-    opacity:.74;
+    opacity:.85;
 
   }
 
@@ -1287,7 +1311,6 @@ button:disabled{
 
   }
 
-
   .intro{
 
     font-size:13px;
@@ -1295,7 +1318,6 @@ button:disabled{
     margin-bottom:11px;
 
   }
-
 
   #input{
 
@@ -1305,13 +1327,11 @@ button:disabled{
 
   }
 
-
   #enterSpace{
 
     min-height:40px;
 
   }
-
 
   #release{
 
@@ -1624,108 +1644,90 @@ const entry =
     "entry"
   );
 
-
 const space =
   document.getElementById(
     "space"
   );
-
 
 const form =
   document.getElementById(
     "form"
   );
 
-
 const input =
   document.getElementById(
     "input"
   );
-
 
 const release =
   document.getElementById(
     "release"
   );
 
-
 const status =
   document.getElementById(
     "status"
   );
-
 
 const counter =
   document.getElementById(
     "counter"
   );
 
-
 const enterSpace =
   document.getElementById(
     "enterSpace"
   );
-
 
 const back =
   document.getElementById(
     "back"
   );
 
-
 const empty =
   document.getElementById(
     "empty"
   );
-
 
 const moderate =
   document.getElementById(
     "moderate"
   );
 
-
 const moderationPanel =
   document.getElementById(
     "moderationPanel"
   );
-
 
 const adminPin =
   document.getElementById(
     "adminPin"
   );
 
-
 const loginButton =
   document.getElementById(
     "loginButton"
   );
-
 
 const moderationStatus =
   document.getElementById(
     "moderationStatus"
   );
 
-
 const adminList =
   document.getElementById(
     "adminList"
   );
-
 
 const deleteButton =
   document.getElementById(
     "deleteButton"
   );
 
-
 const backgroundVideo =
   document.getElementById(
     "backgroundVideo"
   );
-
 
 const wordLayer =
   document.getElementById(
@@ -1753,21 +1755,17 @@ function updateViewportHeight(){
 
 }
 
-
 updateViewportHeight();
-
 
 window.addEventListener(
   "resize",
   updateViewportHeight
 );
 
-
 window.addEventListener(
   "orientationchange",
   updateViewportHeight
 );
-
 
 if(window.visualViewport){
 
@@ -1808,10 +1806,8 @@ function startVideo(){
 const ADMIN_PIN =
   "0092";
 
-
 let adminUnlocked =
   false;
-
 
 let selectedId =
   null;
@@ -1824,18 +1820,14 @@ let selectedId =
 const confessions =
   new Map();
 
-
 const activeItems =
   new Map();
-
 
 let cycleQueue =
   [];
 
-
 let queueIndex =
   0;
-
 
 let cycleStarted =
   false;
@@ -1848,14 +1840,11 @@ let cycleStarted =
 const MAX_VISIBLE_TABLET =
   7;
 
-
 const MAX_VISIBLE_DESKTOP =
   12;
 
-
 const FALL_SPEED =
   22;
-
 
 const SPAWN_ATTEMPTS =
   300;
@@ -1886,7 +1875,6 @@ function getVisibleCount(){
 
   }
 
-
   return MAX_VISIBLE_DESKTOP;
 
 }
@@ -1901,9 +1889,9 @@ function random(
   max
 ){
 
-  return Math.random()
-    * (max - min)
-    + min;
+  return Math.random() *
+    (max - min) +
+    min;
 
 }
 
@@ -1929,8 +1917,8 @@ function shuffle(
 
     const j =
       Math.floor(
-        Math.random()
-        * (i + 1)
+        Math.random() *
+        (i + 1)
       );
 
 
@@ -1963,7 +1951,9 @@ function getFontSize(
     text.length;
 
 
-  if(length > 400){
+  if(
+    length > 400
+  ){
 
     return random(
       21,
@@ -1973,7 +1963,9 @@ function getFontSize(
   }
 
 
-  if(length > 300){
+  if(
+    length > 300
+  ){
 
     return random(
       23,
@@ -1983,7 +1975,9 @@ function getFontSize(
   }
 
 
-  if(length > 200){
+  if(
+    length > 200
+  ){
 
     return random(
       25,
@@ -1993,7 +1987,9 @@ function getFontSize(
   }
 
 
-  if(length > 120){
+  if(
+    length > 120
+  ){
 
     return random(
       28,
@@ -2012,7 +2008,7 @@ function getFontSize(
 
 
 /* =========================================================
-   RECTANGLE HELPERS
+   RECTANGLES
    ========================================================= */
 
 function getItemRect(
@@ -2021,11 +2017,9 @@ function getItemRect(
 
   return {
 
-    left:
-      item.x,
+    left:item.x,
 
-    top:
-      item.y,
+    top:item.y,
 
     right:
       item.x +
@@ -2068,7 +2062,6 @@ function findInitialPosition(
   const screenWidth =
     wordLayer.clientWidth;
 
-
   const screenHeight =
     wordLayer.clientHeight;
 
@@ -2109,9 +2102,13 @@ function findInitialPosition(
 
       top:y,
 
-      right:x + width,
+      right:
+        x +
+        width,
 
-      bottom:y + height
+      bottom:
+        y +
+        height
 
     };
 
@@ -2145,7 +2142,9 @@ function findInitialPosition(
     );
 
 
-    if(!collision){
+    if(
+      !collision
+    ){
 
       return {
         x,
@@ -2228,9 +2227,13 @@ function findSpawnPosition(
 
       top:spawnY,
 
-      right:x + width,
+      right:
+        x +
+        width,
 
-      bottom:spawnY + height
+      bottom:
+        spawnY +
+        height
 
     };
 
@@ -2265,7 +2268,9 @@ function findSpawnPosition(
     );
 
 
-    if(!collision){
+    if(
+      !collision
+    ){
 
       return {
 
@@ -2302,7 +2307,7 @@ function findSpawnPosition(
 
 
 /* =========================================================
-   CREATE DESKTOP WORD
+   CREATE DESKTOP CONFESSION
    ========================================================= */
 
 function createActiveWord(
@@ -2402,7 +2407,7 @@ function createActiveWord(
 
     opacity:
       mode === "initial"
-        ? .74
+        ? .85
         : 0,
 
     removing:
@@ -2446,7 +2451,9 @@ function createActiveWord(
   }
 
 
-  if(adminUnlocked){
+  if(
+    adminUnlocked
+  ){
 
     makeWordModeratable(
       item
@@ -2864,7 +2871,9 @@ function renderMobileFeed(
       );
 
 
-      if(adminUnlocked){
+      if(
+        adminUnlocked
+      ){
 
         makeWordModeratable({
 
@@ -2957,7 +2966,7 @@ onValue(
     );
 
 
-    /* Add or update */
+    /* Add and update */
 
     incomingIds.forEach(
       id => {
@@ -3007,7 +3016,7 @@ onValue(
     );
 
 
-    /* Phone */
+    /* PHONE */
 
     if(
       isPhone()
@@ -3034,7 +3043,7 @@ onValue(
     }
 
 
-    /* Desktop */
+    /* DESKTOP */
 
     if(
       confessions.size === 0
@@ -3160,13 +3169,13 @@ function animate(
 
 
           item.opacity =
-            .74 *
+            .85 *
             (1 - progress);
 
         }else{
 
           item.opacity =
-            .74;
+            .85;
 
         }
 
@@ -3185,7 +3194,8 @@ function animate(
 
         if(
           item.y >
-          screenHeight + 40
+          screenHeight +
+          40
         ){
 
           removeActiveWord(
@@ -3206,7 +3216,6 @@ function animate(
   );
 
 }
-
 
 requestAnimationFrame(
   animate
@@ -3364,7 +3373,8 @@ form.addEventListener(
 
 
     if(
-      text.length > 500
+      text.length >
+      500
     ){
 
       status.textContent =
@@ -3377,8 +3387,7 @@ form.addEventListener(
 
     /*
       Start the video immediately from
-      the user's tap before the Firebase
-      request finishes.
+      the user interaction.
     */
 
     startVideo();
@@ -3420,6 +3429,7 @@ form.addEventListener(
 
 
       showSpace();
+
 
     }catch(error){
 
@@ -3489,7 +3499,9 @@ function selectConfession(
     );
 
 
-  if(selectedWord){
+  if(
+    selectedWord
+  ){
 
     selectedWord.classList.add(
       "selected"
@@ -3604,7 +3616,9 @@ moderate.addEventListener(
       adminPin.focus();
 
 
-      if(adminUnlocked){
+      if(
+        adminUnlocked
+      ){
 
         buildAdminList();
 
@@ -3748,6 +3762,7 @@ deleteButton.addEventListener(
 
       moderationStatus.textContent =
         "Confession deleted.";
+
 
     }catch(error){
 
