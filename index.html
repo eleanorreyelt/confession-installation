@@ -12,12 +12,17 @@
 
 <title>Take Up Space</title>
 
-
 <style>
 
 /* =========================================================
    BASIC
    ========================================================= */
+
+:root{
+  --navy:#192142;
+  --blue:#677AC5;
+  --app-height:100dvh;
+}
 
 *{
   box-sizing:border-box;
@@ -29,18 +34,13 @@ body{
   width:100%;
   height:100%;
   min-height:100%;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  background:var(--navy);
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
   overflow:hidden;
-  background:#192142;
 }
-
 
 
 /* =========================================================
@@ -49,25 +49,29 @@ body{
 
 #entry{
 
-  position:relative;
-
-  z-index:20;
+  position:fixed;
+  inset:0;
 
   width:100%;
-
-  min-height:100vh;
-  min-height:100dvh;
+  height:var(--app-height);
+  min-height:var(--app-height);
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
-  padding:30px;
+  padding:
+    calc(22px + env(safe-area-inset-top))
+    calc(22px + env(safe-area-inset-right))
+    calc(22px + env(safe-area-inset-bottom))
+    calc(22px + env(safe-area-inset-left));
 
-  background:#192142;
+  background:var(--navy);
+  color:var(--blue);
 
-  color:#677AC5;
+  overflow:auto;
+
+  z-index:20;
 
   transition:
     opacity 1.2s ease,
@@ -76,13 +80,9 @@ body{
 
 
 #entry.hidden{
-
   opacity:0;
-
   visibility:hidden;
-
   pointer-events:none;
-
 }
 
 
@@ -95,6 +95,10 @@ body{
 
 }
 
+
+/* =========================================================
+   ENTRY TEXT
+   ========================================================= */
 
 h1{
 
@@ -115,7 +119,6 @@ h1{
     0 0 22px;
 
   max-width:700px;
-
 }
 
 
@@ -129,11 +132,14 @@ h1{
 
   margin:
     0 0 28px;
-
 }
 
 
-textarea{
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+#input{
 
   width:100%;
 
@@ -142,11 +148,11 @@ textarea{
   resize:vertical;
 
   border:
-    1px solid #677AC5;
+    1px solid var(--blue);
 
-  background:#192142;
+  background:transparent;
 
-  color:#677AC5;
+  color:var(--blue);
 
   padding:18px;
 
@@ -160,22 +166,47 @@ textarea{
 }
 
 
-textarea::placeholder{
+#input::placeholder{
 
-  color:#677AC5;
+  color:var(--blue);
+
+  opacity:.55;
+}
+
+
+#input:focus{
+
+  box-shadow:
+    0 0 0 2px
+    rgba(
+      103,
+      122,
+      197,
+      .35
+    );
+}
+
+
+/* =========================================================
+   CHARACTER COUNT
+   ========================================================= */
+
+#counter{
+
+  margin-top:8px;
+
+  color:var(--blue);
 
   opacity:.55;
 
-}
-
-
-textarea:focus{
-
-  box-shadow:
-    0 0 0 2px #677AC5;
+  font-size:12px;
 
 }
 
+
+/* =========================================================
+   ENTRY BUTTONS
+   ========================================================= */
 
 .entry-bottom{
 
@@ -187,8 +218,7 @@ textarea:focus{
 
   gap:16px;
 
-  margin-top:14px;
-
+  margin-top:12px;
 }
 
 
@@ -196,9 +226,9 @@ button{
 
   border:0;
 
-  background:#677AC5;
+  background:var(--blue);
 
-  color:#192142;
+  color:var(--navy);
 
   padding:
     15px 25px;
@@ -208,7 +238,6 @@ button{
   font:inherit;
 
   cursor:pointer;
-
 }
 
 
@@ -217,7 +246,6 @@ button:disabled{
   opacity:.45;
 
   cursor:default;
-
 }
 
 
@@ -226,7 +254,6 @@ button:disabled{
   font-size:14px;
 
   min-height:20px;
-
 }
 
 
@@ -237,26 +264,24 @@ button:disabled{
   background:transparent;
 
   border:
-    1px solid #677AC5;
+    1px solid
+    var(--blue);
 
-  color:#677AC5;
+  color:var(--blue);
 
   padding:
     12px 18px;
 
   font-size:14px;
-
 }
 
 
 #enterSpace:hover{
 
-  background:#677AC5;
+  background:var(--blue);
 
-  color:#192142;
-
+  color:var(--navy);
 }
-
 
 
 /* =========================================================
@@ -265,16 +290,18 @@ button:disabled{
 
 #space{
 
-  position:absolute;
+  position:fixed;
 
   inset:0;
 
   width:100%;
-  height:100dvh;
+
+  height:var(--app-height);
+  min-height:var(--app-height);
 
   overflow:hidden;
 
-  background:#192142;
+  background:var(--navy);
 
   opacity:0;
 
@@ -282,6 +309,8 @@ button:disabled{
 
   transition:
     opacity 1.5s ease;
+
+  z-index:10;
 }
 
 
@@ -290,9 +319,7 @@ button:disabled{
   opacity:1;
 
   pointer-events:auto;
-
 }
-
 
 
 /* =========================================================
@@ -305,7 +332,10 @@ button:disabled{
 
   inset:0;
 
+  display:block;
+
   width:100%;
+
   height:100%;
 
   object-fit:cover;
@@ -314,16 +344,12 @@ button:disabled{
 
   opacity:.72;
 
-  filter:
-    blur(1px);
+  filter:blur(1px);
 
-  transform:
-    scale(1.015);
+  transform:scale(1.015);
 
   pointer-events:none;
-
 }
-
 
 
 /* =========================================================
@@ -347,9 +373,29 @@ button:disabled{
     );
 
   pointer-events:none;
-
 }
 
+
+/* =========================================================
+   CONFESSION LAYER
+   ========================================================= */
+
+#wordLayer{
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+
+  height:100%;
+
+  z-index:5;
+
+  overflow:hidden;
+
+  pointer-events:none;
+}
 
 
 /* =========================================================
@@ -361,20 +407,21 @@ button:disabled{
   position:absolute;
 
   left:0;
+
   top:0;
 
   z-index:5;
 
-  color:#677AC5;
+  color:var(--blue);
 
   font-size:
     clamp(
-      22px,
-      2vw,
-      38px
+      31px,
+      3vw,
+      40px
     );
 
-  line-height:1.05;
+  line-height:1.06;
 
   font-weight:400;
 
@@ -398,14 +445,71 @@ button:disabled{
     opacity;
 
   transform-origin:
-    top left;
+    center center;
 
 }
 
 
+/* =========================================================
+   CONFESSION APPEARANCE
+   ========================================================= */
+
+.word.appearing{
+
+  animation:
+    confessionIn
+    1.8s
+    ease-out
+    forwards;
+}
+
+
+@keyframes confessionIn{
+
+  from{
+
+    opacity:0;
+
+  }
+
+  to{
+
+    opacity:.88;
+
+  }
+
+}
+
+
+.word.fading{
+
+  animation:
+    confessionOut
+    1.4s
+    ease-in
+    forwards;
+}
+
+
+@keyframes confessionOut{
+
+  from{
+
+    opacity:.88;
+
+  }
+
+  to{
+
+    opacity:0;
+
+  }
+
+}
+
 
 /* =========================================================
-   NAVIGATION
+   BACK BUTTON
    ========================================================= */
 
 #back{
@@ -416,13 +520,13 @@ button:disabled{
 
   top:
     calc(
-      20px +
+      14px +
       env(safe-area-inset-top)
     );
 
   left:
     calc(
-      20px +
+      14px +
       env(safe-area-inset-left)
     );
 
@@ -440,26 +544,24 @@ button:disabled{
       25,
       33,
       66,
-      .72
+      .68
     );
 
-  color:#677AC5;
+  color:var(--blue);
 
   padding:
-    10px 14px;
+    9px 13px;
 
   font-size:13px;
 
-  opacity:.7;
+  opacity:.6;
 }
 
 
 #back:hover{
 
   opacity:1;
-
 }
-
 
 
 /* =========================================================
@@ -478,7 +580,7 @@ button:disabled{
 
   justify-content:center;
 
-  color:#677AC5;
+  color:var(--blue);
 
   font-size:15px;
 
@@ -487,9 +589,8 @@ button:disabled{
 }
 
 
-
 /* =========================================================
-   MODERATION
+   MODERATION BUTTON
    ========================================================= */
 
 #moderate{
@@ -500,13 +601,13 @@ button:disabled{
 
   top:
     calc(
-      20px +
+      14px +
       env(safe-area-inset-top)
     );
 
   right:
     calc(
-      20px +
+      14px +
       env(safe-area-inset-right)
     );
 
@@ -524,10 +625,10 @@ button:disabled{
       25,
       33,
       66,
-      .72
+      .68
     );
 
-  color:#677AC5;
+  color:var(--blue);
 
   padding:
     10px 14px;
@@ -535,7 +636,6 @@ button:disabled{
   font-size:13px;
 
 }
-
 
 
 /* =========================================================
@@ -550,38 +650,37 @@ button:disabled{
 
   top:
     calc(
-      65px +
+      60px +
       env(safe-area-inset-top)
     );
 
   right:
     calc(
-      20px +
+      14px +
       env(safe-area-inset-right)
     );
 
   width:
     min(
       360px,
-      calc(
-        100% - 40px
-      )
+      calc(100% - 28px)
     );
 
   max-height:70vh;
 
   overflow:auto;
 
-  background:#192142;
+  background:var(--navy);
 
   border:
-    1px solid #677AC5;
+    1px solid
+    var(--blue);
 
   padding:16px;
 
   display:none;
 
-  color:#677AC5;
+  color:var(--blue);
 }
 
 
@@ -619,12 +718,13 @@ button:disabled{
 
   min-width:0;
 
-  background:#192142;
+  background:transparent;
 
-  color:#677AC5;
+  color:var(--blue);
 
   border:
-    1px solid #677AC5;
+    1px solid
+    var(--blue);
 
   padding:10px;
 
@@ -635,7 +735,7 @@ button:disabled{
 
 #adminPin::placeholder{
 
-  color:#677AC5;
+  color:var(--blue);
 
   opacity:.6;
 
@@ -650,9 +750,9 @@ button:disabled{
 
   min-height:42px;
 
-  background:#677AC5;
+  background:var(--blue);
 
-  color:#192142;
+  color:var(--navy);
 
 }
 
@@ -670,7 +770,7 @@ button:disabled{
 
 #moderationStatus{
 
-  color:#677AC5;
+  color:var(--blue);
 
   font-size:12px;
 
@@ -712,8 +812,7 @@ button:disabled{
 
   cursor:pointer;
 
-  color:#677AC5;
-
+  color:var(--blue);
 }
 
 
@@ -745,9 +844,9 @@ button:disabled{
 
 .word.moderatable{
 
-  cursor:pointer;
-
   pointer-events:auto;
+
+  cursor:pointer;
 
 }
 
@@ -755,42 +854,37 @@ button:disabled{
 .word.selected{
 
   outline:
-    1px solid #677AC5;
+    1px solid
+    var(--blue);
 
   outline-offset:7px;
 
 }
 
 
-
 /* =========================================================
-   MOBILE ENTRY
+   MOBILE
    ========================================================= */
 
 @media(max-width:600px){
 
   #entry{
 
-    min-height:100svh;
+    align-items:
+      flex-start;
 
-    min-height:100dvh;
+    justify-content:
+      center;
 
-    height:auto;
-
-    display:block;
-
-    overflow-y:auto;
-
-    -webkit-overflow-scrolling:touch;
-
-    padding:
+    padding-top:
       calc(
-        28px +
+        42px +
         env(safe-area-inset-top)
-      )
-      22px
+      );
+
+    padding-bottom:
       calc(
-        40px +
+        30px +
         env(safe-area-inset-bottom)
       );
 
@@ -808,17 +902,12 @@ button:disabled{
 
     font-size:
       clamp(
-        42px,
-        12vw,
+        38px,
+        11vw,
         58px
       );
 
-    line-height:.90;
-
-    letter-spacing:-.055em;
-
-    margin:
-      0 0 20px;
+    margin-bottom:20px;
 
   }
 
@@ -827,43 +916,25 @@ button:disabled{
 
     font-size:16px;
 
-    line-height:1.4;
-
-    margin:
-      0 0 22px;
+    margin-bottom:22px;
 
   }
 
 
-  textarea{
+  #input{
 
-    min-height:150px;
-
-    max-height:230px;
-
-    padding:15px;
+    min-height:170px;
 
     font-size:17px;
 
   }
 
 
-  /*
-    More breathing room between
-    the phone buttons.
-  */
-
   .entry-bottom{
-
-    display:flex;
 
     flex-direction:column;
 
     align-items:stretch;
-
-    gap:14px;
-
-    margin-top:14px;
 
   }
 
@@ -874,11 +945,6 @@ button:disabled{
 
     min-height:58px;
 
-    padding:
-      15px 20px;
-
-    font-size:18px;
-
   }
 
 
@@ -888,138 +954,33 @@ button:disabled{
 
     min-height:56px;
 
-    margin-top:14px;
-
-    padding:
-      14px 20px;
-
-    font-size:16px;
+    margin-top:12px;
 
   }
 
 
+  #back,
+  #moderate{
 
-  /* =========================================
-     PHONE PROJECTION
-     ========================================= */
-
-  #space{
-
-    width:100%;
-
-    height:100vh;
-
-    height:100dvh;
-
-    min-height:100svh;
+    width:auto;
 
   }
 
-
-  #backgroundVideo{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-  }
-
-
-  /*
-    Long confessions stay readable,
-    but are narrower on phones.
-  */
 
   .word{
 
     font-size:
       clamp(
         18px,
-        5vw,
+        6vw,
         27px
       );
-
-    line-height:1.05;
 
     max-width:72vw;
 
   }
 
-
-  /* =========================================
-     PHONE CONTROLS
-     ========================================= */
-
-  #back{
-
-    top:
-      calc(
-        12px +
-        env(safe-area-inset-top)
-      );
-
-    left:
-      calc(
-        12px +
-        env(safe-area-inset-left)
-      );
-
-    padding:
-      10px 12px;
-
-    font-size:12px;
-
-  }
-
-
-  #moderate{
-
-    top:
-      calc(
-        12px +
-        env(safe-area-inset-top)
-      );
-
-    right:
-      calc(
-        12px +
-        env(safe-area-inset-right)
-      );
-
-    padding:
-      10px 12px;
-
-    font-size:12px;
-
-  }
-
-
-  #moderationPanel{
-
-    top:
-      calc(
-        58px +
-        env(safe-area-inset-top)
-      );
-
-    right:12px;
-
-    width:
-      calc(
-        100% - 24px
-      );
-
-    max-height:
-      calc(
-        100dvh - 75px
-      );
-
-  }
-
 }
-
 
 
 /* =========================================================
@@ -1029,51 +990,29 @@ button:disabled{
 @media(
   min-width:601px
 ) and (
-  max-width:1000px
+  max-width:1100px
 ){
 
   .word{
 
-    max-width:42vw;
+    max-width:40vw;
 
   }
 
 }
 
 
-
 /* =========================================================
-   VERY SMALL PHONE
+   VIEWPORT FALLBACK
    ========================================================= */
 
-@media(max-width:380px){
+@supports not (
+  height:100dvh
+){
 
-  h1{
+  :root{
 
-    font-size:42px;
-
-  }
-
-
-  .intro{
-
-    font-size:15px;
-
-  }
-
-
-  textarea{
-
-    min-height:135px;
-
-  }
-
-
-  .word{
-
-    font-size:17px;
-
-    max-width:76vw;
+    --app-height:100vh;
 
   }
 
@@ -1084,9 +1023,7 @@ button:disabled{
 </head>
 
 
-
 <body>
-
 
 
 <!-- =======================================================
@@ -1097,23 +1034,19 @@ button:disabled{
 
   <div class="entry-inner">
 
-
     <h1>
       What have you been taught to make yourself smaller about?
     </h1>
 
 
     <p class="intro">
-
       Write a confession. Once you release it,
       your words will enter the shared space
       with everyone else's.
-
     </p>
 
 
     <form id="form">
-
 
       <textarea
         id="input"
@@ -1123,8 +1056,12 @@ button:disabled{
       ></textarea>
 
 
-      <div class="entry-bottom">
+      <div id="counter">
+        0 / 500
+      </div>
 
+
+      <div class="entry-bottom">
 
         <span
           id="status"
@@ -1139,7 +1076,6 @@ button:disabled{
           Release
         </button>
 
-
       </div>
 
 
@@ -1152,7 +1088,6 @@ button:disabled{
     >
       Enter the shared space
     </button>
-
 
   </div>
 
@@ -1170,9 +1105,7 @@ button:disabled{
 >
 
 
-  <!-- =====================================================
-       VIDEO
-       ===================================================== -->
+  <!-- VIDEO -->
 
   <video
     id="backgroundVideo"
@@ -1189,30 +1122,24 @@ button:disabled{
   </video>
 
 
+  <!-- VIDEO COLOR WASH -->
 
-  <!-- =====================================================
-       VIDEO OVERLAY
-       ===================================================== -->
-
-  <div
-    id="videoOverlay"
-  ></div>
+  <div id="videoOverlay"></div>
 
 
+  <!-- CONFESSION LAYER -->
 
-  <!-- =====================================================
-       EMPTY STATE
-       ===================================================== -->
+  <div id="wordLayer"></div>
+
+
+  <!-- EMPTY -->
 
   <div id="empty">
     The space is waiting.
   </div>
 
 
-
-  <!-- =====================================================
-       BACK
-       ===================================================== -->
+  <!-- BACK -->
 
   <button
     id="back"
@@ -1222,10 +1149,7 @@ button:disabled{
   </button>
 
 
-
-  <!-- =====================================================
-       MODERATION
-       ===================================================== -->
+  <!-- MODERATE -->
 
   <button
     id="moderate"
@@ -1235,6 +1159,7 @@ button:disabled{
   </button>
 
 
+  <!-- MODERATION PANEL -->
 
   <aside
     id="moderationPanel"
@@ -1255,7 +1180,6 @@ button:disabled{
         autocomplete="off"
       >
 
-
       <button
         id="loginButton"
         type="button"
@@ -1267,9 +1191,7 @@ button:disabled{
 
 
     <div id="moderationStatus">
-
       Enter the admin PIN to manage submissions.
-
     </div>
 
 
@@ -1336,8 +1258,8 @@ import {
   getDatabase,
   ref,
   push,
-  remove,
-  onValue
+  onValue,
+  remove
 }
 from
   "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
@@ -1358,7 +1280,6 @@ const confessionRef =
     database,
     "confessions"
   );
-
 
 
 /* =========================================================
@@ -1398,6 +1319,12 @@ const release =
 const status =
   document.getElementById(
     "status"
+  );
+
+
+const counter =
+  document.getElementById(
+    "counter"
   );
 
 
@@ -1467,6 +1394,56 @@ const backgroundVideo =
   );
 
 
+const wordLayer =
+  document.getElementById(
+    "wordLayer"
+  );
+
+
+/* =========================================================
+   IOS VIEWPORT FIX
+   ========================================================= */
+
+function updateViewportHeight(){
+
+  const viewportHeight =
+    window.visualViewport
+      ? window.visualViewport.height
+      : window.innerHeight;
+
+  document.documentElement.style
+    .setProperty(
+      "--app-height",
+      `${viewportHeight}px`
+    );
+
+}
+
+
+updateViewportHeight();
+
+
+window.addEventListener(
+  "resize",
+  updateViewportHeight
+);
+
+
+window.addEventListener(
+  "orientationchange",
+  updateViewportHeight
+);
+
+
+if(window.visualViewport){
+
+  window.visualViewport.addEventListener(
+    "resize",
+    updateViewportHeight
+  );
+
+}
+
 
 /* =========================================================
    VIDEO
@@ -1474,39 +1451,13 @@ const backgroundVideo =
 
 function startVideo(){
 
-  backgroundVideo.muted =
-    false;
-
-
-  backgroundVideo.volume =
-    1;
-
-
-  const playPromise =
-    backgroundVideo.play();
-
-
-  if(
-    playPromise &&
-    typeof playPromise.catch ===
-    "function"
-  ){
-
-    playPromise.catch(
-      error => {
-
-        console.log(
-          "Video playback was blocked:",
-          error
-        );
-
-      }
+  backgroundVideo
+    .play()
+    .catch(
+      () => {}
     );
 
-  }
-
 }
-
 
 
 /* =========================================================
@@ -1525,108 +1476,17 @@ let selectedId =
   null;
 
 
-
 /* =========================================================
-   PROJECTION SETTINGS
-   ========================================================= */
-
-function getVisibleCount(){
-
-  const width =
-    window.innerWidth;
-
-
-  /*
-    Phones:
-
-    Only FOUR confession blocks
-    are active at one time.
-
-    All submissions still cycle
-    through the projection.
-  */
-
-  if(
-    width <= 600
-  ){
-
-    return 4;
-
-  }
-
-
-  /*
-    Tablets.
-  */
-
-  if(
-    width <= 1000
-  ){
-
-    return 7;
-
-  }
-
-
-  /*
-    Desktop/projector.
-  */
-
-  return 12;
-
-}
-
-
-/*
-  Every active confession moves
-  at exactly the same speed.
-
-  This preserves their spacing.
-*/
-
-const FALL_SPEED =
-  0.018;
-
-
-/*
-  Empty space around text blocks.
-*/
-
-const WORD_GAP =
-  60;
-
-
-/*
-  Number of attempts used when
-  finding a safe location.
-*/
-
-const PLACEMENT_ATTEMPTS =
-  400;
-
-
-
-/* =========================================================
-   ALL CONFESSIONS
+   CONFESSION DATA
    ========================================================= */
 
 const confessions =
   new Map();
 
 
-/*
-  These are the ONLY confession
-  objects currently on screen.
-*/
-
 const activeItems =
-  [];
+  new Map();
 
-
-/*
-  Queue containing every
-  submission that needs to appear.
-*/
 
 let cycleQueue =
   [];
@@ -1636,13 +1496,65 @@ let queueIndex =
   0;
 
 
-let projectionInitialized =
+let cycleStarted =
   false;
 
 
+/* =========================================================
+   DISPLAY SETTINGS
+   ========================================================= */
+
+const MAX_VISIBLE_PHONE =
+  4;
+
+
+const MAX_VISIBLE_TABLET =
+  7;
+
+
+const MAX_VISIBLE_DESKTOP =
+  12;
+
+
+const FALL_SPEED =
+  22;
+
+
+const SPAWN_ATTEMPTS =
+  300;
+
 
 /* =========================================================
-   RANDOM
+   GET VISIBLE COUNT
+   ========================================================= */
+
+function getVisibleCount(){
+
+  const width =
+    window.innerWidth;
+
+
+  if(width <= 600){
+
+    return MAX_VISIBLE_PHONE;
+
+  }
+
+
+  if(width <= 1100){
+
+    return MAX_VISIBLE_TABLET;
+
+  }
+
+
+  return MAX_VISIBLE_DESKTOP;
+
+}
+
+
+/* =========================================================
+   RANDOM NUMBER
    ========================================================= */
 
 function random(
@@ -1650,13 +1562,11 @@ function random(
   max
 ){
 
-  return (
-    Math.random() *
-    (max - min)
-  ) + min;
+  return Math.random()
+    * (max - min)
+    + min;
 
 }
-
 
 
 /* =========================================================
@@ -1672,15 +1582,16 @@ function shuffle(
 
 
   for(
-    let i=copy.length - 1;
-    i>0;
+    let i =
+      copy.length - 1;
+    i > 0;
     i--
   ){
 
     const j =
       Math.floor(
-        Math.random() *
-        (i + 1)
+        Math.random()
+        * (i + 1)
       );
 
 
@@ -1701,7 +1612,6 @@ function shuffle(
 }
 
 
-
 /* =========================================================
    FONT SIZE
    ========================================================= */
@@ -1714,14 +1624,7 @@ function getFontSize(
     text.length;
 
 
-  /*
-    Long submissions remain
-    readable.
-  */
-
-  if(
-    length > 400
-  ){
+  if(length > 400){
 
     return random(
       21,
@@ -1731,9 +1634,7 @@ function getFontSize(
   }
 
 
-  if(
-    length > 300
-  ){
+  if(length > 300){
 
     return random(
       23,
@@ -1743,9 +1644,7 @@ function getFontSize(
   }
 
 
-  if(
-    length > 200
-  ){
+  if(length > 200){
 
     return random(
       25,
@@ -1755,9 +1654,7 @@ function getFontSize(
   }
 
 
-  if(
-    length > 120
-  ){
+  if(length > 120){
 
     return random(
       28,
@@ -1775,119 +1672,53 @@ function getFontSize(
 }
 
 
-
 /* =========================================================
-   RECTANGLE
+   ITEM RECTANGLE
    ========================================================= */
 
-function makeRect(
-  x,
-  y,
-  width,
-  height
+function getItemRect(
+  item
 ){
 
   return {
 
-    left:x,
+    left:
+      item.x,
 
-    top:y,
+    top:
+      item.y,
 
     right:
-      x + width,
+      item.x +
+      item.width,
 
     bottom:
-      y + height
+      item.y +
+      item.height
 
   };
 
 }
 
 
-
 /* =========================================================
    RECTANGLE OVERLAP
    ========================================================= */
 
-function overlaps(
+function rectanglesOverlap(
   a,
   b,
-  gap=0
+  gap = 50
 ){
 
   return !(
-    a.right + gap <= b.left ||
-    a.left >= b.right + gap ||
-    a.bottom + gap <= b.top ||
-    a.top >= b.bottom + gap
+    a.right + gap < b.left ||
+    a.left - gap > b.right ||
+    a.bottom + gap < b.top ||
+    a.top - gap > b.bottom
   );
 
 }
-
-
-
-/* =========================================================
-   IS POSITION OPEN
-   ========================================================= */
-
-function isPositionOpen(
-  x,
-  y,
-  width,
-  height,
-  ignoreItem=null
-){
-
-  const candidate =
-    makeRect(
-      x,
-      y,
-      width,
-      height
-    );
-
-
-  for(
-    const item of activeItems
-  ){
-
-    if(
-      item === ignoreItem
-    ){
-
-      continue;
-
-    }
-
-
-    const other =
-      makeRect(
-        item.x,
-        item.y,
-        item.el.offsetWidth,
-        item.el.offsetHeight
-      );
-
-
-    if(
-      overlaps(
-        candidate,
-        other,
-        WORD_GAP
-      )
-    ){
-
-      return false;
-
-    }
-
-  }
-
-
-  return true;
-
-}
-
 
 
 /* =========================================================
@@ -1899,71 +1730,87 @@ function findInitialPosition(
   height
 ){
 
-  const viewportWidth =
-    space.clientWidth;
+  const screenWidth =
+    wordLayer.clientWidth;
 
 
-  const viewportHeight =
-    space.clientHeight;
+  const screenHeight =
+    wordLayer.clientHeight;
 
-
-  /*
-    Keep the very top clear
-    for the buttons.
-  */
-
-  const topMargin =
-    window.innerWidth <= 600
-      ? 90
-      : 110;
-
-
-  const bottomMargin =
-    40;
-
-
-  /*
-    RANDOM SEARCH
-    */
 
   for(
-    let attempt=0;
-    attempt<PLACEMENT_ATTEMPTS;
+    let attempt = 0;
+    attempt < SPAWN_ATTEMPTS;
     attempt++
   ){
 
     const x =
       random(
-        10,
+        20,
         Math.max(
-          11,
-          viewportWidth -
+          20,
+          screenWidth -
           width -
-          10
+          20
         )
       );
 
 
     const y =
       random(
-        topMargin,
+        20,
         Math.max(
-          topMargin + 1,
-          viewportHeight -
+          20,
+          screenHeight -
           height -
-          bottomMargin
+          20
         )
       );
 
 
-    if(
-      isPositionOpen(
-        x,
-        y,
-        width,
-        height
-      )
-    ){
+    const candidate = {
+
+      left:x,
+
+      top:y,
+
+      right:x + width,
+
+      bottom:y + height
+
+    };
+
+
+    let collision =
+      false;
+
+
+    activeItems.forEach(
+      other => {
+
+        const otherRect =
+          getItemRect(
+            other
+          );
+
+
+        if(
+          rectanglesOverlap(
+            candidate,
+            otherRect
+          )
+        ){
+
+          collision =
+            true;
+
+        }
+
+      }
+    );
+
+
+    if(!collision){
 
       return {
         x,
@@ -1975,340 +1822,120 @@ function findInitialPosition(
   }
 
 
-  /*
-    GRID FALLBACK
+  return {
 
-    Instead of randomly putting
-    the word somewhere and allowing
-    overlap, systematically search
-    the entire screen.
-  */
-
-  const step =
-    20;
-
-
-  for(
-    let y=topMargin;
-    y<=viewportHeight-height-bottomMargin;
-    y+=step
-  ){
-
-    for(
-      let x=10;
-      x<=viewportWidth-width-10;
-      x+=step
-    ){
-
-      if(
-        isPositionOpen(
-          x,
-          y,
-          width,
-          height
+    x:
+      random(
+        20,
+        Math.max(
+          20,
+          screenWidth -
+          width -
+          20
         )
-      ){
+      ),
 
-        return {
-          x,
-          y
-        };
+    y:
+      random(
+        20,
+        Math.max(
+          20,
+          screenHeight -
+          height -
+          20
+        )
+      )
 
-      }
-
-    }
-
-  }
-
-
-  /*
-    If there genuinely isn't room,
-    return null.
-
-    The caller will simply show
-    fewer active confessions rather
-    than stacking them.
-  */
-
-  return null;
+  };
 
 }
 
 
-
 /* =========================================================
-   FIND SAFE SPAWN POSITION
+   FIND SPAWN POSITION
    ========================================================= */
 
 function findSpawnPosition(
   width,
-  height,
-  ignoreItem=null
+  height
 ){
 
-  const viewportWidth =
-    space.clientWidth;
+  const screenWidth =
+    wordLayer.clientWidth;
 
 
-  /*
-    Base position immediately
-    above the top edge.
-  */
+  const spawnY =
+    -height -
+    30;
 
-  const baseY =
-    -height - 20;
-
-
-  /*
-    First try to find a horizontal
-    area with NO active confession
-    intersecting its falling path.
-
-    This is what prevents a word
-    from entering directly on top
-    of another word.
-  */
 
   for(
-    let attempt=0;
-    attempt<PLACEMENT_ATTEMPTS;
+    let attempt = 0;
+    attempt < SPAWN_ATTEMPTS;
     attempt++
   ){
 
     const x =
       random(
-        10,
+        20,
         Math.max(
-          11,
-          viewportWidth -
+          20,
+          screenWidth -
           width -
-          10
+          20
         )
       );
 
 
-    let horizontalConflict =
+    const candidate = {
+
+      left:x,
+
+      top:spawnY,
+
+      right:x + width,
+
+      bottom:spawnY + height
+
+    };
+
+
+    let collision =
       false;
 
 
-    for(
-      const item of activeItems
-    ){
+    activeItems.forEach(
+      other => {
 
-      if(
-        item === ignoreItem
-      ){
-
-        continue;
-
-      }
+        const rect =
+          getItemRect(
+            other
+          );
 
 
-      const wordLeft =
-        x;
+        if(
+          rectanglesOverlap(
+            candidate,
+            rect,
+            70
+          )
+        ){
 
+          collision =
+            true;
 
-      const wordRight =
-        x + width;
-
-
-      const otherLeft =
-        item.x -
-        WORD_GAP;
-
-
-      const otherRight =
-        item.x +
-        item.el.offsetWidth +
-        WORD_GAP;
-
-
-      const conflict =
-        wordRight >
-        otherLeft
-        &&
-        wordLeft <
-        otherRight;
-
-
-      if(
-        conflict
-      ){
-
-        horizontalConflict =
-          true;
-
-        break;
+        }
 
       }
-
-    }
-
-
-    /*
-      No horizontal conflict means
-      it can enter immediately above
-      the screen.
-    */
-
-    if(
-      !horizontalConflict
-    ){
-
-      return {
-
-        x,
-
-        y:baseY
-
-      };
-
-    }
-
-  }
-
-
-  /*
-    If every horizontal area has
-    another confession in it, put
-    the new one ABOVE the earliest
-    word on that path.
-
-    Because every word moves at
-    exactly the same speed, that
-    spacing remains constant.
-  */
-
-  let bestX =
-    random(
-      10,
-      Math.max(
-        11,
-        viewportWidth -
-        width -
-        10
-      )
     );
 
 
-  let bestY =
-    baseY;
+    if(!collision){
 
-
-  let bestScore =
-    Infinity;
-
-
-  for(
-    let attempt=0;
-    attempt<PLACEMENT_ATTEMPTS;
-    attempt++
-  ){
-
-    const x =
-      random(
-        10,
-        Math.max(
-          11,
-          viewportWidth -
-          width -
-          10
-        )
-      );
-
-
-    let requiredY =
-      baseY;
-
-
-    let conflictCount =
-      0;
-
-
-    for(
-      const item of activeItems
-    ){
-
-      if(
-        item === ignoreItem
-      ){
-
-        continue;
-
-      }
-
-
-      const wordLeft =
-        x;
-
-
-      const wordRight =
-        x + width;
-
-
-      const otherLeft =
-        item.x -
-        WORD_GAP;
-
-
-      const otherRight =
-        item.x +
-        item.el.offsetWidth +
-        WORD_GAP;
-
-
-      const horizontalConflict =
-        wordRight >
-        otherLeft
-        &&
-        wordLeft <
-        otherRight;
-
-
-      if(
-        horizontalConflict
-      ){
-
-        conflictCount++;
-
-
-        requiredY =
-          Math.min(
-            requiredY,
-            item.y -
-            height -
-            WORD_GAP
-          );
-
-      }
-
-    }
-
-
-    const score =
-      conflictCount *
-      1000 +
-      Math.abs(
-        requiredY -
-        baseY
-      );
-
-
-    if(
-      score <
-      bestScore
-    ){
-
-      bestScore =
-        score;
-
-
-      bestX =
-        x;
-
-
-      bestY =
-        requiredY;
+      return {
+        x,
+        y:spawnY
+      };
 
     }
 
@@ -2318,158 +1945,48 @@ function findSpawnPosition(
   return {
 
     x:
-      bestX,
+      random(
+        20,
+        Math.max(
+          20,
+          screenWidth -
+          width -
+          20
+        )
+      ),
 
-    y:
-      bestY
+    y:spawnY
 
   };
 
 }
 
 
-
 /* =========================================================
-   GET NEXT CONFESSION
-   ========================================================= */
-
-function getNextConfessionId(){
-
-  if(
-    confessions.size === 0
-  ){
-
-    return null;
-
-  }
-
-
-  const activeIds =
-    new Set(
-      activeItems.map(
-        item =>
-          item.id
-      )
-    );
-
-
-  /*
-    Continue through current cycle.
-  */
-
-  while(
-    queueIndex <
-    cycleQueue.length
-  ){
-
-    const id =
-      cycleQueue[
-        queueIndex
-      ];
-
-
-    queueIndex++;
-
-
-    if(
-      confessions.has(id) &&
-      !activeIds.has(id)
-    ){
-
-      return id;
-
-    }
-
-  }
-
-
-  /*
-    Current cycle is exhausted.
-
-    Start a fresh randomized cycle.
-  */
-
-  const available =
-    Array.from(
-      confessions.keys()
-    ).filter(
-      id =>
-        !activeIds.has(id)
-    );
-
-
-  if(
-    available.length === 0
-  ){
-
-    /*
-      Only happens when there are
-      fewer total submissions than
-      visible slots.
-    */
-
-    const all =
-      Array.from(
-        confessions.keys()
-      );
-
-
-    if(
-      all.length
-    ){
-
-      return all[
-        Math.floor(
-          Math.random() *
-          all.length
-        )
-      ];
-
-    }
-
-
-    return null;
-
-  }
-
-
-  cycleQueue =
-    shuffle(
-      available
-    );
-
-
-  queueIndex =
-    0;
-
-
-  return (
-    cycleQueue[
-      queueIndex++
-    ] || null
-  );
-
-}
-
-
-
-/* =========================================================
-   CREATE ACTIVE WORD
+   CREATE ACTIVE CONFESSION
    ========================================================= */
 
 function createActiveWord(
   id,
-  initial=false
+  mode = "spawn"
 ){
 
+  if(
+    activeItems.has(id)
+  ){
+
+    return null;
+
+  }
+
+
   const data =
-    confessions.get(
-      id
-    );
+    confessions.get(id);
 
 
   if(
-    !data
+    !data ||
+    typeof data.text !== "string"
   ){
 
     return null;
@@ -2487,28 +2004,24 @@ function createActiveWord(
     "word";
 
 
-  el.textContent =
-    data.text;
-
-
   el.dataset.id =
     id;
 
 
+  el.textContent =
+    data.text;
+
+
   el.style.fontSize =
-    getFontSize(
+    `${getFontSize(
       data.text
-    ) + "px";
+    )}px`;
 
 
-  space.appendChild(
+  wordLayer.appendChild(
     el
   );
 
-
-  /*
-    Force measurement.
-  */
 
   const width =
     el.offsetWidth;
@@ -2521,9 +2034,7 @@ function createActiveWord(
   let position;
 
 
-  if(
-    initial
-  ){
+  if(mode === "initial"){
 
     position =
       findInitialPosition(
@@ -2542,24 +2053,6 @@ function createActiveWord(
   }
 
 
-  /*
-    There is genuinely not enough
-    room right now.
-
-    Do NOT stack the word.
-  */
-
-  if(
-    !position
-  ){
-
-    el.remove();
-
-    return null;
-
-  }
-
-
   const item = {
 
     id,
@@ -2572,63 +2065,76 @@ function createActiveWord(
     y:
       position.y,
 
-    speed:
-      FALL_SPEED,
+    width,
 
-    pulseOffset:
-      random(
-        0,
-        Math.PI * 2
-      ),
+    height,
 
-    pulseSpeed:
-      random(
-        0.0005,
-        0.0010
-      ),
+    opacity:
+      mode === "initial"
+        ? .88
+        : 0,
 
-    opacityBase:
-      initial
-        ? random(
-            0.48,
-            0.68
-          )
-        : 0.82
+    removing:
+      false
 
   };
 
 
-  activeItems.push(
+  activeItems.set(
+    id,
     item
   );
 
 
-  /*
-    Moderation.
-  */
+  el.style.transform =
+    `translate3d(${item.x}px,${item.y}px,0)`;
 
-  el.addEventListener(
-    "click",
-    () => {
 
-      if(
-        !adminUnlocked
-      ){
+  el.style.opacity =
+    item.opacity;
 
-        return;
+
+  if(mode !== "initial"){
+
+    requestAnimationFrame(
+      () => {
+
+        el.classList.add(
+          "appearing"
+        );
 
       }
+    );
+
+  }else{
+
+    el.style.opacity =
+      .72;
+
+  }
 
 
-      selectConfession(
-        item.id
-      );
+  if(adminUnlocked){
 
-    }
-  );
+    el.classList.add(
+      "moderatable"
+    );
 
 
-  applyModerationState();
+    el.addEventListener(
+      "click",
+      () => {
+
+        selectConfession(id);
+
+      }
+    );
+
+  }
+
+
+  empty.style.display =
+    "none";
 
 
   return item;
@@ -2636,229 +2142,604 @@ function createActiveWord(
 }
 
 
-
 /* =========================================================
-   RECYCLE ACTIVE WORD
+   REMOVE ACTIVE WORD
    ========================================================= */
 
-function recycleItem(
-  item
+function removeActiveWord(
+  id,
+  recycle = true
 ){
 
-  const oldId =
-    item.id;
+  const item =
+    activeItems.get(id);
 
 
-  /*
-    Find the next submission.
-  */
-
-  let nextId =
-    getNextConfessionId();
-
-
-  /*
-    Avoid immediately showing
-    exactly the same confession
-    when alternatives exist.
-  */
-
-  if(
-    nextId === oldId &&
-    confessions.size > 1
-  ){
-
-    const alternatives =
-      Array.from(
-        confessions.keys()
-      ).filter(
-        id =>
-          id !== oldId &&
-          !activeItems.some(
-            active =>
-              active !== item &&
-              active.id === id
-          )
-      );
-
-
-    if(
-      alternatives.length
-    ){
-
-      nextId =
-        alternatives[
-          Math.floor(
-            Math.random() *
-            alternatives.length
-          )
-        ];
-
-    }
-
-  }
-
-
-  if(
-    !nextId
-  ){
+  if(!item){
 
     return;
 
   }
 
 
-  const nextData =
-    confessions.get(
-      nextId
-    );
+  item.removing =
+    true;
 
 
-  if(
-    !nextData
-  ){
-
-    return;
-
-  }
-
-
-  /*
-    Remove old ID from moderation map.
-  */
-
-  wordItems.delete(
-    oldId
+  activeItems.delete(
+    id
   );
 
 
-  /*
-    Change the active element
-    into the next confession.
-  */
-
-  item.id =
-    nextId;
+  item.el.classList.remove(
+    "appearing"
+  );
 
 
-  item.el.dataset.id =
-    nextId;
+  item.el.classList.add(
+    "fading"
+  );
 
 
-  item.el.textContent =
-    nextData.text;
+  setTimeout(
+    () => {
+
+      item.el.remove();
+
+    },
+    1400
+  );
 
 
-  item.el.style.fontSize =
-    getFontSize(
-      nextData.text
-    ) + "px";
+  if(
+    recycle &&
+    confessions.has(id)
+  ){
+
+    addNextWord();
+
+  }
 
 
-  /*
-    Force layout again because
-    the text dimensions changed.
-  */
+  if(
+    activeItems.size === 0 &&
+    confessions.size === 0
+  ){
 
-  const width =
-    item.el.offsetWidth;
+    empty.style.display =
+      "flex";
+
+  }
+
+}
 
 
-  const height =
-    item.el.offsetHeight;
+/* =========================================================
+   START NEW CYCLE
+   ========================================================= */
+
+function startNewCycle(){
+
+  const ids =
+    [...confessions.keys()];
 
 
-  /*
-    Find a safe position above
-    the screen.
-  */
+  if(ids.length === 0){
 
-  const position =
-    findSpawnPosition(
-      width,
-      height,
-      item
+    cycleQueue =
+      [];
+
+    queueIndex =
+      0;
+
+    cycleStarted =
+      false;
+
+    return;
+
+  }
+
+
+  cycleQueue =
+    shuffle(
+      ids
     );
 
 
-  item.x =
-    position.x;
+  queueIndex =
+    0;
+
+  cycleStarted =
+    true;
+
+}
 
 
-  item.y =
-    position.y;
+/* =========================================================
+   GET NEXT CONFESSION
+   ========================================================= */
+
+function getNextConfessionId(){
+
+  if(
+    confessions.size === 0
+  ){
+
+    return null;
+
+  }
 
 
-  /*
-    Reset pulse.
-  */
+  if(
+    !cycleStarted ||
+    queueIndex >=
+    cycleQueue.length
+  ){
 
-  item.pulseOffset =
-    random(
-      0,
-      Math.PI * 2
-    );
+    startNewCycle();
 
-
-  item.pulseSpeed =
-    random(
-      0.0005,
-      0.0010
-    );
+  }
 
 
-  item.opacityBase =
-    0.82;
-
-
-  item.el.style.opacity =
+  let attempts =
     0;
 
 
-  wordItems.set(
-    nextId,
-    item
-  );
+  while(
+    attempts <
+    cycleQueue.length + 5
+  ){
+
+    if(
+      queueIndex >=
+      cycleQueue.length
+    ){
+
+      startNewCycle();
+
+    }
 
 
-  /*
-    Update moderation.
-  */
+    const id =
+      cycleQueue[
+        queueIndex
+      ];
 
-  buildAdminList();
+
+    queueIndex++;
+
+
+    if(
+      confessions.has(id) &&
+      !activeItems.has(id)
+    ){
+
+      return id;
+
+    }
+
+
+    attempts++;
+
+  }
+
+
+  return null;
 
 }
 
 
-
 /* =========================================================
-   WORD MAP
+   ADD NEXT WORD
    ========================================================= */
 
-const wordItems =
-  new Map();
+function addNextWord(){
 
+  const id =
+    getNextConfessionId();
+
+
+  if(!id){
+
+    return;
+
+  }
+
+
+  createActiveWord(
+    id,
+    "spawn"
+  );
+
+}
 
 
 /* =========================================================
-   APPLY MODERATION STATE
+   INITIAL FILL
    ========================================================= */
 
-function applyModerationState(){
+function fillInitialSpace(){
 
-  activeItems.forEach(
+  if(
+    confessions.size === 0
+  ){
+
+    empty.style.display =
+      "flex";
+
+    return;
+
+  }
+
+
+  empty.style.display =
+    "none";
+
+
+  const visibleCount =
+    Math.min(
+      getVisibleCount(),
+      confessions.size
+    );
+
+
+  if(
+    !cycleStarted
+  ){
+
+    startNewCycle();
+
+  }
+
+
+  let created =
+    0;
+
+
+  while(
+    created <
+    visibleCount
+  ){
+
+    const id =
+      getNextConfessionId();
+
+
+    if(!id){
+
+      break;
+
+    }
+
+
+    createActiveWord(
+      id,
+      "initial"
+    );
+
+
+    created++;
+
+  }
+
+}
+
+
+/* =========================================================
+   MAINTAIN VISIBLE COUNT
+   ========================================================= */
+
+function maintainVisibleCount(){
+
+  const target =
+    Math.min(
+      getVisibleCount(),
+      confessions.size
+    );
+
+
+  while(
+    activeItems.size <
+    target
+  ){
+
+    const id =
+      getNextConfessionId();
+
+
+    if(!id){
+
+      break;
+
+    }
+
+
+    createActiveWord(
+      id,
+      "spawn"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   FIREBASE SYNC
+   ========================================================= */
+
+onValue(
+  confessionRef,
+  snapshot => {
+
+    const raw =
+      snapshot.val()
+      || {};
+
+
+    const incomingIds =
+      new Set(
+        Object.keys(
+          raw
+        )
+      );
+
+
+    const previousIds =
+      new Set(
+        confessions.keys()
+      );
+
+
+    /* Remove deleted confessions */
+
+    previousIds.forEach(
+      id => {
+
+        if(
+          !incomingIds.has(id)
+        ){
+
+          removeActiveWord(
+            id,
+            false
+          );
+
+
+          cycleQueue =
+            cycleQueue.filter(
+              queuedId =>
+                queuedId !== id
+            );
+
+
+          confessions.delete(
+            id
+          );
+
+        }
+
+      }
+    );
+
+
+    /* Add or update confessions */
+
+    incomingIds.forEach(
+      id => {
+
+        const data =
+          raw[id];
+
+
+        if(
+          !data ||
+          typeof data.text !== "string"
+        ){
+
+          return;
+
+        }
+
+
+        const isNew =
+          !confessions.has(id);
+
+
+        confessions.set(
+          id,
+          {
+
+            text:
+              data.text,
+
+            createdAt:
+              Number(
+                data.createdAt
+              ) || 0
+
+          }
+        );
+
+
+        if(
+          isNew &&
+          !activeItems.has(id) &&
+          !cycleQueue.includes(id)
+        ){
+
+          cycleQueue.push(
+            id
+          );
+
+        }
+
+      }
+    );
+
+
+    if(
+      confessions.size === 0
+    ){
+
+      empty.style.display =
+        "flex";
+
+      return;
+
+    }
+
+
+    empty.style.display =
+      "none";
+
+
+    if(
+      !cycleStarted
+    ){
+
+      fillInitialSpace();
+
+    }else{
+
+      maintainVisibleCount();
+
+    }
+
+
+    if(
+      adminUnlocked
+    ){
+
+      buildAdminList();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+let lastFrame =
+  performance.now();
+
+
+function animate(
+  now
+){
+
+  const delta =
+    Math.min(
+      .05,
+      (now - lastFrame) /
+      1000
+    );
+
+
+  lastFrame =
+    now;
+
+
+  const screenHeight =
+    wordLayer.clientHeight;
+
+
+  const items =
+    [...activeItems.values()];
+
+
+  items.forEach(
     item => {
 
-      item.el.classList.toggle(
-        "moderatable",
-        adminUnlocked
-      );
+      if(
+        item.removing
+      ){
+
+        return;
+
+      }
+
+
+      item.y +=
+        FALL_SPEED *
+        delta;
+
+
+      const fadeStart =
+        screenHeight *
+        .78;
+
+
+      const fadeDistance =
+        screenHeight *
+        .22;
+
+
+      if(
+        item.y >
+        fadeStart
+      ){
+
+        const progress =
+          Math.min(
+            1,
+            (
+              item.y -
+              fadeStart
+            ) /
+            fadeDistance
+          );
+
+
+        item.opacity =
+          .88 *
+          (1 - progress);
+
+      }else{
+
+        item.opacity =
+          .88;
+
+      }
+
+
+      item.el.style.transform =
+        `translate3d(${item.x}px,${item.y}px,0)`;
+
+
+      item.el.style.opacity =
+        item.opacity;
+
+
+      if(
+        item.y >
+        screenHeight + 40
+      ){
+
+        removeActiveWord(
+          item.id,
+          true
+        );
+
+      }
 
     }
   );
 
+
+  requestAnimationFrame(
+    animate
+  );
+
 }
 
+
+requestAnimationFrame(
+  animate
+);
 
 
 /* =========================================================
@@ -2877,15 +2758,11 @@ function showSpace(){
   );
 
 
-  /*
-    Start the video from the
-    visitor interaction.
-  */
+  updateViewportHeight();
 
   startVideo();
 
 }
-
 
 
 /* =========================================================
@@ -2904,10 +2781,19 @@ function showEntry(){
   );
 
 
-  input.focus();
+  updateViewportHeight();
+
+
+  setTimeout(
+    () => {
+
+      input.focus();
+
+    },
+    200
+  );
 
 }
-
 
 
 /* =========================================================
@@ -2924,9 +2810,23 @@ enterSpace.addEventListener(
 );
 
 
+/* =========================================================
+   CHARACTER COUNTER
+   ========================================================= */
+
+input.addEventListener(
+  "input",
+  () => {
+
+    counter.textContent =
+      `${input.value.length} / 500`;
+
+  }
+);
+
 
 /* =========================================================
-   SUBMIT
+   SUBMIT CONFESSION
    ========================================================= */
 
 form.addEventListener(
@@ -2934,14 +2834,6 @@ form.addEventListener(
   async event => {
 
     event.preventDefault();
-
-
-    /*
-      Start video immediately
-      from the user interaction.
-    */
-
-    startVideo();
 
 
     const text =
@@ -2953,9 +2845,20 @@ form.addEventListener(
         );
 
 
+    if(!text){
+
+      return;
+
+    }
+
+
     if(
-      !text
+      text.length >
+      500
     ){
+
+      status.textContent =
+        "Your confession is too long.";
 
       return;
 
@@ -2988,6 +2891,9 @@ form.addEventListener(
       input.value =
         "";
 
+      counter.textContent =
+        "0 / 500";
+
 
       status.textContent =
         "";
@@ -2995,6 +2901,9 @@ form.addEventListener(
 
       showSpace();
 
+
+      release.disabled =
+        false;
 
     }catch(error){
 
@@ -3017,9 +2926,8 @@ form.addEventListener(
 );
 
 
-
 /* =========================================================
-   BACK
+   BACK TO ENTRY
    ========================================================= */
 
 back.addEventListener(
@@ -3038,397 +2946,6 @@ back.addEventListener(
 
   }
 );
-
-
-
-/* =========================================================
-   FIREBASE DATA
-   ========================================================= */
-
-onValue(
-  confessionRef,
-  snapshot => {
-
-    const incoming =
-      new Map();
-
-
-    snapshot.forEach(
-      child => {
-
-        const data =
-          child.val();
-
-
-        if(
-          data &&
-          typeof data.text ===
-          "string"
-        ){
-
-          incoming.set(
-            child.key,
-            {
-
-              text:
-                data.text,
-
-              createdAt:
-                data.createdAt ||
-                0
-
-            }
-          );
-
-        }
-
-      }
-    );
-
-
-
-    /* -------------------------------------------------------
-       INITIAL LOAD
-       ------------------------------------------------------- */
-
-    if(
-      !projectionInitialized
-    ){
-
-      incoming.forEach(
-        (data,id) => {
-
-          confessions.set(
-            id,
-            data
-          );
-
-        }
-      );
-
-
-      cycleQueue =
-        shuffle(
-          Array.from(
-            confessions.keys()
-          )
-        );
-
-
-      queueIndex =
-        0;
-
-
-      projectionInitialized =
-        true;
-
-
-      const desired =
-        Math.min(
-          getVisibleCount(),
-          confessions.size
-        );
-
-
-      /*
-        Fill only what will actually
-        fit on the current screen.
-      */
-
-      for(
-        let i=0;
-        i<desired;
-        i++
-      ){
-
-        const id =
-          getNextConfessionId();
-
-
-        if(
-          !id
-        ){
-
-          break;
-
-        }
-
-
-        const item =
-          createActiveWord(
-            id,
-            true
-          );
-
-
-        if(
-          !item
-        ){
-
-          /*
-            If there genuinely isn't
-            room for another confession,
-            stop rather than overlapping.
-          */
-
-          break;
-
-        }
-
-
-        wordItems.set(
-          id,
-          item
-        );
-
-      }
-
-
-      empty.style.display =
-        confessions.size
-          ? "none"
-          : "flex";
-
-
-      buildAdminList();
-
-
-      return;
-
-    }
-
-
-
-    /* -------------------------------------------------------
-       NEW / UPDATED CONFESSIONS
-       ------------------------------------------------------- */
-
-    incoming.forEach(
-      (data,id) => {
-
-        if(
-          !confessions.has(id)
-        ){
-
-          confessions.set(
-            id,
-            data
-          );
-
-
-          /*
-            Add new submission to
-            the cycle queue.
-
-            It will appear naturally
-            as the queue moves through
-            submissions.
-          */
-
-          if(
-            !cycleQueue.includes(id)
-          ){
-
-            cycleQueue.push(
-              id
-            );
-
-          }
-
-        }else{
-
-          confessions.set(
-            id,
-            data
-          );
-
-        }
-
-      }
-    );
-
-
-
-    /* -------------------------------------------------------
-       DELETED CONFESSIONS
-       ------------------------------------------------------- */
-
-    const deletedIds =
-      Array.from(
-        confessions.keys()
-      ).filter(
-        id =>
-          !incoming.has(id)
-      );
-
-
-    deletedIds.forEach(
-      id => {
-
-        confessions.delete(
-          id
-        );
-
-
-        cycleQueue =
-          cycleQueue.filter(
-            queueId =>
-              queueId !== id
-          );
-
-
-        const active =
-          activeItems.find(
-            item =>
-              item.id === id
-          );
-
-
-        if(
-          active
-        ){
-
-          const index =
-            activeItems.indexOf(
-              active
-            );
-
-
-          if(
-            index !== -1
-          ){
-
-            activeItems.splice(
-              index,
-              1
-            );
-
-          }
-
-
-          wordItems.delete(
-            id
-          );
-
-
-          active.el.remove();
-
-
-          /*
-            Immediately replace the
-            deleted visible confession
-            with another one.
-          */
-
-          const replacementId =
-            getNextConfessionId();
-
-
-          if(
-            replacementId
-          ){
-
-            const replacement =
-              createActiveWord(
-                replacementId,
-                false
-              );
-
-
-            if(
-              replacement
-            ){
-
-              wordItems.set(
-                replacementId,
-                replacement
-              );
-
-            }
-
-          }
-
-        }
-
-      }
-    );
-
-
-
-    /* -------------------------------------------------------
-       MAINTAIN ACTIVE COUNT
-       ------------------------------------------------------- */
-
-    const desired =
-      Math.min(
-        getVisibleCount(),
-        confessions.size
-      );
-
-
-    while(
-      activeItems.length <
-      desired
-    ){
-
-      const id =
-        getNextConfessionId();
-
-
-      if(
-        !id
-      ){
-
-        break;
-
-      }
-
-
-      const item =
-        createActiveWord(
-          id,
-          false
-        );
-
-
-      if(
-        !item
-      ){
-
-        /*
-          Do not force another word
-          into an occupied area.
-        */
-
-        break;
-
-      }
-
-
-      wordItems.set(
-        id,
-        item
-      );
-
-    }
-
-
-
-    /* -------------------------------------------------------
-       EMPTY STATE
-       ------------------------------------------------------- */
-
-    empty.style.display =
-      confessions.size
-        ? "none"
-        : "flex";
-
-
-    buildAdminList();
-
-  }
-);
-
 
 
 /* =========================================================
@@ -3454,18 +2971,15 @@ function selectConfession(
   );
 
 
-  const visibleItem =
-    activeItems.find(
-      item =>
-        item.id === id
+  const item =
+    activeItems.get(
+      id
     );
 
 
-  if(
-    visibleItem
-  ){
+  if(item){
 
-    visibleItem.el.classList.add(
+    item.el.classList.add(
       "selected"
     );
 
@@ -3494,7 +3008,6 @@ function selectConfession(
 }
 
 
-
 /* =========================================================
    ADMIN LIST
    ========================================================= */
@@ -3505,8 +3018,19 @@ function buildAdminList(){
     "";
 
 
-  confessions.forEach(
-    (data,id) => {
+  const sorted =
+    [
+      ...confessions.entries()
+    ]
+    .sort(
+      (a,b) =>
+        (b[1].createdAt || 0) -
+        (a[1].createdAt || 0)
+    );
+
+
+  sorted.forEach(
+    ([id,data]) => {
 
       const row =
         document.createElement(
@@ -3524,17 +3048,6 @@ function buildAdminList(){
 
       row.textContent =
         data.text;
-
-
-      if(
-        id === selectedId
-      ){
-
-        row.classList.add(
-          "selected"
-        );
-
-      }
 
 
       row.addEventListener(
@@ -3559,9 +3072,8 @@ function buildAdminList(){
 }
 
 
-
 /* =========================================================
-   MODERATION PANEL
+   MODERATION PANEL TOGGLE
    ========================================================= */
 
 moderate.addEventListener(
@@ -3582,9 +3094,7 @@ moderate.addEventListener(
       adminPin.focus();
 
 
-      if(
-        adminUnlocked
-      ){
+      if(adminUnlocked){
 
         buildAdminList();
 
@@ -3596,9 +3106,8 @@ moderate.addEventListener(
 );
 
 
-
 /* =========================================================
-   LOGIN
+   ADMIN LOGIN
    ========================================================= */
 
 loginButton.addEventListener(
@@ -3629,17 +3138,36 @@ loginButton.addEventListener(
       buildAdminList();
 
 
-      applyModerationState();
+      activeItems.forEach(
+        item => {
 
+          item.el.classList.add(
+            "moderatable"
+          );
+
+
+          item.el.addEventListener(
+            "click",
+            () => {
+
+              selectConfession(
+                item.id
+              );
+
+            }
+          );
+
+        }
+      );
 
     }else{
 
-      adminUnlocked =
-        false;
-
-
       moderationStatus.textContent =
         "Incorrect PIN.";
+
+
+      adminUnlocked =
+        false;
 
     }
 
@@ -3647,9 +3175,8 @@ loginButton.addEventListener(
 );
 
 
-
 /* =========================================================
-   DELETE
+   DELETE CONFESSION
    ========================================================= */
 
 deleteButton.addEventListener(
@@ -3657,37 +3184,22 @@ deleteButton.addEventListener(
   async () => {
 
     if(
-      !adminUnlocked
-    ){
-
-      moderationStatus.textContent =
-        "Moderation is locked.";
-
-      return;
-
-    }
-
-
-    if(
+      !adminUnlocked ||
       !selectedId
     ){
 
-      moderationStatus.textContent =
-        "Select a confession first.";
-
       return;
 
     }
 
 
-    if(
-      !confessions.has(
+    const data =
+      confessions.get(
         selectedId
-      )
-    ){
+      );
 
-      moderationStatus.textContent =
-        "That confession could not be found.";
+
+    if(!data){
 
       return;
 
@@ -3731,13 +3243,13 @@ deleteButton.addEventListener(
     }catch(error){
 
       console.error(
-        "Delete error:",
+        "Delete failed:",
         error
       );
 
 
       moderationStatus.textContent =
-        "Delete failed. Check Firebase Rules.";
+        "Delete failed. Check Firebase rules.";
 
     }
 
@@ -3745,213 +3257,26 @@ deleteButton.addEventListener(
 );
 
 
-
 /* =========================================================
-   ANIMATION
+   RESPONSIVE RECALCULATION
    ========================================================= */
 
-let lastTime =
-  performance.now();
+window.addEventListener(
+  "resize",
+  () => {
 
+    if(
+      confessions.size > 0
+    ){
 
-function animate(
-  currentTime
-){
-
-  const delta =
-    currentTime -
-    lastTime;
-
-
-  lastTime =
-    currentTime;
-
-
-  const height =
-    space.clientHeight;
-
-
-  activeItems.forEach(
-    item => {
-
-
-      /*
-        ---------------------------------
-        SLOW FALL
-        ---------------------------------
-      */
-
-      item.y +=
-        item.speed *
-        delta;
-
-
-
-      /*
-        ---------------------------------
-        SOFT PULSE
-        ---------------------------------
-      */
-
-      const pulse =
-        Math.sin(
-          currentTime *
-          item.pulseSpeed +
-          item.pulseOffset
-        );
-
-
-      let opacity =
-        item.opacityBase +
-        pulse * 0.10;
-
-
-
-      /*
-        ---------------------------------
-        FADE IN
-        ---------------------------------
-      */
-
-      if(
-        item.y < 180
-      ){
-
-        const fadeIn =
-          Math.max(
-            0,
-            Math.min(
-              1,
-              (
-                item.y +
-                120
-              ) /
-              300
-            )
-          );
-
-
-        opacity *=
-          fadeIn;
-
-      }
-
-
-
-      /*
-        ---------------------------------
-        FADE OUT
-        ---------------------------------
-      */
-
-      if(
-        item.y >
-        height * .80
-      ){
-
-        const fadeOut =
-          1 -
-          (
-            (
-              item.y -
-              height * .80
-            ) /
-            (
-              height * .20
-            )
-          );
-
-
-        opacity *=
-          Math.max(
-            0,
-            Math.min(
-              1,
-              fadeOut
-            )
-          );
-
-      }
-
-
-
-      /*
-        ---------------------------------
-        OPACITY
-        ---------------------------------
-      */
-
-      item.el.style.opacity =
-        Math.max(
-          0,
-          Math.min(
-            .90,
-            opacity
-          )
-        );
-
-
-
-      /*
-        ---------------------------------
-        POSITION
-        ---------------------------------
-      */
-
-      item.el.style.transform =
-        "translate(" +
-        item.x +
-        "px," +
-        item.y +
-        "px)";
-
-
-
-      /*
-        ---------------------------------
-        RECYCLE
-        ---------------------------------
-
-        Once this confession has
-        completely left the screen,
-        immediately replace it with
-        the next confession.
-      */
-
-      if(
-        item.y >
-        height + 30
-      ){
-
-        recycleItem(
-          item
-        );
-
-      }
+      maintainVisibleCount();
 
     }
-  );
 
-
-  requestAnimationFrame(
-    animate
-  );
-
-}
-
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-requestAnimationFrame(
-  animate
+  }
 );
-
 
 </script>
 
 </body>
-
 </html>
