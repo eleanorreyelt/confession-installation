@@ -299,6 +299,52 @@ button:disabled{
 
 
 /* =========================================================
+   ARTIST CREDIT
+   ========================================================= */
+
+.site-credit{
+
+  position:absolute;
+
+  z-index:70;
+
+  left:50%;
+
+  bottom:
+    calc(
+      10px +
+      env(safe-area-inset-bottom)
+    );
+
+  transform:translateX(-50%);
+
+  width:
+    calc(
+      100% - 28px
+    );
+
+  text-align:center;
+
+  color:var(--blue);
+
+  font-size:10px;
+
+  line-height:1.2;
+
+  font-weight:400;
+
+  letter-spacing:.015em;
+
+  opacity:.6;
+
+  pointer-events:none;
+
+  white-space:nowrap;
+
+}
+
+
+/* =========================================================
    SHARED SPACE
    ========================================================= */
 
@@ -363,6 +409,7 @@ button:disabled{
   transform:scale(1.015);
 
   pointer-events:none;
+
 }
 
 
@@ -387,6 +434,7 @@ button:disabled{
     );
 
   pointer-events:none;
+
 }
 
 
@@ -414,7 +462,7 @@ button:disabled{
 
 
 /* =========================================================
-   DESKTOP CONFESSIONS
+   CONFESSIONS
    ========================================================= */
 
 .word{
@@ -479,11 +527,15 @@ button:disabled{
 @keyframes confessionIn{
 
   from{
+
     opacity:0;
+
   }
 
   to{
+
     opacity:.88;
+
   }
 
 }
@@ -503,11 +555,15 @@ button:disabled{
 @keyframes confessionOut{
 
   from{
+
     opacity:.88;
+
   }
 
   to{
+
     opacity:0;
+
   }
 
 }
@@ -693,6 +749,7 @@ button:disabled{
   display:none;
 
   color:var(--blue);
+
 }
 
 
@@ -876,7 +933,7 @@ button:disabled{
 
 
 /* =========================================================
-   PHONE ENTRY
+   MOBILE
    ========================================================= */
 
 @media(max-width:600px){
@@ -892,7 +949,7 @@ button:disabled{
       )
       22px
       calc(
-        18px +
+        38px +
         env(safe-area-inset-bottom)
       )
       22px;
@@ -971,10 +1028,10 @@ button:disabled{
 
     width:auto;
 
-    min-height:46px;
+    min-height:44px;
 
     padding:
-      11px 21px;
+      10px 20px;
 
     font-size:15px;
 
@@ -985,7 +1042,7 @@ button:disabled{
 
     width:100%;
 
-    min-height:44px;
+    min-height:42px;
 
     margin-top:8px;
 
@@ -1051,8 +1108,8 @@ button:disabled{
   }
 
 
-  /* Every confession becomes one
-     scrollable section on phones. */
+  /* Every submission becomes
+     a scrollable confession */
 
   .word{
 
@@ -1136,7 +1193,9 @@ button:disabled{
   }
 
 
-  /* Keep controls over the scrolling text */
+  /* =======================================================
+     PHONE CONTROLS
+     ======================================================= */
 
   #back{
 
@@ -1182,6 +1241,30 @@ button:disabled{
     min-height:36px;
 
     font-size:11px;
+
+  }
+
+
+  /* =======================================================
+     PHONE CREDIT
+     ======================================================= */
+
+  .site-credit{
+
+    bottom:
+      calc(
+        6px +
+        env(safe-area-inset-bottom)
+      );
+
+    width:
+      calc(
+        100% - 18px
+      );
+
+    font-size:8px;
+
+    letter-spacing:0;
 
   }
 
@@ -1295,7 +1378,7 @@ button:disabled{
 
 
 <!-- =======================================================
-     ENTRY
+     ENTRY PAGE
      ======================================================= -->
 
 <section id="entry">
@@ -1359,6 +1442,11 @@ button:disabled{
 
   </div>
 
+
+  <div class="site-credit">
+    Bella Bosch, Eleanor Reyelt, Sofia Mining, Ingrid Tuveson, Em Zeigler
+  </div>
+
 </section>
 
 
@@ -1413,6 +1501,11 @@ button:disabled{
   >
     Moderate
   </button>
+
+
+  <div class="site-credit">
+    Bella Bosch, Eleanor Reyelt, Sofia Mining, Ingrid Tuveson, Em Zeigler
+  </div>
 
 
   <aside
@@ -1470,7 +1563,7 @@ button:disabled{
 
 
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
    ========================================================= */
 
 const firebaseConfig = {
@@ -1656,7 +1749,7 @@ const wordLayer =
 
 
 /* =========================================================
-   IOS VIEWPORT
+   VIEWPORT
    ========================================================= */
 
 function updateViewportHeight(){
@@ -1757,12 +1850,8 @@ let cycleStarted =
 
 
 /* =========================================================
-   DESKTOP SETTINGS
+   DISPLAY SETTINGS
    ========================================================= */
-
-const MAX_VISIBLE_PHONE =
-  4;
-
 
 const MAX_VISIBLE_TABLET =
   7;
@@ -1781,7 +1870,7 @@ const SPAWN_ATTEMPTS =
 
 
 /* =========================================================
-   DEVICE CHECK
+   DEVICE
    ========================================================= */
 
 function isPhone(){
@@ -1797,18 +1886,9 @@ function isPhone(){
 
 function getVisibleCount(){
 
-  const width =
-    window.innerWidth;
-
-
-  if(width <= 600){
-
-    return MAX_VISIBLE_PHONE;
-
-  }
-
-
-  if(width <= 1100){
+  if(
+    window.innerWidth <= 1100
+  ){
 
     return MAX_VISIBLE_TABLET;
 
@@ -1940,7 +2020,7 @@ function getFontSize(
 
 
 /* =========================================================
-   RECTANGLES
+   RECTANGLE HELPERS
    ========================================================= */
 
 function getItemRect(
@@ -1985,7 +2065,7 @@ function rectanglesOverlap(
 
 
 /* =========================================================
-   INITIAL DESKTOP POSITION
+   INITIAL POSITION
    ========================================================= */
 
 function findInitialPosition(
@@ -2034,11 +2114,8 @@ function findInitialPosition(
     const candidate = {
 
       left:x,
-
       top:y,
-
       right:x + width,
-
       bottom:y + height
 
     };
@@ -2115,7 +2192,7 @@ function findInitialPosition(
 
 
 /* =========================================================
-   DESKTOP SPAWN POSITION
+   SPAWN POSITION
    ========================================================= */
 
 function findSpawnPosition(
@@ -2153,11 +2230,8 @@ function findSpawnPosition(
     const candidate = {
 
       left:x,
-
       top:spawnY,
-
       right:x + width,
-
       bottom:spawnY + height
 
     };
@@ -2196,11 +2270,8 @@ function findSpawnPosition(
     if(!collision){
 
       return {
-
         x,
-
         y:spawnY
-
       };
 
     }
@@ -2229,7 +2300,7 @@ function findSpawnPosition(
 
 
 /* =========================================================
-   CREATE DESKTOP CONFESSION
+   CREATE DESKTOP WORD
    ========================================================= */
 
 function createActiveWord(
@@ -2297,26 +2368,16 @@ function createActiveWord(
     el.offsetHeight;
 
 
-  let position;
-
-
-  if(mode === "initial"){
-
-    position =
-      findInitialPosition(
-        width,
-        height
-      );
-
-  }else{
-
-    position =
-      findSpawnPosition(
-        width,
-        height
-      );
-
-  }
+  const position =
+    mode === "initial"
+      ? findInitialPosition(
+          width,
+          height
+        )
+      : findSpawnPosition(
+          width,
+          height
+        );
 
 
   const item = {
@@ -2398,7 +2459,7 @@ function createActiveWord(
 
 
 /* =========================================================
-   MODERATION CLICK
+   MAKE MODERATABLE
    ========================================================= */
 
 function makeWordModeratable(
@@ -2423,7 +2484,7 @@ function makeWordModeratable(
 
 
 /* =========================================================
-   REMOVE DESKTOP WORD
+   REMOVE ACTIVE WORD
    ========================================================= */
 
 function removeActiveWord(
@@ -2578,7 +2639,7 @@ function getNextConfessionId(){
 
 
 /* =========================================================
-   NEXT DESKTOP WORD
+   ADD NEXT WORD
    ========================================================= */
 
 function addNextWord(){
@@ -2603,16 +2664,21 @@ function addNextWord(){
 
 
 /* =========================================================
-   FILL DESKTOP SPACE
+   FILL INITIAL DESKTOP
    ========================================================= */
 
 function fillInitialSpace(){
 
-  const target =
-    Math.min(
-      getVisibleCount(),
-      confessions.size
-    );
+  if(
+    confessions.size === 0
+  ){
+
+    empty.style.display =
+      "flex";
+
+    return;
+
+  }
 
 
   if(
@@ -2622,6 +2688,13 @@ function fillInitialSpace(){
     startNewCycle();
 
   }
+
+
+  const target =
+    Math.min(
+      getVisibleCount(),
+      confessions.size
+    );
 
 
   let created =
@@ -2730,7 +2803,9 @@ function renderMobileFeed(
       );
 
 
-  if(sorted.length === 0){
+  if(
+    sorted.length === 0
+  ){
 
     empty.style.display =
       "flex";
@@ -2785,18 +2860,13 @@ function renderMobileFeed(
 
       if(adminUnlocked){
 
-        const item = {
+        makeWordModeratable({
 
           id,
 
           el
 
-        };
-
-
-        makeWordModeratable(
-          item
-        );
+        });
 
       }
 
@@ -2823,7 +2893,7 @@ function renderMobileFeed(
 
 
 /* =========================================================
-   DATA SYNC
+   FIREBASE SYNC
    ========================================================= */
 
 onValue(
@@ -2850,7 +2920,7 @@ onValue(
 
 
     /* -----------------------------------------------
-       Deleted entries
+       REMOVE DELETED
        ----------------------------------------------- */
 
     previousIds.forEach(
@@ -2884,7 +2954,7 @@ onValue(
 
 
     /* -----------------------------------------------
-       Add or update entries
+       ADD / UPDATE
        ----------------------------------------------- */
 
     incomingIds.forEach(
@@ -3010,7 +3080,7 @@ onValue(
 
 
 /* =========================================================
-   ANIMATION
+   DESKTOP ANIMATION
    ========================================================= */
 
 let lastFrame =
@@ -3178,6 +3248,7 @@ function showSpace(){
           false
         );
 
+
         wordLayer.scrollTop =
           0;
 
@@ -3253,7 +3324,7 @@ enterSpace.addEventListener(
 
 
 /* =========================================================
-   COUNTER
+   CHARACTER COUNTER
    ========================================================= */
 
 input.addEventListener(
@@ -3367,7 +3438,7 @@ form.addEventListener(
 
 
 /* =========================================================
-   BACK
+   BACK TO ENTRY
    ========================================================= */
 
 back.addEventListener(
@@ -3610,7 +3681,7 @@ loginButton.addEventListener(
 
 
 /* =========================================================
-   DELETE
+   DELETE CONFESSION
    ========================================================= */
 
 deleteButton.addEventListener(
